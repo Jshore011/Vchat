@@ -8,7 +8,7 @@ class Button extends StatelessWidget{
       height: 50,
       margin: EdgeInsets.symmetric(horizontal: 50),
       decoration: BoxDecoration(
-        color: Colors.deepPurple,
+        color: Colors.purpleAccent,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Center(
