@@ -9,11 +9,11 @@ class Header extends StatelessWidget{
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Center(
-            child: Text("Login", style: TextStyle(color: Colors.white, fontSize: 40),),
+            child: Text("VChat", style: TextStyle(color: Colors.white, fontSize: 50),),
           ),
           SizedBox(height: 10,),
           Center(
-          child: Text("Welcome to VChat", style: TextStyle(color: Colors.white, fontSize: 18),),
+          child: Text("Welcome Back", style: TextStyle(color: Colors.white, fontSize: 18),),
           )
         ],
       ),
