@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'Signup_Header.dart';
 import 'signup_InputWrapper.dart';
 //testing webhook number3
-class LoginPage extends StatelessWidget {
+class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
