@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'LoginPage.dart';
-
+import 'LoginUI/LoginPage.dart';
+//import 'SignupUI/SignupPage.dart';
 
 void main() => runApp(const MyApp());
 
@@ -21,6 +21,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LoginPage(),
+
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'Header.dart';
-import 'InputWrapper.dart';
+import 'Login_Header.dart';
+import 'Login_InputWrapper.dart';
 //testing webhook number3
 class LoginPage extends StatelessWidget {
   @override
