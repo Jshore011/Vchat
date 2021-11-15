@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const cors = require("cors");
 // db
 // mongodb://<dbuser>:<dbpassword>@ds049558.mlab.com:49558/auth
 //async function connectDB() {
@@ -15,6 +16,7 @@ const mongoose = require("mongoose");
 
 // this takes the post body
 app.use(express.json({ extended: false }));
+app.use(cors());
 
 app.get("/", (req, res) => {
     console.log("This is VChat, we're still testing things...");
