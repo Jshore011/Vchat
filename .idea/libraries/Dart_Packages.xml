@@ -51,6 +51,13 @@
             </list>
           </value>
         </entry>
+        <entry key="dio">
+          <value>
+            <list>
+              <option value="D:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/dio-4.0.3/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="fake_async">
           <value>
             <list>
@@ -264,6 +271,7 @@
       <root url="file://D:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/clock-1.1.0/lib" />
       <root url="file://D:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib" />
       <root url="file://D:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.4/lib" />
+      <root url="file://D:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/dio-4.0.3/lib" />
       <root url="file://D:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0/lib" />
       <root url="file://D:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-3.2.0/lib" />
       <root url="file://D:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_platform_interface-6.1.4/lib" />
