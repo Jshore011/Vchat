@@ -17,8 +17,8 @@ const mongoose = require("mongoose");
 app.use(express.json({ extended: false }));
 
 app.get("/", (req, res) => {
-    console.log("I hate this sooo much");
-    res.send("Hello World!")
+    console.log("This is VChat, we're still testing things...");
+    res.send("VChat is LIVE!")
 });
 // signup route api
 app.post("/signup", async (req, res) => {
