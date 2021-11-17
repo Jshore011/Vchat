@@ -36,7 +36,8 @@ class SignUpSection extends StatelessWidget {
                   onPressed: () {
                     print(email);
                     print(password);
-                    signup(email, password);
+             //       signup(email, password);
+                    //getHttp(email, password);
                   },
                   icon: Icon(Icons.save),
                   label: Text("Sign UP"))
