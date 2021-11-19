@@ -11,8 +11,8 @@ import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
-import 'UI/Login.dart';
-import 'SignUp_UI/SignUp.dart';
+import 'UI/login_ui.dart';
+import 'SignUp_UI/signup_ui.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Login(),
+      home: Signup(),
     );
   }
 }
