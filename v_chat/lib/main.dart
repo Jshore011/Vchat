@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 import 'dart:html';
 import 'dart:io';
@@ -27,17 +29,27 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
+postTest() async {
+  var formData = FormData.fromMap({
+    'name': 'wendux',
+    'age': 25,
+  });
+  var dio;
+  var response =
+      await dio.post('http://54.193.237.158/open_api/login', data: formData);
+  print(response);
+}
 
 void getHttp() async {
   try {
-   // Response response;
+    // Response response;
     var dio = Dio();
-    var response = await dio.get('http://13.56.138.93');
+    var response = await dio.get('http://54.193.237.158/open_api/login');
     print(response.data.toString());
 // Optionally the request above could also be done as
-    response = await dio.post('/open_api/login', queryParameters: {'email': 'test@test.com', 'password': '123'});
-    print(response.data.toString());
+    // response = await dio.post('http://54.193.237.158/open_api/login',
+    //data: {'username': 'test', 'password': 'test123'});
+    print("response" + response.data.toString());
     //var response = await Dio().post('');
     //print(response);
   } catch (e) {
@@ -46,16 +58,13 @@ void getHttp() async {
 }
 
 Future<User> createUser(String email, String password) async {
-  var url = Uri.http('13.56.138.93/', "/");
+  var url = Uri.http('50.18.93.197:9001/', "user/login");
   final http.Response response = await http.post(
     url,
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: jsonEncode(<String, String>{
-      'email': email,
-      'password':password
-    }),
+    body: jsonEncode(<String, String>{'email': email, 'password': password}),
   );
 
   if (response.statusCode == 201) {

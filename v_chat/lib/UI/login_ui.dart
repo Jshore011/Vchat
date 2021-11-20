@@ -5,7 +5,7 @@ import 'package:v_chat/main.dart';
 import 'Home.dart';
 
 class Login extends StatefulWidget {
-  const Login({ Key? key }) : super(key: key);
+  const Login({Key? key}) : super(key: key);
 
   @override
   _LoginState createState() => _LoginState();
@@ -43,10 +43,10 @@ class _LoginState extends State<Login> {
                 padding: const EdgeInsets.only(top: 60.0),
                 child: Center(
                   child: Container(
-                      width: 200,
-                      height: 150,
-                      //child: Image.asset('asset/images/flutter-logo.png')//
-                      ),
+                    width: 200,
+                    height: 150,
+                    //child: Image.asset('asset/images/flutter-logo.png')//
+                  ),
                 ),
               ),
               Padding(
@@ -76,10 +76,10 @@ class _LoginState extends State<Login> {
                           errorText: "Password should be atleast 6 characters"),
                       MaxLengthValidator(15,
                           errorText:
-                          "Password should not be greater than 15 characters")
+                              "Password should not be greater than 15 characters")
                     ])
-                  //validatePassword,        //Function to check validation
-                ),
+                    //validatePassword,        //Function to check validation
+                    ),
               ),
               FlatButton(
                 onPressed: () {
@@ -98,7 +98,7 @@ class _LoginState extends State<Login> {
                     borderRadius: BorderRadius.circular(20)),
                 child: FlatButton(
                   onPressed: () {
-                    getHttp();
+                    postTest();
                     if (formkey.currentState!.validate()) {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (_) => HomePage()));
@@ -121,6 +121,20 @@ class _LoginState extends State<Login> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class User {
+  final String email;
+  final String password;
+
+  User({required this.email, required this.password});
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      email: json['email'],
+      password: json['password'],
     );
   }
 }
