@@ -3,7 +3,7 @@ import psycopg2
 
 
 def get_db():
-        return psycopg2.connect(host="localhost", dbname="authme" , user="bender", password="minguez")
+        return psycopg2.connect(host="localhost", dbname="authme" , user="test", password="password123")
     
 
 def get_db_instance():  
