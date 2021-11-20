@@ -41,10 +41,18 @@ def init_new_env():
 #This gets executed by default by the browser if no page is specified
 #So, we redirect to the endpoint we want to load by the base page
 
-@app.route('/') #endpoint
+@app.route('/', methods = ['POST','GET']) #endpoint
 def index():
-    return redirect('/static/index.html')
-
+    logger.debug("in index in app.py")
+    #return redirect('/static/index.html')
+    #content = request.json
+    content = request.form['username']
+    logger.debug(content)
+    print(content, request.form['password'])
+    #print("hello")
+    resp = "what up g"
+    
+    return resp
 
 @app.route("/secure_api/<proc_name>", methods=['GET', 'POST'])
 @token_required
