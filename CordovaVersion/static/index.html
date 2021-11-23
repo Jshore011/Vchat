@@ -17,5 +17,20 @@
         Forgot<a href="#"> password</a>
         </div>
     </form>
+    <script>
+        function login(){
+            $.post("/open_api/login", {"username" : $("#username").val(), "password": $('#password').val()},
+                function(data, textStatus{
+                    console.log("made login request");
+                    console.log(data.token);
+                    jwt = data.token;
+
+                }, "json").fail(function(response){
+                    console.log("error");
+                    console.log(response);
+                })    
+            return false;
+        }
+    </script>
 </body>
 </html>
