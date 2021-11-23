@@ -20,7 +20,7 @@ def handle_request():
     user = {
             "sub" : request.form['username'] #sub is used by pyJwt as the owner of the token
             }
-
+    logger.debug(user['sub'])
     cur = g.db.cursor()
     cur.execute("select * from users where username = '" + user['sub'] + "';")
     dbcredz = cur.fetchone()
