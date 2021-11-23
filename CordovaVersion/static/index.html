@@ -18,6 +18,19 @@
         Forgot<a href="#"> password</a>
         </div>
     </form>
+
+    <div id="signup">
+        <div>
+        <form >
+        <label for="fname">Username:</label><br>
+        <input type="text" id="newname" name="newname" value="Username"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="newword" name="newword" value="12212"><br><br>
+        <input type="submit" value="Signup" onclick="return signup();">
+        </form>
+        </div>
+    </div>
+
     <script>
         function login(){
             $.post("/open_api/login", {"username" : $("#username").val(), "password": $('#password').val()},
@@ -32,6 +45,21 @@
                 })    
             return false;
         }
+
+        fucntion signup(){
+            $.post("/open_api/signup", {"username" : $("#newname").val(), "password": $('#newword').val()},
+                function(data, textStatus){
+                    console.log("made signup request");
+                    console.log(data.token);
+                    jwt = data.token;
+
+                }, "json").fail(function(response){
+                    console.log("error");
+                    console.log(response);
+                })    
+            return false;
+        }
+        
     </script>
 </body>
 </html>
