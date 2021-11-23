@@ -7,23 +7,26 @@
 </head>
 <body>
     <form>
-        <div class = "container">
-        <label> Username: </label>
-        <input type="text" id="username" placeholder="Enter Username" name="username" required>
-        <label> Password: </label>
-        <input type = "password" id="password" placeholder="Enter Password" name= "password" required>
-        <button type = "submit" onclick="return login();"> Login </button>
-        <input type ="checkbox" checked= "checked"> Remember Me
-        <button type="button" class="">Sign Up</button>
-        Forgot<a href="#"> password</a>
+        <div id="login">
+            <div>
+            <form >
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" value="Username"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="newword" name="newword" value="12212"><br><br>
+            <input type="submit" value="Signup" onclick="return login();">
+            </form>
+            </div>
         </div>
     </form>
+
+
 
     <div id="signup">
         <div>
         <form >
         <label for="fname">Username:</label><br>
-        <input type="text" id="username" name="username" value="Username"><br>
+        <input type="text" id="newname" name="newname" value="Username"><br>
         <label for="password">Password:</label><br>
         <input type="password" id="newword" name="newword" value="12212"><br><br>
         <input type="submit" value="Signup" onclick="return signup();">
