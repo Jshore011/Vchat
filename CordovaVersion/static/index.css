@@ -2,6 +2,7 @@ body,html {
     height: 100%;
     margin: 0;
     background-color: #00897B;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #navigationBar {
@@ -39,11 +40,12 @@ li a:hover {
 }
 
 #windowBox {
-    background-color: lightgrey;
+    background-color: #424242;
+    color: white;
     border-radius: 10px;
     justify-content: center;
     display: grid;
-    width: 25vw;
+    width: 500px;
     padding: 30px;
     margin-top: 25vh;
     margin-left: auto;
@@ -51,6 +53,14 @@ li a:hover {
     line-height: 2;
 }
 
+.textfield {
+    background-color: #303030;
+    border-radius: 3px;
+    border: none;
+    padding: 10px;
+    color: white;
+    width: 225px;
+}
 .button:hover {
     cursor: pointer;
 }
