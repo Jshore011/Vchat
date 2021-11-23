@@ -21,7 +21,7 @@
     <script>
         function login(){
             $.post("/open_api/login", {"username" : $("#username").val(), "password": $('#password').val()},
-                function(data, textStatus{
+                function(data, textStatus){
                     console.log("made login request");
                     console.log(data.token);
                     jwt = data.token;
