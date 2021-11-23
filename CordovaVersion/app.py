@@ -34,7 +34,7 @@ def init_new_env():
 #So.. we redirect to the endpoint we want to load the base page
 @app.route('/') #endpoint
 def index():
-    return redirect('/index.html')
+    return redirect('/static/index.html')
 
 
 @app.route("/<proc_name>",methods=['GET', 'POST'])
