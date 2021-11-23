@@ -25,7 +25,7 @@
         <label for="fname">Username:</label><br>
         <input type="text" id="username" name="username" value="Username"><br>
         <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" value="12212"><br><br>
+        <input type="password" id="newword" name="newword" value="12212"><br><br>
         <input type="submit" value="Signup" onclick="return signup();">
         </form>
         </div>
@@ -47,7 +47,7 @@
         }
 
         function signup(){
-            $.post("/open_api/signup", {"username" : $("#username").val(), "password": $('#password').val()},
+            $.post("/open_api/signup", {"username" : $("#newname").val(), "password": $('#newword').val()},
                 function(data, textStatus){
                     console.log("made signup request");
                     console.log(data.token);
