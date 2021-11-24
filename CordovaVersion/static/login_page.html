@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href = "login_signup_styling.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" 
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <title>VChat Login Page</title>
+</head>
+
+<body>
+    <div id="navigationBar">
+        <ul class="nav-bar-content">
+            <li id="homepage">
+                <a href="homepage.html">
+                    VChat
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="windowBox">
+        <label id="header">Log into an account</label>
+        <form id="login">
+            <label for="username">Username:</label>
+            <input type="text" class="textfield" id="username" name="username" value="Username">
+            <label for="password">Password:</label>
+            <input type="password" class="textfield" id="password" name="password" value="12212">
+            <input type="submit" class="button" value="Login" onclick="return login();">
+        </form>
+        <button id="goToSignup" class="button" onclick="window.location.href='signup_page.html';">Already have an account?</button>
+    </div>
+    <script>
+        function login(){
+            $.post("/open_api/login", {"username" : $("#username").val(), "password": $('#password').val()},
+                function(data, textStatus){
+                    console.log("made login request");
+                    console.log(data.token);
+                    jwt = data.token;
+
+                }, "json").fail(function(response){
+                    console.log("error");
+                    console.log(response);
+                })    
+            return false;
+        }
+    </script>
+</body>
+</html>
