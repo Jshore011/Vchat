@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:v_chat/UI/login_ui.dart';
 import '/main.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({ Key? key }) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({ Key? key }) : super(key: key);
 
   @override
   _SignupState createState() => _SignupState();
 }
 
-class _SignupState extends State<Signup> {
+class _SignupState extends State<SignUp> {
   
   final _formKey = GlobalKey<FormState>();
 
