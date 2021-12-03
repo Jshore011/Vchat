@@ -34,6 +34,13 @@
         </div>
     </div>
 
+    <div id="dashboard">
+        <div style="background-image: url( https://whimsical.com/user-dashboard-Uy6wS3xrDKy3XZnJV9oZu5);">
+        
+        </div>
+    </div>
+
+
     <script>
         function login(){
             $.post("/open_api/login", {"username" : $("#username").val(), "password": $('#password').val()},
@@ -41,6 +48,8 @@
                     console.log("made login request");
                     console.log(data.token);
                     jwt = data.token;
+		    $('#login').hide();
+		    $('#dashboard').show();
 
                 }, "json").fail(function(response){
                     console.log("error");
