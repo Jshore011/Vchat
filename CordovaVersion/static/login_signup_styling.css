@@ -22,6 +22,7 @@ ul {
 }
 
 li a {
+    float: left;
     display: block;
     color: white;
     text-align: center;
@@ -38,6 +39,47 @@ li a:hover {
     background-color: #003630;
     border-bottom: 3px solid white; 
 }
+.nav-bar-content .search-container {
+    float: right;
+}
+
+.nav-bar-content input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+}
+
+.nav-bar-content .search-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-bar-content .search-container button:hover {
+    background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+    .nav-bar-content .search-container {
+        float: right;
+    }
+    .nav-bar-content a, .nav-bar-content input[type=text], .nav-bar-content .search-container button {
+        float: right;
+        display: block;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 14px;
+    }
+    .nav-bar-content input[type=text] {
+        border: 1px solid #ccc;
+    }
 
 #header {
     font-weight: bold;
