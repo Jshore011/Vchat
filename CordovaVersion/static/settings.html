@@ -5,67 +5,109 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href = "login_signup_styling.css"/>
+    <link rel="stylesheet" type="text/css" href = "settings_styling.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
     <title>Settings</title>
 </head>
 <body>
-<div id="navigationBar">
-    <ul class="nav-bar-content">
-        <li id="homepage">
-            <a href="homepage.html">
-                VChat
-            </a>
-            <a href="homepage.html">
-                My Chatrooms
-            </a>
-            <a href="homepage.html">
-                Friends
-            </a>
-            <a href="homepage.html">
-                Analytics
-            </a>
-            <a href="homepage.html">
-                Settings
-            </a>
-            <div class="search-container">
-                <form action="/action_page.php">
-                    <input type="text" placeholder="Search.." name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </form>
+    <div id="navigationBar">
+        <ul class="nav-bar-content">
+            <li id="homepage">
+                <a href="homepage.html">
+                    VChat
+                </a>
+                <a href="homepage.html">
+                    My Chatrooms
+                </a>
+                <a href="homepage.html">
+                    Friends
+                </a>
+                <a href="homepage.html">
+                    Analytics
+                </a>
+                <a href="homepage.html">
+                    Settings
+                </a>
+                <div class="search-container">
+                    <form action="/action_page.php">
+                        <input type="text" placeholder="Search.." name="search">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="setting-options">
+        <div class="avatar">
+            <div class="photo">
+                <div id="photoPlaceholder">
+
+                </div>
+                <div id="savedPhoto">
+                    
+                </div>
             </div>
-        </li>
-    </ul>
-</div>
-<div class = "container">
-    <div class = "title"> Settings </div>
-    <form action = "#">
-        <div class="user-details">
-            <div class = "input-box">
-                <span class ="details">Username</span>
-                <input type = "text" placeholder = "enter Username" required>
-            </div>
-            <div class = "input-box">
-                <span class ="details">E-mail</span>
-                <input type = "text" placeholder = "enter E-mail" required>
-            </div>
-            <div class = "input-box">
-                <span class ="details">Password</span>
-                <input type = "text" placeholder = "enter New Password" required>
-            </div>
-            <div class = "input-box">
-                <span class ="details">PhoneNumber</span>
-                <input type = "text" placeholder = "enter New Phone Number" required>
-            </div>
-            <div class = "input-box">
-                <span class ="details">Change input/output device</span>
-                <input type = "text" placeholder = "enter full name" required>
-            </div>
+            <button id="changeAvatar">Change Avatar</button>
+            <button id="removeAvatar">Remove Avatar</button>
         </div>
+        <div class="username">
+            Username
+            <label>placeholder-name</label>
+            <button id="editUsername">Edit</button>
+        </div>
+        <div class="email">
+            Email
+            <label>placeholder-email</label>
+            <button id="editEmail">Edit</button>
+        </div>
+        <div class="password">
+            Password
+            <label>placeholder-password</label>
+            <button id="editPassword">Edit</button>
+        </div>
+        <div class="phone-number">
+            Phone Number
+            <label>placeholder-phoneNumber</label>
+            <button id="editPhoneNumber">Edit</button>
+        </div>
+        <div class="input-ouput-device">
+            Input Device / Output Device
+            <label>placeholder-input-output-names</label>
+            <button id="editInputOutputDevices">Edit</button>
+        </div>
+        <div class="disable-delete-acount">
+            <button id="disableAccount">Disable Account</button>
+            <button id="deleteAccount">Delete Account</button>
+        </div>
+    </div>
+    <!-- <div class = "container">
+        <div class = "title"> Settings </div>
+        <form action = "#">
+            <div class="user-details">
+                <div class = "input-box">
+                    <span class ="details">Username</span>
+                    <input type = "text" placeholder = "enter Username" required>
+                </div>
+                <div class = "input-box">
+                    <span class ="details">E-mail</span>
+                    <input type = "text" placeholder = "enter E-mail" required>
+                </div>
+                <div class = "input-box">
+                    <span class ="details">Password</span>
+                    <input type = "text" placeholder = "enter New Password" required>
+                </div>
+                <div class = "input-box">
+                    <span class ="details">PhoneNumber</span>
+                    <input type = "text" placeholder = "enter New Phone Number" required>
+                </div>
+                <div class = "input-box">
+                    <span class ="details">Change input/output device</span>
+                    <input type = "text" placeholder = "enter full name" required>
+                </div>
+            </div>
 
-    </form>
-
-</div>
+        </form>
+    </div> -->
 </body>
 </html>
