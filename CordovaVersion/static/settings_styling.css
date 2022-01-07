@@ -4,3 +4,111 @@
     height: 200px;
     border-radius: 50%;
 }
+
+.setting-options .avatar-container{
+    position: absolute;
+    top:90px;
+    bottom: 0;
+    left: 850px;
+    right: 0;
+
+    margin: auto;
+}
+
+.setting-options .leftcol-container{
+    position: absolute;
+    top:400px;
+    bottom: 0;
+    left: 400px;
+    right: 0;
+
+    margin: auto;
+}
+.setting-options .rightcol-container{
+    position: absolute;
+    top:400px;
+    bottom: 0;
+    left: 1000px;
+    right: 0;
+
+    margin: auto;
+}
+.setting-options .footer-container{
+    position: absolute;
+    top:700px;
+    bottom: 0;
+    left: 850px;
+    right: 0;
+
+    margin: auto;
+}
+
+#editUsername{
+    margin-right: 10px;
+}
+.username{
+    font-size: x-large;
+    font-weight:bold;
+}
+
+#placeholder-name{
+    font-size: large;
+    font-weight: normal;
+}
+.email{
+    font-size: x-large;
+    font-weight:bold;
+}
+#placeholder-email{
+    font-size: large;
+    font-weight: normal;
+}
+.password{
+    font-size: x-large;
+    font-weight:bold;
+}
+#placeholder-password{
+    font-size: large;
+    font-weight: normal;
+}
+.phone-number{
+    font-size: x-large;
+    font-weight:bold;
+}
+#placeholder-phone{
+    font-size: large;
+    font-weight: normal;
+}
+.input-ouput-device{
+    font-size: x-large;
+    font-weight:bold;
+}
+#placeholder-input{
+    font-size: large;
+    font-weight: normal;
+}
+#changeAvatar {
+    padding: 10px;
+    color: white;
+    background-color: #424242;
+    border-radius: 5px;
+    border: none;
+    transition: 0.15s;
+}
+
+#changeAvatar:hover {
+    color: #006157;
+    background-color: white;
+}
+
+#changeAvatar:hover {
+    cursor: pointer;
+}
+.mode{
+    font-size: x-large;
+    font-weight:bold;
+}
+.notification{
+    font-size: x-large;
+    font-weight:bold;
+}
