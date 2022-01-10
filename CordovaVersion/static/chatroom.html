@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChatRoom</title>
+</head>
+<body>
+
+
+<script>
+    chatWindow = document.getElementById("chatWindow").addEventListener(e);
+    var rowCount = 0; // tracks rowCount for sent/received chats for proper sequence when chats populate
+
+    //each time a new chat is received a new row is added to the chatWindow with a sender icon, message object, and associated emoji
+    function receiveChat() {
+        rowCount = rowCount + 1;
+        //change this to be triggered with each send/receive event
+        for (var i = 0; i < 1; i++) {
+            console.log(data.message);
+            row = chatWindow.insertRow(rowCount + 1);
+            cell1 = row.insertCell(0);
+            cell2 = row.insertCell(1);
+            cell3 = row.insertCell(2);
+
+            cell1.innerHTML = data.message.sender;
+            cell2.innerHTML = data.message.recording;
+            cell3.innerHTML = data.message.emoji;
+        }
+        return rowCount;
+    }
+
+    //each time a new chat is sent a new row is added to the chatWindow with associated emoji, message and sender icon
+    function sendChat() {
+        rowCount = rowCount + 1;
+        //change this to be triggered with each send/receive event
+        for (var i = 0; i < 1; i++) {
+            console.log(data.message);
+            row = chatWindow.insertRow(rowCount + 1);
+            cell1 = row.insertCell(0);
+            cell2 = row.insertCell(1);
+            cell3 = row.insertCell(2);
+
+            cell1.innerHTML = data.message.emoji;
+            cell2.innerHTML = data.message.recording;
+            cell3.innerHTML = data.message.sender;
+        }
+        return rowCount;
+    }
+</script>
+</body>
+</html>
