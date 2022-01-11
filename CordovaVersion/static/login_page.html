@@ -35,20 +35,17 @@
     </div>
     </div>
 
-    <div id= "dashboard">
-	<iframe style="border:none" width="800" height="450" src="https://whimsical.com/embed/Uy6wS3xrDKy3XZnJV9oZu5"></iframe>
-    </div>    
-
     <script>
-	$('#dashboard').hide();
+	//$('#dashboard').hide();
         function login(){
             $.post("/open_api/login", {"username" : $("#username").val(), "password": $('#password').val()},
                 function(data, textStatus){
                     console.log("made login request");
                     console.log(data.token);
                     jwt = data.token;
-		    $('#login_page').hide();
-		    $('#dashboard').show();
+            	    location.replace("dashboard.html");
+		    //$('#login_page').hide();
+		    //$('#dashboard').show();
 
                 }, "json").fail(function(response){
                     console.log("error");
