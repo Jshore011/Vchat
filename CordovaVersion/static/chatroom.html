@@ -55,6 +55,12 @@
         </table>
     </div>
 
+<div id="recorder">
+    <button id="rec_button" style="height: 40px; width: 40px; border-radius: 50%; background-color: red; text-align: center">REC</button>
+    <button id="stop_button"style="height: 40px; width: 40px; border-radius: 25%; text-align: left">STOP</button>
+    <audio id="voice_msg"></audio>
+</div>
+
     <script>
         chatWindow = document.getElementById("chatWindow").addEventListener(e);
         var rowCount = 0; // tracks rowCount for sent/received chats for proper sequence when chats populate
@@ -94,6 +100,9 @@
             }
             return rowCount;
         }
+
+
+
     </script>
 </body>
 </html>
