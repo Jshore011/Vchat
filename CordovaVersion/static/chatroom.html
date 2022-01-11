@@ -2,9 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href = "login_signup_styling.css"/>
+    <link rel="stylesheet" type="text/css" href = "chatroom_styling.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <title>ChatRoom</title>
 </head>
 <body>
+<div id="navigationBar">
+    <ul class="nav-bar-content">
+        <li id="homepage">
+            <a href="homepage.html">
+                VChat
+            </a>
+            <a href="homepage.html">
+                My Chatrooms
+            </a>
+            <a href="homepage.html">
+                Friends
+            </a>
+            <a href="homepage.html">
+                Analytics
+            </a>
+            <a href="homepage.html">
+                Settings
+            </a>
+            <div class="search-container">
+                <form action="/action_page.php">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </li>
+    </ul>
+</div>
     <!--this is the base for the table, all data/images within the html should be removed and populated dynamically with javascript as messages are sent/received-->
     <div id="chatWindow">
         <table style="text-align: center; width: 60%">
