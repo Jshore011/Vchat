@@ -35,10 +35,6 @@
     </div>
     </div>
 
-    <div id= "dashboard">
-	<iframe style="border:none" width="800" height="450" src="https://whimsical.com/embed/Uy6wS3xrDKy3XZnJV9oZu5"></iframe>
-    </div>    
-
     <script>
 	//$('#dashboard').hide();
         function login(){
@@ -47,7 +43,7 @@
                     console.log("made login request");
                     console.log(data.token);
                     jwt = data.token;
-            location.replace("dashboard.html");
+            	    location.replace("dashboard.html");
 		    //$('#login_page').hide();
 		    //$('#dashboard').show();
 
