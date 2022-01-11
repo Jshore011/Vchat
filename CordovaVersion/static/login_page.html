@@ -40,15 +40,16 @@
     </div>    
 
     <script>
-	$('#dashboard').hide();
+	//$('#dashboard').hide();
         function login(){
             $.post("/open_api/login", {"username" : $("#username").val(), "password": $('#password').val()},
                 function(data, textStatus){
                     console.log("made login request");
                     console.log(data.token);
                     jwt = data.token;
-		    $('#login_page').hide();
-		    $('#dashboard').show();
+            location.replace("dashboard.html");
+		    //$('#login_page').hide();
+		    //$('#dashboard').show();
 
                 }, "json").fail(function(response){
                     console.log("error");
