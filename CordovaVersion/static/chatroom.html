@@ -68,34 +68,30 @@
 
         //each time a new chat is received a new row is added to the chatWindow with a sender icon, message object, and associated emoji
         function receiveChat() {
-            rowCount = rowCount + 1;
-            //change this to be triggered with each send/receive event
-            for (var i = 0; i < 1; i++) {
-                console.log(data.message);
-                row = chatWindow.insertRow(rowCount + 1);
-                cell1 = row.insertCell(0);
-                cell2 = row.insertCell(1);
-                cell3 = row.insertCell(2);
+            chatWindow = document.getElementById("chatLog");
 
-                cell1.innerHTML += "<td style=\"width: 5%\">\n" +
-                    "                <img src=\"https://media.giphy.com/media/3oJtgd37mxeDib8go0/giphy.gif\" style=\"width:55px; height:55px; border-radius: 50%\">\n" +
-                    "               </td>";
-                cell2.innerHTML += "<td class = \"recvdMess\" style=\"width: 45%\"> message </td>";
-                cell3.innerHTML += "<td style=\"width: 5%\">\n" +
-                    "                <img src=\"https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif\" style=\"width:55px; height:55px; border-radius: 50%\">\n" +
-                    "               </td>";
-            }
-            return rowCount;
+            console.log("message received");
+
+            row = chatWindow.insertRow(-1);
+            cell1 = row.insertCell(0);
+            cell2 = row.insertCell(1);
+            cell3 = row.insertCell(2);
+
+            cell1.innerHTML += "<td style=\"width: 5%\">\n" +
+                "                <img src=\"https://media.giphy.com/media/3oJtgd37mxeDib8go0/giphy.gif\" style=\"width:55px; height:55px; border-radius: 50%\">\n" +
+                "               </td>";
+            cell2.innerHTML += "<td class = \"recvdMess\" style=\"width: 45%\"> message </td>";
+            cell3.innerHTML += "<td style=\"width: 5%\">\n" +
+                "                <img src=\"https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif\" style=\"width:55px; height:55px; border-radius: 50%\">\n" +
+                "               </td>";
+
         }
 
         //each time a new chat is sent a new row is added to the chatWindow with associated emoji, message and sender icon
         function sendChat() {
-
             chatWindow = document.getElementById("chatLog");
 
-            //change this to be triggered with each send/receive event
-
-            console.log("made it here");
+            console.log("message sent");
 
             row = chatWindow.insertRow(-1);
             cell1 = row.insertCell(0);
