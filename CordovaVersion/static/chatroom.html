@@ -41,7 +41,7 @@
     <!--this is the base for the table, all data/images within the html should be removed and populated dynamically with javascript as messages are sent/received-->
 <div class = "chat-container" id="chatContainer" style="height: 80%; width: 60%; margin: 0.5% 10% 0.5% 10%; background-color: lightgray; border: 4px darkgreen; border-style: inset; overflow-y: auto;">
     <div id="chatWindow">
-        <table style="text-align: center; width: 100%">
+        <table id="chatLog" style=" width: 100%">
         <tbody>
         <tr style="border-radius: 30%; border-style: solid; border-color: #1B1B1B; height: 40%">
             <td style="width: 5%">
@@ -60,39 +60,11 @@
 <div id="recorder" style="margin-left: 35%">
     <button id="rec_button" style="height: 40px; width: 40px; border-radius: 50%; background-color: red; text-align: center">REC</button>
     <button id="stop_button"style="height: 40px; width: 50px; border-radius: 25%; text-align: left">STOP</button>
+    <button id="stop_button"style="height: 40px; width: 50px; border-radius: 25%; text-align: left" onclick="sendChat();">SEND</button>
     <audio id="voice_msg"></audio>
 </div>
 
     <script>
-        chatWindow = document.getElementById("chatWindow").addEventListener(e);
-        var rowCount = 0; // tracks rowCount for sent/received chats for proper sequence when chats populate
-
-        function BrowserDetection() {
-            //Check if browser is IE
-            if (navigator.userAgent.search("MSIE") & gt; = 0) {
-                // insert conditional IE code here
-                console.log("hello explorer!");
-            }
-            //Check if browser is Chrome
-            else if (navigator.userAgent.search("Chrome") & gt; = 0) {
-                // insert conditional Chrome code here
-                console.log("hello chrome!");
-            }
-            //Check if browser is Firefox
-            else if (navigator.userAgent.search("Firefox") & gt; = 0) {
-                // insert conditional Firefox Code here
-                console.log("hello firefox!");
-            }
-            //Check if browser is Safari
-            else if (navigator.userAgent.search("Safari") & gt; = 0 & amp; & amp; navigator.userAgent.search("Chrome") & lt; 0) {
-                // insert conditional Safari code here
-                console.log("hello safari!");
-            }
-            //Check if browser is Opera
-            else if (navigator.userAgent.search("Opera") & gt; = 0) {
-                // insert conditional Opera code here
-            }
-        }
 
         //each time a new chat is received a new row is added to the chatWindow with a sender icon, message object, and associated emoji
         function receiveChat() {
@@ -105,29 +77,40 @@
                 cell2 = row.insertCell(1);
                 cell3 = row.insertCell(2);
 
-                cell1.innerHTML = data.message.sender;
-                cell2.innerHTML = data.message.recording;
-                cell3.innerHTML = data.message.emoji;
+                cell1.innerHTML += "<td style=\"width: 5%\">\n" +
+                    "                <img src=\"https://media.giphy.com/media/3oJtgd37mxeDib8go0/giphy.gif\" style=\"width:55px; height:55px; border-radius: 50%\">\n" +
+                    "               </td>";
+                cell2.innerHTML += "<td class = \"recvdMess\" style=\"width: 45%\"> message </td>";
+                cell3.innerHTML += "<td style=\"width: 5%\">\n" +
+                    "                <img src=\"https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif\" style=\"width:55px; height:55px; border-radius: 50%\">\n" +
+                    "               </td>";
             }
             return rowCount;
         }
 
         //each time a new chat is sent a new row is added to the chatWindow with associated emoji, message and sender icon
         function sendChat() {
-            rowCount = rowCount + 1;
-            //change this to be triggered with each send/receive event
-            for (var i = 0; i < 1; i++) {
-                console.log(data.message);
-                row = chatWindow.insertRow(rowCount + 1);
-                cell1 = row.insertCell(0);
-                cell2 = row.insertCell(1);
-                cell3 = row.insertCell(2);
 
-                cell1.innerHTML = data.message.emoji;
-                cell2.innerHTML = data.message.recording;
-                cell3.innerHTML = data.message.sender;
-            }
-            return rowCount;
+            chatWindow = document.getElementById("chatLog");
+
+            //change this to be triggered with each send/receive event
+
+            console.log("made it here");
+
+            row = chatWindow.insertRow(-1);
+            cell1 = row.insertCell(0);
+            cell2 = row.insertCell(1);
+            cell3 = row.insertCell(2);
+
+            cell1.innerHTML += "<td style=\"width: 5%\">\n" +
+                "                <img src=\"https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif\" style=\"width:55px; height:55px; border-radius: 50%\">\n" +
+                "               </td>";
+            cell2.innerHTML += "<td class = \"sentMess\" style=\"width: 45%\"> message </td>";
+            cell3.innerHTML += "<td style=\"width: 5%\">\n" +
+                "                <img src=\"https://media.giphy.com/media/3oJtgd37mxeDib8go0/giphy.gif\" style=\"width:55px; height:55px; border-radius: 50%\">\n" +
+                "               </td>";
+
+
         }
 
 
