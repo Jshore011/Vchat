@@ -39,17 +39,17 @@
     </ul>
 </div>
     <!--this is the base for the table, all data/images within the html should be removed and populated dynamically with javascript as messages are sent/received-->
-<div id="chatContainer" style="height: 80%; width: 60%; margin: 5px; 10% 10% 10%; background-color: lightgray; border: 4px darkgreen; border-style: inset; overflow-y: auto;">
+<div id="chatContainer" style="height: 80%; width: 60%; margin: 0.5% 10% 0.5% 10%; background-color: lightgray; border: 4px darkgreen; border-style: inset; overflow-y: auto;">
     <div id="chatWindow">
         <table style="text-align: center; width: 100%">
         <tbody>
         <tr>
             <td style="width: 5%">
-                <img src="https://media.giphy.com/media/3oJtgd37mxeDib8go0/giphy.gif" style="width:55px; height:55px">
+                <img src="https://media.giphy.com/media/3oJtgd37mxeDib8go0/giphy.gif" style="width:55px; height:55px; border-radius: 50%">
             </td>
             <td style="width: 45%"> message </td>
             <td style="width: 5%">
-                <img src="https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif" style="width:45%; height:45%">
+                <img src="https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif" style="width:45%; height:45%; border-radius: 50%">
             </td>
         </tr>
         </tbody>
@@ -57,7 +57,7 @@
     </div>
 </div>
 
-<div id="recorder" style="margin-left: 25%">
+<div id="recorder" style="margin-left: 35%">
     <button id="rec_button" style="height: 40px; width: 40px; border-radius: 50%; background-color: red; text-align: center">REC</button>
     <button id="stop_button"style="height: 40px; width: 50px; border-radius: 25%; text-align: left">STOP</button>
     <audio id="voice_msg"></audio>
