@@ -1,11 +1,28 @@
 #photoPlaceholder {
-    background-color: #424242;
+    background-color: #006157;
     width: 200px;
     height: 200px;
     border-radius: 50%;
 }
+#photoPlaceholder:hover {
+    color: white;
+    background-color: #006157;
+}
+button {
+    padding: 10px;
+    color: black;
+    background-color: #00897B;
+    border-radius: 5px;
+    border: none;
+    transition: 0.15s;
+}
 
-.setting-options .avatar-container{
+button:hover {
+    color: white;
+    background-color: #006157;
+}
+
+.setting-container .avatar-container{
     position: absolute;
     top:90px;
     bottom: 0;
@@ -15,7 +32,7 @@
     margin: auto;
 }
 
-.setting-options .leftcol-container{
+.setting-container .leftcol-container{
     position: absolute;
     top:400px;
     bottom: 0;
@@ -24,7 +41,7 @@
 
     margin: auto;
 }
-.setting-options .rightcol-container{
+.setting-container .rightcol-container{
     position: absolute;
     top:400px;
     bottom: 0;
@@ -33,7 +50,7 @@
 
     margin: auto;
 }
-.setting-options .footer-container{
+.setting-container .footer-container{
     position: absolute;
     top:700px;
     bottom: 0;
@@ -87,23 +104,6 @@
     font-size: large;
     font-weight: normal;
 }
-#changeAvatar {
-    padding: 10px;
-    color: white;
-    background-color: #424242;
-    border-radius: 5px;
-    border: none;
-    transition: 0.15s;
-}
-
-#changeAvatar:hover {
-    color: #006157;
-    background-color: white;
-}
-
-#changeAvatar:hover {
-    cursor: pointer;
-}
 .mode{
     font-size: x-large;
     font-weight:bold;
@@ -111,4 +111,19 @@
 .notification{
     font-size: x-large;
     font-weight:bold;
+}
+.setting-container{
+    background-color: #424242;
+    color: white;
+    border-radius: 10px;
+    justify-content: center;
+    display: grid;
+    width: 1700px;
+    height:700px;
+    padding: 30px 30px 50px 30px;
+    margin-top: 1vh;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 2;
+    row-gap: 15px;
 }
