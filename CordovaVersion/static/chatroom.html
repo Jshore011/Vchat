@@ -43,13 +43,13 @@
     <div id="chatWindow">
         <table style="text-align: center; width: 100%">
         <tbody>
-        <tr>
+        <tr style="border-radius: 30%; border-style: solid; border-color: #1B1B1B; height: 40%">
             <td style="width: 5%">
                 <img src="https://media.giphy.com/media/3oJtgd37mxeDib8go0/giphy.gif" style="width:55px; height:55px; border-radius: 50%">
             </td>
             <td class = "recvdMess" style="width: 45%"> message </td>
             <td style="width: 5%">
-                <img src="https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif" style="width:45%; height:45%; border-radius: 50%">
+                <img src="https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif" style="width:55px; height:55px; border-radius: 50%">
             </td>
         </tr>
         </tbody>
@@ -66,6 +66,33 @@
     <script>
         chatWindow = document.getElementById("chatWindow").addEventListener(e);
         var rowCount = 0; // tracks rowCount for sent/received chats for proper sequence when chats populate
+
+        function BrowserDetection() {
+            //Check if browser is IE
+            if (navigator.userAgent.search("MSIE") & gt; = 0) {
+                // insert conditional IE code here
+                console.log("hello explorer!");
+            }
+            //Check if browser is Chrome
+            else if (navigator.userAgent.search("Chrome") & gt; = 0) {
+                // insert conditional Chrome code here
+                console.log("hello chrome!");
+            }
+            //Check if browser is Firefox
+            else if (navigator.userAgent.search("Firefox") & gt; = 0) {
+                // insert conditional Firefox Code here
+                console.log("hello firefox!");
+            }
+            //Check if browser is Safari
+            else if (navigator.userAgent.search("Safari") & gt; = 0 & amp; & amp; navigator.userAgent.search("Chrome") & lt; 0) {
+                // insert conditional Safari code here
+                console.log("hello safari!");
+            }
+            //Check if browser is Opera
+            else if (navigator.userAgent.search("Opera") & gt; = 0) {
+                // insert conditional Opera code here
+            }
+        }
 
         //each time a new chat is received a new row is added to the chatWindow with a sender icon, message object, and associated emoji
         function receiveChat() {
