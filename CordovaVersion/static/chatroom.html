@@ -12,58 +12,69 @@
     <title>ChatRoom</title>
 </head>
 <body>
-<div id="navigationBar">
-    <ul class="nav-bar-content">
-        <li id="homepage">
-            <a href="homepage.html">
-                VChat
-            </a>
-            <a href="homepage.html">
-                My Chatrooms
-            </a>
-            <a href="homepage.html">
-                Friends
-            </a>
-            <a href="homepage.html">
-                Analytics
-            </a>
-            <a href="homepage.html">
-                Settings
-            </a>
-            <div class="search-container">
-                <form action="/action_page.php">
-                    <input type="text" placeholder="Search.." name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
-        </li>
-    </ul>
-</div>
-    <!--this is the base for the table, all data/images within the html should be removed and populated dynamically with javascript as messages are sent/received-->
-<div class = "chat-container" id="chatContainer" style="height: 80%; width: 60%; margin: 0.5% 10% 0.5% 10%; background-color: lightgray; border: 4px darkgreen; border-style: inset; overflow-y: auto;">
-    <div id="chatWindow">
-        <table id="chatLog" style=" width: 100%">
-        <tbody>
-        <tr style="border-radius: 30%; border-style: solid; border-color: #1B1B1B; height: 40%">
-            <td style="width: 5%">
-                <img src="https://media.giphy.com/media/3oJtgd37mxeDib8go0/giphy.gif" style="width:55px; height:55px; border-radius: 50%">
-            </td>
-            <td class = "recvdMess" style="width: 45%"> message </td>
-            <td style="width: 5%">
-                <img src="https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif" style="width:55px; height:55px; border-radius: 50%">
-            </td>
-        </tr><i class="far fa-microphone"></i>
-        </tbody>
-        </table>
+    <div id="navigationBar">
+        <ul class="nav-bar-content">
+            <li id="homepage">
+                <a href="homepage.html">
+                    VChat
+                </a>
+                <a href="homepage.html">
+                    My Chatrooms
+                </a>
+                <a href="homepage.html">
+                    Friends
+                </a>
+                <a href="homepage.html">
+                    Analytics
+                </a>
+                <a href="homepage.html">
+                    Settings
+                </a>
+                <div class="search-container">
+                    <form action="/action_page.php">
+                        <input type="text" placeholder="Search.." name="search">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </li>
+        </ul>
     </div>
-</div>
-
-<div id="recorder" style="margin-left: 35%">
-    <button class="record_btn"><i class="fa fa-microphone fa-4x"></i></button>
-    <button class ="stop_btn"><i class="fa fa-stop-circle fa-4x"></i></button>
-    <button class ="send_btn" onclick="sendChat();"><i class="fa fa-share-square fa-4x"></i></button>
-    <audio id="voice_msg"></audio>
-</div>
+    <div class="middle-container">
+        <div class="chat-members-container">
+            TODO <br>
+            Placeholder for chatroom name <br>
+            Chatroom members <br>
+            Button to add another member to chatroom
+        </div>
+        <div class ="chat-container" id="chatContainer">
+            <div id="chatWindow">
+                <table id="chatLog" style=" width: 100%">
+                    <tbody>
+                        <tr style="border-radius: 30%; border-style: solid; border-color: #1B1B1B; height: 40%">
+                            <td style="width: 5%">
+                                <img src="https://media.giphy.com/media/3oJtgd37mxeDib8go0/giphy.gif" style="width:55px; height:55px; border-radius: 50%">
+                            </td>
+                            <td class = "recvdMess" style="width: 45%"> message </td>
+                            <td style="width: 5%">
+                                <img src="https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif" style="width:55px; height:55px; border-radius: 50%">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="chat-input">
+                <div class="recorder">
+                    <button class="record_btn"><i class="fa fa-microphone fa-4x"></i></button>
+                    <button class ="stop_btn"><i class="fa fa-stop-circle fa-4x"></i></button>
+                </div>
+                <input type="text" id="recordedMessage">
+                <div class="recorder">
+                    <button class ="send_btn" onclick="sendChat();"><i class="fa fa-share-square fa-4x"></i></button>
+                    <audio id="voice_msg"></audio>
+                </div>
+            </div>
+        </div>
+    </div>  <!--this is the base for the table, all data/images within the html should be removed and populated dynamically with javascript as messages are sent/received-->
 
     <script>
 
@@ -109,9 +120,6 @@
 
 
         }
-
-
-
     </script>
 </body>
 </html>

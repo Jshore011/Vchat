@@ -3,6 +3,38 @@
     padding: 0px;
 }
 
+.middle-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 auto;
+}
+
+.chat-members-container {
+    width: 20%;
+    background-color: #00897B;
+}
+
+.chat-container {
+    flex: 0 0 80%;
+    background-color: white;
+}
+
+.chat-input {
+    display: flex;
+    justify-content: space-between;
+    bottom: 0;
+    position: fixed;
+    width: 80%;
+    padding: 5px;
+    background-color: #006157;
+}
+
+#recordedMessage {
+    margin: 10px;
+    flex: 1 0 auto;
+    font-size: 20px;
+}
+
 #chatWindow{
     width: 300px;
     margin: 50px auto;
@@ -16,11 +48,20 @@
     position: relative;
 }
 
+.recorder button {
+    margin: 5px 10px 5px 10px;
+    border: none;
+    padding: 2px;
+    background-color: #006157;
+    transition: 0.2s;
+}
 
-
+.recorder button:hover {
+    color: white;
+    cursor: pointer;
+}
 
 /* speech bubble 13 */
-
 .recvdMess:before {
     content: "";
     width: 0px;
@@ -33,12 +74,9 @@
     right: -16px;
     top: 0px;
     padding: 5px;
-
 }
 
-
 /* speech bubble 14 */
-
 .sentMess:before {
     content: "";
     width: 0px;
@@ -52,18 +90,4 @@
     top: 0px;
     padding: 5px;
 }
-.record_btn{
-    background-color: #00897B;
-    border: none;
-    padding:8px;
-}
-.stop_btn{
-    background-color: #00897B;
-    border: none;
-    padding:8px;
-}
-.send_btn{
-    background-color: #00897B;
-    border: none;
-    padding:8px;
-}
+
