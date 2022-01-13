@@ -40,7 +40,8 @@
     </ul>
 </div>
     <!--this is the base for the table, all data/images within the html should be removed and populated dynamically with javascript as messages are sent/received-->
-<div class = "chat-container" id="chatContainer" style="height: 80%; width: 60%; margin: 0.5% 10% 0.5% 10%; background-color: lightgray; border: 4px darkgreen; border-style: inset; overflow-y: auto;">
+<div class = "chat-container" id="chatContainer" style="height: 60%; width: 70%; margin: 0.5% 10% 0.5% 10%; background-color:#424242; border-radius: 10px;
+    justify-content: center;border: 4px white; border-style: inset; overflow-y: auto;">
     <div id="chatWindow">
         <table id="chatLog" style=" width: 100%">
         <tbody>
@@ -52,14 +53,14 @@
             <td style="width: 5%">
                 <img src="https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif" style="width:55px; height:55px; border-radius: 50%">
             </td>
-        </tr><i class="far fa-microphone"></i>
+        </tr>
         </tbody>
         </table>
     </div>
 </div>
 
 <div id="recorder" style="margin-left: 35%">
-    <button class="record_btn"><i class="fa fa-microphone fa-4x"></i></button>
+    <button class="record_btn"><i class="fa fa-microphone fa-4x" style="color:red"></i></button>
     <button class ="stop_btn"><i class="fa fa-stop-circle fa-4x"></i></button>
     <button class ="send_btn" onclick="sendChat();"><i class="fa fa-share-square fa-4x"></i></button>
     <audio id="voice_msg"></audio>
