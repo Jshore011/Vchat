@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href = "login_signup_styling.css"/>
     <link rel="stylesheet" type="text/css" href = "chatroom_styling.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <title>ChatRoom</title>
@@ -51,16 +52,16 @@
             <td style="width: 5%">
                 <img src="https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif" style="width:55px; height:55px; border-radius: 50%">
             </td>
-        </tr>
+        </tr><i class="far fa-microphone"></i>
         </tbody>
         </table>
     </div>
 </div>
 
 <div id="recorder" style="margin-left: 35%">
-    <button id="rec_button" style="height: 40px; width: 40px; border-radius: 50%; background-color: red; text-align: center">REC</button>
-    <button id="stop_button"style="height: 40px; width: 50px; border-radius: 25%; text-align: left">STOP</button>
-    <button id="stop_button"style="height: 40px; width: 50px; border-radius: 25%; text-align: left" onclick="sendChat();">SEND</button>
+    <button class="record_btn"><i class="fa fa-microphone fa-4x"></i></button>
+    <button class ="stop_btn"><i class="fa fa-stop-circle fa-4x"></i></button>
+    <button class ="send_btn" onclick="sendChat();"><i class="fa fa-share-square fa-4x"></i></button>
     <audio id="voice_msg"></audio>
 </div>
 

@@ -52,3 +52,18 @@
     top: 0px;
     padding: 5px;
 }
+.record_btn{
+    background-color: #00897B;
+    border: none;
+    padding:8px;
+}
+.stop_btn{
+    background-color: #00897B;
+    border: none;
+    padding:8px;
+}
+.send_btn{
+    background-color: #00897B;
+    border: none;
+    padding:8px;
+}
