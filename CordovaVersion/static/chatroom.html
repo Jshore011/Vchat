@@ -45,6 +45,7 @@
             Placeholder for chatroom name <br>
             Chatroom members <br>
             Button to add another member to chatroom
+            <button id="add_usr" style="font-size: 40px; background-color: mintcream; border-radius: 50%; height: 45px; width: 45px; margin-left: 20%">+<button>
         </div>
         <div class ="chat-container">
             <div class="chat-window">
@@ -122,6 +123,114 @@
 
 
         }
+    </script>
+
+    <script>
+        //recorder.js, based on https://github.com/addpipe/media-recorder-api-audio-demo/blob/master/js/app.js & https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+        URL = window.URL || window.webkitURL;
+
+        var gumStream;
+        var recorder;
+        var chunks = [];
+        var extension;
+
+
+        var recordButton = document.getElementById("recordBtn");
+        var stopButton = document.getElementById("stopBtn");
+
+        //event listeners
+        recordButton.addEventListener("click", startRecording);
+        stopButton.addEventListener("click", stopRecording);
+
+        //true on chrome, false on firefox
+        console.log("audio/webm:"+MediaRecorder.isTypeSupported('audio/webm/codecs=opus'));
+        //false on chrome, true on firefox
+        console.log("audio/ogg:"+MediaRecorder.isTypeSupported('audio/ogg;codecs=opus'));
+
+        if(MediaRecorder.isTypeSupported('audio/webm;codecs=opus')){
+            extension = "webm";
+        } else {
+            extension = "ogg"
+        }
+
+        function startRecording(){
+            console.log("recording in progress");
+
+            var constraints = {audio:true};
+
+            recordButton.disabled = true;
+            stopButton.disabled = false;
+
+            navigator.mediaDevices.getUserMedia(constraints).then(function(stream){
+                console.log("getUserMedia() success, stream created, initializing MediaRecorder");
+
+                gumStream = stream;
+
+                var options = {
+                    audioBitsPerSecond :  256000,
+                    videoBitsPerSecond : 2500000,
+                    bitsPerSecond:       2628000,
+                    mimeType : 'audio/'+extension+';codecs=opus'
+                }
+
+                recorder = new MediaRecorder(stream, options);
+
+                recorder.ondataavailable = function(e){
+                    console.log("recorder.ondataavailable:"+e.data);
+
+                    console.log ("recorder.audioBitsPerSecond:"+recorder.audioBitsPerSecond)
+                    console.log ("recorder.videoBitsPerSecond:"+recorder.videoBitsPerSecond)
+                    console.log ("recorder.bitsPerSecond:"+recorder.bitsPerSecond)
+                    // add stream data to chunks
+                    chunks.push(e.data);
+                    // if recorder is 'inactive' then recording has finished
+                    if (recorder.state == 'inactive') {
+                        // convert stream data chunks to a 'webm' audio format as a blob
+                        const blob = new Blob(chunks, { type: 'audio/'+extension, bitsPerSecond:128000});
+                        createDownloadLink(blob)
+                    }
+                };
+
+                recorder.onerror = function(e){
+                    console.log(e.error);
+                }
+
+                //start recording using 1 second chunks
+                //Chrome and Firefox will record one long chunk if you do not specify the chunck length
+                recorder.start(1000);
+
+            }).catch(function(err) {
+                recordButton.disabled = false;
+                stopButton.disabled = true;
+            });
+        }
+
+        function stopRecording() {
+            console.log("stopButton clicked");
+
+            var audio = document.createElement('audio');
+            var url = URL.createObjectURL(blob)
+
+            //disable the stop button, enable the record to allow for new recordings
+            stopButton.disabled = true;
+            recordButton.disabled = false;
+            pauseButton.disabled = true;
+
+            //reset button just in case the recording is stopped while paused
+            pauseButton.innerHTML="Pause";
+
+            //tell the recorder to stop the recording
+            recorder.stop();
+
+            //stop microphone access
+            gumStream.getAudioTracks()[0].stop();
+
+            audio.controls = true;
+            audio.src = url;
+
+
+        }
+
     </script>
 </body>
 </html>
