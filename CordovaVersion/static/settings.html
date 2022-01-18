@@ -40,18 +40,6 @@
         </ul>
     </div>
     <div class="setting-container">
-        <!-- <div class="avatar-container" id ="avatar">
-            <div class="photo">
-                <div id="photoPlaceholder">
-                    <img class="profile-pic" src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
-                </div>
-                <div class="p-image">
-                    <input class="file-upload" type="file" accept="image/*"/>
-                </div>
-            </div><br>
-            <button class="changeAvatar" onclick ="change_pic();">Change Avatar</button>
-            <button id="removeAvatar">Remove Avatar</button><br><br>
-        </div> -->
         <div class="avatar-container">
             <h1>Profile Image Upload 
             </h1>
@@ -66,8 +54,6 @@
                 </div>
             </div>
         </div>
-
-        
 
         <div class="leftcol-container" id = "leftcol">
             <div>
@@ -122,7 +108,9 @@
     //document.getElementById("placeholder-email").value = val1;
     //document.getElementById("placeholder-password").value = val1;
     //document.getElementById("placeholder-phone").value = val1;
+    var profile_pic = window.localStorage;
     function readURL(input) {
+
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function(e) {
@@ -131,6 +119,7 @@
                 $('#imagePreview').fadeIn(650);
             }
             reader.readAsDataURL(input.files[0]);
+            localStorage.setItem(reader);
         }
     }
     $("#imageUpload").change(function() {
