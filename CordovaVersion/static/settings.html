@@ -40,7 +40,7 @@
         </ul>
     </div>
     <div class="setting-container">
-        <div class="avatar-container" id ="avatar">
+        <!-- <div class="avatar-container" id ="avatar">
             <div class="photo">
                 <div id="photoPlaceholder">
                     <img class="profile-pic" src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
@@ -51,7 +51,23 @@
             </div><br>
             <button class="changeAvatar" onclick ="change_pic();">Change Avatar</button>
             <button id="removeAvatar">Remove Avatar</button><br><br>
+        </div> -->
+        <div class="container">
+            <h1>Profile Image Upload 
+            </h1>
+            <div class="avatar-upload">
+                <div class="avatar-edit">
+                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                    <label for="imageUpload"></label>
+                </div>
+                <div class="avatar-preview">
+                    <div id="imagePreview" style="background-image: url('http://i.pravatar.cc/500?img=7');">
+                    </div>
+                </div>
+            </div>
         </div>
+
+        
 
         <div class="leftcol-container" id = "leftcol">
             <div>
