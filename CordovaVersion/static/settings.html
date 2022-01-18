@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href = "login_signup_styling.css"/>
     <link rel="stylesheet" type="text/css" href = "settings_styling.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <title>Settings</title>
@@ -32,7 +33,7 @@
                 <div class="search-container">
                     <form action="/action_page.php">
                         <input type="text" placeholder="Search.." name="search">
-                        <button type="submit"><i class="fa fa-search"></i></button>
+                        <button type="submit"><i class="fa fa-search "></i></button>
                     </form>
                 </div>
             </li>
@@ -42,15 +43,16 @@
         <div class="avatar-container" id ="avatar">
             <div class="photo">
                 <div id="photoPlaceholder">
-
+                    <img class="profile-pic" src="https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg">
                 </div>
-                <div id="savedPhoto">
-                    
+                <div class="p-image">
+                    <input class="file-upload" type="file" accept="image/*"/>
                 </div>
             </div><br>
-            <button id="changeAvatar">Change Avatar</button>
+            <button class="changeAvatar" onclick ="change_pic();">Change Avatar</button>
             <button id="removeAvatar">Remove Avatar</button><br><br>
         </div>
+
         <div class="leftcol-container" id = "leftcol">
             <div>
                 <div class="username">
@@ -103,6 +105,32 @@
     //document.getElementById("placeholder-email").value = val1;
     //document.getElementById("placeholder-password").value = val1;
     //document.getElementById("placeholder-phone").value = val1;
+    function change_pic(){
+        $(document).ready(function() {
+
+
+            var readURL = function(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('.profile-pic').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+
+            $(".file-upload").on('change', function(){
+                readURL(this);
+            });
+
+            $(".changeAvatar").on('click', function() {
+                $(".file-upload").click();
+            });
+        });
+    }
 
 </script>
 </body>
