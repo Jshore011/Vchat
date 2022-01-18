@@ -18,16 +18,16 @@
                 <a href="homepage.html">
                     VChat
                 </a>
-                <a href="homepage.html">
+                <a href="chatroom.html">
                     My Chatrooms
                 </a>
                 <a href="homepage.html">
                     Friends
                 </a>
-                <a href="homepage.html">
+                <a href="analytics.html">
                     Analytics
                 </a>
-                <a href="homepage.html">
+                <a href="settings.html">
                     Settings
                 </a>
                 <div class="search-container">
@@ -98,9 +98,10 @@
             <div>
                 <div class="mode">
                     Mode:
-                    <button id="lightMode">Light</button>
+                    <div class="dntoggle fa fa-moon-o"></div><br>
+                    <!--<button id="lightMode">Light</button>
                     <button id="darkMode">Dark</button><br>
-                </div><br>
+                </div><br> -->
                 <div class="input-ouput-device">
                     Input Device / Output Device:
                     <label id ="input">placeholder-input-output-names</label>
@@ -134,6 +135,33 @@
     }
     $("#imageUpload").change(function() {
         readURL(this);
+    });
+
+    var theme = window.localStorage.currentTheme;
+
+    $('body').addClass(theme);
+
+    if ($("body").hasClass("night")) {
+        $('.dntoggle').addClass('fa-sun-o');
+        $('.dntoggle').removeClass('fa-moon-o');
+    } else {
+        $('.dntoggle').removeClass('fa-sun-o');
+        $('.dntoggle').addClass('fa-moon-o');
+    }
+
+    $('.dntoggle').click(function() {
+        $('.dntoggle').toggleClass('fa-sun-o');
+        $('.dntoggle').toggleClass('fa-moon-o');
+
+        if ($("body").hasClass("night")) {
+            $('body').toggleClass('night');
+            localStorage.removeItem('currentTheme');
+            localStorage.currentTheme = "day";
+        } else {
+            $('body').toggleClass('night');
+            localStorage.removeItem('currentTheme');
+            localStorage.currentTheme = "night";
+        }
     });
 
 </script>
