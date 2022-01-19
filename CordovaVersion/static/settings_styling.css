@@ -229,3 +229,122 @@ button:hover {
     background-color: #212121;
     color:#ccc;
 }
+.username-container{
+    visibility: hidden;
+    position: absolute;
+    left:38%;
+    top:20%;
+    width:500px;
+    overflow: hidden;
+    display: center;
+    margin-top:auto;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    border-color: #6EC5B8;
+    padding: 80px;
+    border-radius: 10px;
+    font-size: 30px;
+    font-family: "Veranda", Veranda, sans-serif;
+    font-size: x-large;
+    color: #6EC5B8;
+}
+
+
+.username-container .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+    background-color: white;
+
+}
+
+.email-container{
+    visibility: hidden;
+    position: absolute;
+    left:38%;
+    top:20%;
+    width:500px;
+    overflow: hidden;
+    display: center;
+    margin-top:auto;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    border-color: #6EC5B8;
+    padding: 80px;
+    border-radius: 10px;
+    font-size: 30px;
+    font-family: "Veranda", Veranda, sans-serif;
+    font-size: x-large;
+    color: #6EC5B8;
+}
+
+
+.email-container .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+    background-color: white;
+
+}
+
+.password-container{
+    visibility: hidden;
+    position: absolute;
+    left:38%;
+    top:20%;
+    width:500px;
+    overflow: hidden;
+    display: center;
+    margin-top:auto;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    border-color: #6EC5B8;
+    padding: 80px;
+    border-radius: 10px;
+    font-size: 30px;
+    font-family: "Veranda", Veranda, sans-serif;
+    font-size: x-large;
+    color: #6EC5B8;
+}
+
+
+.password-container .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+    background-color: white;
+
+}
+
+.phone-container{
+    visibility: hidden;
+    position: absolute;
+    left:38%;
+    top:20%;
+    width:500px;
+    overflow: hidden;
+    display: center;
+    margin-top:auto;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+    border-color: #6EC5B8;
+    padding: 80px;
+    border-radius: 10px;
+    font-size: 30px;
+    font-family: "Veranda", Veranda, sans-serif;
+    font-size: x-large;
+    color: #6EC5B8;
+}
+
+
+.phone-container .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+    background-color: white;
+
+}

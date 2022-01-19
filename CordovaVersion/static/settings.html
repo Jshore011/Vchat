@@ -60,22 +60,22 @@
                 <div class="username">
                     Username:
                     <label id ="placeholder-name">placeholder-name</label>
-                    <button id="editUsername">Edit</button><br>
+                    <button id="editUsername" onclick = "edit_username();">Edit</button><br>
                 </div><br>
                 <div class="email">
                     Email:
                     <label id = "placeholder-email">placeholder-email</label>
-                    <button id="editEmail">Edit</button><br>
+                    <button id="editEmail" onclick="edit_email();">Edit</button><br>
                 </div><br>
                 <div class="password">
                     Password:
                     <label id ="placeholder-password">placeholder-password</label>
-                    <button id="editPassword">Edit</button><br>
+                    <button id="editPassword" onclick="edit_pass()">Edit</button><br>
                 </div><br>
                 <div class="phone-number">
                     Phone Number:
                     <label id ="placeholder-phone"> placeholder-phoneNumber</label>
-                    <button id="editPhoneNumber">Edit</button><br>
+                    <button id="editPhoneNumber" onclick="edit_pass()">Edit</button><br>
                 </div><br>
 
             </div>
@@ -102,8 +102,63 @@
             </div>
         </div>
     </div>
+
+        <div>
+            <div class = username-container >
+                <div id = username_edit>
+                    <form >
+                        <label id=addUserNameEditor>Change your Username</label><br>
+                        <label id=enterUNameTxt>Enter a new Username</label><br>
+                        <input type="text" id="newUname" name="newUname"><br><br>
+                        <div class = save-edit-button><input type="submit" value="save" class="button" id = addEdit></div>
+                        <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelEdit></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class = email-container >
+                <div id = email_edit>
+                    <form >
+                        <label id=addEmailEditor>Change your Email</label><br>
+                        <label id=enterEmailTxt>Enter a new Email</label><br>
+                        <input type="text" id="newEmail" name="newEmail"><br><br>
+                        <div class = save-edit-button><input type="submit" value="save" class="button" id = addMail></div>
+                        <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelMail></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class = password-container >
+                <div id = password_edit>
+                    <form >
+                        <label id=addPasswordEditor>Change your Password</label><br>
+                        <label id=entPasswordTxt>Enter a new Password</label><br>
+                        <input type="text" id="newPass" name="newPass"><br><br>
+                        <div class = save-edit-button><input type="submit" value="save" class="button" id = addPass></div>
+                        <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelPass></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class = phone-container >
+                <div id = phone_edit>
+                    <form >
+                        <label id=addUserPhoneEditor>Change your Phone Number</label><br>
+                        <label id=enterPhoneTxt>Enter a new Phone Number</label><br>
+                        <input type="text" id="newPhone" name="newPhone"><br><br>
+                        <div class = save-edit-button><input type="submit" value="save" class="button" id = addPhone></div>
+                        <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelPhone></div>
+                    </form>
+                </div>
+            </div>
+        </div>
 <script>
-    //going to need this to populate label when the dictionary is returned
+
+    //going to need this to populate label when the dictionary is returned, we need to loop through the dictionary
+    //and assign each element to each label
     //document.getElementById("placeholder-name").value = val1;
     //document.getElementById("placeholder-email").value = val1;
     //document.getElementById("placeholder-password").value = val1;
@@ -152,7 +207,26 @@
             localStorage.currentTheme = "night";
         }
     });
-
+    //function for popup that allows user to edit username
+    function edit_username(){
+        var popup = document.getElementById("username_edit");
+        popup.classList.toggle("show");
+    }
+    //function for popup that allows user to edit Email
+    function edit_email(){
+        var popup = document.getElementById("email_edit");
+        popup.classList.toggle("show");
+    }
+    //function for popup that allows user to edit password
+    function edit_pass(){
+        var popup = document.getElementById("password_edit");
+        popup.classList.toggle("show");
+    }
+    //function for popup that allows user to edit Phone Number
+    function edit_phone(){
+        var popup = document.getElementById("phone_edit");
+        popup.classList.toggle("show");
+    }
 </script>
 </body>
 </html>
