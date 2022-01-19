@@ -18,7 +18,7 @@
                 <a href="homepage.html">
                     VChat
                 </a>
-                <a href="homepage.html">
+                <a href="chatroom.html">
                     My Chatrooms
                 </a>
                 <a href="homepage.html">
@@ -27,7 +27,7 @@
                 <a href="homepage.html">
                     Analytics
                 </a>
-                <a href="homepage.html">
+                <a href="settings.html">
                     Settings
                 </a>
                 <div class="search-container">
@@ -75,6 +75,10 @@
                     <button id="sendBtn" onclick="sendChat();"><i class="fa fa-share-square fa-4x"></i></button>
                     <audio id="voice_msg"></audio>
                 </div>
+            </div>
+            <div id="formats"></div>
+                <p><strong>Recordings:</strong></p>
+                <ol id="recordingsList"></ol>
             </div>
         </div>
     </div>  <!--this is the base for the table, all data/images within the html should be removed and populated dynamically with javascript as messages are sent/received-->
@@ -208,16 +212,9 @@
         function stopRecording() {
             console.log("stopButton clicked");
 
-            var audio = document.createElement('audio');
-            var url = URL.createObjectURL(blob)
-
             //disable the stop button, enable the record to allow for new recordings
             stopButton.disabled = true;
             recordButton.disabled = false;
-            pauseButton.disabled = true;
-
-            //reset button just in case the recording is stopped while paused
-            pauseButton.innerHTML="Pause";
 
             //tell the recorder to stop the recording
             recorder.stop();
@@ -225,9 +222,26 @@
             //stop microphone access
             gumStream.getAudioTracks()[0].stop();
 
+        }
+
+        function createDownloadLink(blob){
+
+            var url = URL.createObjectURL(blob);
+            var audio = document.createElement('audio');
+            var li = document.createElement('li');
+            var link = document.createElement('a');
+
             audio.controls = true;
             audio.src = url;
 
+            link.href = url;
+            link.download = new Date().toISOString() + '.' + extension;
+            link.innerHTML = link.download;
+
+            li.appendChild(audio);
+            li.appendChild(link);
+
+            recordingsList.appendChild(li);
 
         }
 
