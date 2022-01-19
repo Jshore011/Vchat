@@ -99,7 +99,7 @@
             cell1.innerHTML += "<td style=\"width: 5%\">\n" +
                 "                <img src=\"https://media.giphy.com/media/3oJtgd37mxeDib8go0/giphy.gif\" style=\"width:55px; height:55px; border-radius: 50%\">\n" +
                 "               </td>";
-            cell2.innerHTML += "<td class = \"recvdMess\" style=\"width: 45%\"> message</td>";
+            cell2.innerHTML += "<td class = \"recvdMess\" style=\"width: 45%\"> message </td>";
             cell3.innerHTML += "<td style=\"width: 5%\">\n" +
                 "                <img src=\"https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif\" style=\"width:55px; height:55px; border-radius: 50%\">\n" +
                 "               </td>";
@@ -109,8 +109,12 @@
         //each time a new chat is sent a new row is added to the chatWindow with associated emoji, message and sender icon
         function sendChat() {
             chatWindow = document.getElementById("chatLog");
-            console.log($('#formats').val());
+
             console.log("message sent");
+
+            var voiceMsg = document.getElementsByTagName('audio');
+            voiceMsg.controls = true;
+
 
             row = chatWindow.insertRow(-1);
             cell1 = row.insertCell(0);
@@ -120,9 +124,9 @@
             cell1.innerHTML += "<td style=\"width: 5%\">\n" +
                 "                <img src=\"https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif\" style=\"width:55px; height:55px; border-radius: 50%\">\n" +
                 "               </td>";
-            cell2.innerHTML += "<td class = \"sentMess\" style=\"width: 100%\" <div id=\"formats\"></div>\n" +
-                "                <ol id=\"recordingsList\"></ol>\n" +
-                "            </div> </td>";
+            cell2.innerHTML += "<td class = \"sentMess\" style=\"width: 45%\"> <div id='VChatMsg'>" +
+                               "<audio src= voiceMsg></audio></div> " +
+                               "</td>";
             cell3.innerHTML += "<td style=\"width: 5%\">\n" +
                 "                <img src=\"https://media.giphy.com/media/3oJtgd37mxeDib8go0/giphy.gif\" style=\"width:55px; height:55px; border-radius: 50%\">\n" +
                 "               </td>";
@@ -202,7 +206,7 @@
                 }
 
                 //start recording using 1 second chunks
-                //Chrome and Firefox will record one long chunk if you do not specify the chunck length
+                //Chrome and Firefox will record one long chunk if you do not specify the chunk length
                 recorder.start(1000);
 
             }).catch(function(err) {
