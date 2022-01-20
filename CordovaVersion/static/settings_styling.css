@@ -1,137 +1,104 @@
-/*#photoPlaceholder {
-    background-color: #006157;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-}
-#photoPlaceholder:hover {
-    color: white;
-    background-color: #006157;
-}*/
-button {
-    padding: 10px;
-    color: black;
-    background-color: #00897B;
-    border-radius: 5px;
-    border: none;
-    transition: 0.15s;
-}
-
-button:hover {
-    color: white;
-    background-color: #006157;
-}
-
-.setting-container .avatar-container{
-    position: absolute;
-    top:90px;
-    bottom: 0;
-    left: 850px;
-    right: 0;
-
+.setting-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: auto;
-}
-
-.setting-container .leftcol-container{
-    position: absolute;
-    top:400px;
-    bottom: 0;
-    left: 400px;
-    right: 0;
-
-    margin: auto;
-}
-.setting-container .rightcol-container{
-    position: absolute;
-    top:400px;
-    bottom: 0;
-    left: 1000px;
-    right: 0;
-
-    margin: auto;
-}
-.setting-container .footer-container{
-    position: absolute;
-    top:700px;
-    bottom: 0;
-    left: 850px;
-    right: 0;
-
-    margin: auto;
-}
-
-#editUsername{
-    margin-right: 10px;
-}
-.username{
-    font-size: x-large;
-    font-weight:bold;
-}
-
-#placeholder-name{
-    font-size: large;
-    font-weight: normal;
-}
-.email{
-    font-size: x-large;
-    font-weight:bold;
-}
-#placeholder-email{
-    font-size: large;
-    font-weight: normal;
-}
-.password{
-    font-size: x-large;
-    font-weight:bold;
-}
-#placeholder-password{
-    font-size: large;
-    font-weight: normal;
-}
-.phone-number{
-    font-size: x-large;
-    font-weight:bold;
-}
-#placeholder-phone{
-    font-size: large;
-    font-weight: normal;
-}
-.input-ouput-device{
-    font-size: x-large;
-    font-weight:bold;
-}
-#placeholder-input{
-    font-size: large;
-    font-weight: normal;
-}
-.mode{
-    font-size: x-large;
-    font-weight:bold;
-}
-.notification{
-    font-size: x-large;
-    font-weight:bold;
-}
-.setting-container{
+    padding: 50px;
+    width: 70%;
+    border-radius: 10px; 
     background-color: #424242;
     color: white;
-    border-radius: 10px;
-    justify-content: center;
-    display: grid;
-    width: 1700px;
-    height:700px;
-    padding: 30px 30px 50px 30px;
-    margin-top: 1vh;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 2;
-    row-gap: 15px;
 }
+
+@media screen and (max-width: 1200px) {
+    .setting-container  {
+        margin-top: 20px;
+        margin-bottom: 200px;
+    }
+}
+
+.setting-container button {
+    padding: 10px 25px 10px 25px;
+    color: black;
+    background-color: #00897B;
+    border: none;
+    cursor: pointer;
+    transition: 0.10s;
+}
+
+.setting-container button:hover {
+    border-radius: 2px;
+    color: white;
+    background-color: #006157;
+    box-shadow: 0 0 3px 1px rgb(48, 48, 48);
+}
+
+.middle-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    margin: 2%;
+}
+
+@media screen and (max-width: 1200px) {
+    .middle-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.middle-container-content {
+    display: grid;
+    grid-template-areas: 'p     button'
+                         'label button';
+    grid-gap: 10px;
+}
+
+.middle-container-content p {
+    font-size: large;
+    font-weight: bold;
+    grid-area: p;
+}
+
+.middle-container-content label {
+    font-size: large;
+    font-weight: normal;
+    grid-area: label;
+}
+
+.middle-container-content button {
+    margin-left: 50px;
+    width: 100px;
+    justify-self: end;
+    grid-area: button;
+}
+
+@media screen and (max-width: 1200px) {
+    .middle-container-content button {
+        margin-left: 0;
+    }
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.footer-container button {
+    margin: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+    .footer-container {
+        flex-direction: column;
+    }
+}
+
 
 .avatar-container {
     max-width: 960px;
-    margin: 30px auto;
     padding: 20px;
+    margin-bottom: 20px;
   }
   h1 {
     font-size: 20px;
@@ -147,7 +114,6 @@ button:hover {
   .avatar-upload {
     position: relative;
     max-width: 205px;
-    margin: 50px auto;
   }
   .avatar-upload .avatar-edit {
     position: absolute;
@@ -207,20 +173,18 @@ button:hover {
 }
 .dntoggle{
     font-size: 28px;
-    border-radius: 100px;
     background-color: #111111;
     padding: 15px;
     color:#fcfcfc;
     box-shadow: 1px 2px 6px rgba(0,0,0,.3);
     cursor: pointer;
-
-    position: fixed;
-    bottom:20px;
-    right: 20px;
-
+    float: right;
     -webkit-transition: all 0.2s;
     -moz-transition: all 0.2s;
     transition: all 0.2s;
+}
+.mode button:hover {
+    border-radius: 2px;
 }
 .fa-moon-o:before{
     padding:0 2px;
@@ -286,7 +250,6 @@ button:hover {
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s;
     background-color: white;
-
 }
 
 .password-container{
@@ -309,7 +272,6 @@ button:hover {
     font-size: x-large;
     color: #6EC5B8;
 }
-
 
 .password-container .show {
     visibility: visible;
@@ -346,5 +308,4 @@ button:hover {
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s;
     background-color: white;
-
 }

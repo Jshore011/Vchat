@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href = "login_signup_styling.css"/>
+    <link rel="stylesheet" type="text/css" href = "global_styling.css"/>
+    <link rel="stylesheet" type="text/css" href = "navigation_bar_styling.css"/>
     <link rel="stylesheet" type="text/css" href = "chatroom_styling.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -12,32 +13,30 @@
     <title>ChatRoom</title>
 </head>
 <body>
-    <div id="navigationBar">
-        <ul class="nav-bar-content">
-            <li id="homepage">
-                <a href="homepage.html">
-                    VChat
-                </a>
-                <a href="chatroom.html">
-                    My Chatrooms
-                </a>
-                <a href="homepage.html">
-                    Friends
-                </a>
-                <a href="homepage.html">
-                    Analytics
-                </a>
-                <a href="settings.html">
-                    Settings
-                </a>
-                <div class="search-container">
-                    <form action="/action_page.php">
-                        <input type="text" placeholder="Search.." name="search">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-            </li>
-        </ul>
+    <div class="navigation-bar">
+        <div class="nav-bar-content">
+            <a href="homepage.html">
+                VChat
+            </a>
+            <a href="chatroom.html">
+                My Chatrooms
+            </a>
+            <a href="homepage.html">
+                Friends
+            </a>
+            <a href="homepage.html">
+                Analytics
+            </a>
+            <a href="settings.html">
+                Settings
+            </a>
+            <div class="search-container">
+                <form action="/action_page.php">
+                    <input type="text" placeholder="Search.." id="searchBar">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
     </div>
     <div class="middle-container">
         <div class="chat-members-container">

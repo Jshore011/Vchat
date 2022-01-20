@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href = "login_signup_styling.css"/>
+    <link rel="stylesheet" type="text/css" href = "global_styling.css"/>
+    <link rel="stylesheet" type="text/css" href = "navigation_bar_styling.css"/>
     <link rel="stylesheet" type="text/css" href = "settings_styling.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -12,37 +13,33 @@
     <title>Settings</title>
 </head>
 <body>
-    <div id="navigationBar">
-        <ul class="nav-bar-content">
-            <li id="homepage">
-                <a href="homepage.html">
-                    VChat
-                </a>
-                <a href="chatroom.html">
-                    My Chatrooms
-                </a>
-                <a href="homepage.html">
-                    Friends
-                </a>
-                <a href="analytics.html">
-                    Analytics
-                </a>
-                <a href="settings.html">
-                    Settings
-                </a>
-                <div class="search-container">
-                    <form action="/action_page.php">
-                        <input type="text" placeholder="Search.." name="search">
-                        <button type="submit"><i class="fa fa-search "></i></button>
-                    </form>
-                </div>
-            </li>
-        </ul>
+    <div class="navigation-bar">
+        <div class="nav-bar-content">
+            <a href="homepage.html">
+                VChat
+            </a>
+            <a href="chatroom.html">
+                My Chatrooms
+            </a>
+            <a href="homepage.html">
+                Friends
+            </a>
+            <a href="analytics.html">
+                Analytics
+            </a>
+            <a href="settings.html">
+                Settings
+            </a>
+            <div class="search-container">
+                <form action="/action_page.php">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search "></i></button>
+                </form>
+            </div>
+        </div>
     </div>
     <div class="setting-container">
         <div class="avatar-container">
-            <h1>Profile Image Upload 
-            </h1>
             <div class="avatar-upload">
                 <div class="avatar-edit">
                     <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
@@ -54,107 +51,95 @@
                 </div>
             </div>
         </div>
-
-        <div class="leftcol-container" id = "leftcol">
-            <div>
-                <div class="username">
-                    Username:
-                    <label id ="placeholder-name">placeholder-name</label>
-                    <button id="editUsername" onclick = "edit_username();">Edit</button><br>
-                </div><br>
-                <div class="email">
-                    Email:
-                    <label id = "placeholder-email">placeholder-email</label>
-                    <button id="editEmail" onclick="edit_email();">Edit</button><br>
-                </div><br>
-                <div class="password">
-                    Password:
-                    <label id ="placeholder-password">placeholder-password</label>
-                    <button id="editPassword" onclick="edit_pass()">Edit</button><br>
-                </div><br>
-                <div class="phone-number">
-                    Phone Number:
-                    <label id ="placeholder-phone"> placeholder-phoneNumber</label>
-                    <button id="editPhoneNumber" onclick="edit_pass()">Edit</button><br>
-                </div><br>
-
+        <div class="middle-container">
+            <div class="middle-container-content">
+                <p>Username:</p>
+                <label id="username">placeholder-name</label>
+                <button id="editUsername" onclick = "edit_username();">Edit</button>
             </div>
-        </div>
-        <div class="rightcol-container" id = "rightcol">
-            <div>
-                <div class="mode">
-                    Mode:
-                    <div class="dntoggle fa fa-moon-o"></div><br>
-                    <!--<button id="lightMode">Light</button>
-                    <button id="darkMode">Dark</button><br>
-                </div><br> -->
-                <div class="input-ouput-device">
-                    Input Device / Output Device:
-                    <label id ="input">placeholder-input-output-names</label>
-                    <button id="editInputOutputDevices">Edit</button><br><br>
-                </div><br>
+            <div class="middle-container-content">
+                <p>Email:</p>
+                <label id="email">placeholder-email</label>
+                <button id="editEmail" onclick="edit_email();">Edit</button>
             </div>
+            <div class="middle-container-content">
+                <p>Password:</p>
+                <label id="password">placeholder-password</label>
+                <button id="editPassword" onclick="edit_pass()">Edit</button>
+            </div>
+            <div class="middle-container-content">
+                <p>Phone Number:</p>
+                <label id="phoneNumber"> placeholder-phoneNumber</label>
+                <button id="editPhoneNumber" onclick="edit_pass()">Edit</button>
+            </div>
+            <div class="middle-container-content">
+                <p>Input Device / Output Device:</p>
+                <label id="ioDevice">placeholder-IO-names</label>
+                <button id="editInputOutputDevices">Edit</button>
+            </div>
+            <div class="middle-container-content">
+                <p>Mode:</p>
+                <label id="Mode">light / dark</label>
+                <button class="dntoggle fa fa-moon-o"></button>
+            </div>
+        </div> 
+        <div class="footer-container">
+            <button id="disableAccount">Disable Account</button>
+            <button id="deleteAccount">Delete Account</button>
         </div>
-        <div class = "footer-container" id = "footer">
-            <div class="disable-delete-account">
-                <button id="disableAccount">Disable Account</button>
-                <button id="deleteAccount">Delete Account</button>
+    </div>
+    <div>
+        <div class = username-container >
+            <div id = username_edit>
+                <form >
+                    <label id=addUserNameEditor>Change your Username</label><br>
+                    <label id=enterUNameTxt>Enter a new Username</label><br>
+                    <input type="text" id="newUname" name="newUname"><br><br>
+                    <div class = save-edit-button><input type="submit" value="save" class="button" id = addEdit></div>
+                    <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelEdit></div>
+                </form>
             </div>
         </div>
     </div>
-
-        <div>
-            <div class = username-container >
-                <div id = username_edit>
-                    <form >
-                        <label id=addUserNameEditor>Change your Username</label><br>
-                        <label id=enterUNameTxt>Enter a new Username</label><br>
-                        <input type="text" id="newUname" name="newUname"><br><br>
-                        <div class = save-edit-button><input type="submit" value="save" class="button" id = addEdit></div>
-                        <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelEdit></div>
-                    </form>
-                </div>
+    <div>
+        <div class = email-container >
+            <div id = email_edit>
+                <form >
+                    <label id=addEmailEditor>Change your Email</label><br>
+                    <label id=enterEmailTxt>Enter a new Email</label><br>
+                    <input type="text" id="newEmail" name="newEmail"><br><br>
+                    <div class = save-edit-button><input type="submit" value="save" class="button" id = addMail></div>
+                    <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelMail></div>
+                </form>
             </div>
         </div>
-        <div>
-            <div class = email-container >
-                <div id = email_edit>
-                    <form >
-                        <label id=addEmailEditor>Change your Email</label><br>
-                        <label id=enterEmailTxt>Enter a new Email</label><br>
-                        <input type="text" id="newEmail" name="newEmail"><br><br>
-                        <div class = save-edit-button><input type="submit" value="save" class="button" id = addMail></div>
-                        <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelMail></div>
-                    </form>
-                </div>
+    </div>
+    <div>
+        <div class = password-container >
+            <div id = password_edit>
+                <form >
+                    <label id=addPasswordEditor>Change your Password</label><br>
+                    <label id=entPasswordTxt>Enter a new Password</label><br>
+                    <input type="text" id="newPass" name="newPass"><br><br>
+                    <div class = save-edit-button><input type="submit" value="save" class="button" id = addPass></div>
+                    <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelPass></div>
+                </form>
             </div>
         </div>
-        <div>
-            <div class = password-container >
-                <div id = password_edit>
-                    <form >
-                        <label id=addPasswordEditor>Change your Password</label><br>
-                        <label id=entPasswordTxt>Enter a new Password</label><br>
-                        <input type="text" id="newPass" name="newPass"><br><br>
-                        <div class = save-edit-button><input type="submit" value="save" class="button" id = addPass></div>
-                        <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelPass></div>
-                    </form>
-                </div>
+    </div>
+    <div>
+        <div class = phone-container >
+            <div id = phone_edit>
+                <form >
+                    <label id=addUserPhoneEditor>Change your Phone Number</label><br>
+                    <label id=enterPhoneTxt>Enter a new Phone Number</label><br>
+                    <input type="text" id="newPhone" name="newPhone"><br><br>
+                    <div class = save-edit-button><input type="submit" value="save" class="button" id = addPhone></div>
+                    <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelPhone></div>
+                </form>
             </div>
         </div>
-        <div>
-            <div class = phone-container >
-                <div id = phone_edit>
-                    <form >
-                        <label id=addUserPhoneEditor>Change your Phone Number</label><br>
-                        <label id=enterPhoneTxt>Enter a new Phone Number</label><br>
-                        <input type="text" id="newPhone" name="newPhone"><br><br>
-                        <div class = save-edit-button><input type="submit" value="save" class="button" id = addPhone></div>
-                        <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelPhone></div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    </div>
 <script>
 
     //going to need this to populate label when the dictionary is returned, we need to loop through the dictionary
