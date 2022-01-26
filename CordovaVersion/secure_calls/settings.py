@@ -17,7 +17,7 @@ def handle_request():
 
     cur = g.db.cursor(); 
     try: 
-	cur.execute("select * from users;") 
+	cur.execute("select * from users where username='user1';") 
 	booklist=cur.fetchall() 
 	cur.close() 
     except: 
@@ -25,12 +25,12 @@ def handle_request():
 	return json_response(data={"message": "Error occured while reading from database."}, status=500)
 	
     count=0 
-    message = '{"books":[' 
-    for b in booklist: 
-	if b[0] < len(booklist) : 
-	    message += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) + '"},' 
+    message = '{"users":[' 
+    for b in userlist: 
+	if b[0] < len(userlist) : 
+	    message += '{"username":"'+str(b[1]) + '","email":"' + str(b[3]) + '","phone":"' + str(b[4]) + '"},' 
 	else: 
-	    message += '{"title":"'+str(b[1]) + '","price":"' + str(b[2]) + '"}' 
+	    message += '{"username":"'+str(b[1]) + '","email":"' + str(b[3]) + '","phone":"' + str(b[4]) + '"}' 
 	message += "]}" 
 	print(message)
     #print("sending silly token")
