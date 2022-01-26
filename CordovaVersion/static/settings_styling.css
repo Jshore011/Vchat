@@ -5,6 +5,7 @@
     margin: auto;
     padding: 50px;
     width: 70%;
+    min-width: 600px;
     border-radius: 10px; 
     background-color: #424242;
     color: white;

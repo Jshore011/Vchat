@@ -1,0 +1,45 @@
+body {
+    background-color: #007568;
+}
+
+p {
+    margin-right: 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+.friends-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 30px;
+}
+
+.all-friends-searchbars {
+    height: 30px;
+}
+
+.all-friends-search-buttons {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.all-friends-search-buttons:hover {
+    color: white;
+    box-shadow: 0 0 3px 1px rgb(48, 48, 48);
+}
+
+.search-for-people {
+    background-color: #00897B;
+}
+
+.friend-requests {
+    background-color: #007e71;
+}
+
+.my-friends {
+    background-color: #007568;
+}
