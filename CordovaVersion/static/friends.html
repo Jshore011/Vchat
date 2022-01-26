@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Friends</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href = "global_styling.css"/>
+    <link rel="stylesheet" type="text/css" href = "navigation_bar_styling.css"/>
+    <link rel="stylesheet" type="text/css" href = "friends_styling.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="navigation-bar">
+        <div class="nav-bar-content">
+            <a href="homepage.html">
+                VChat
+            </a>
+            <a href="chatroom.html">
+                My Chatrooms
+            </a>
+            <a href="friends.html">
+                Friends
+            </a>
+            <a href="analytics.html">
+                Analytics
+            </a>
+            <a href="settings.html">
+                Settings
+            </a>
+            <div class="search-container">
+                <form action="/action_page.php">
+                    <input type="text" placeholder="Search.." id="searchBar">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="all-about-friends">
+        <div class="search-for-people">
+            <div class="friends-header">
+                <p>VChatters</p>
+                <form action="">
+                    <input type="text" placeholder="Search for VChatters" class="all-friends-searchbars">
+                    <button type="submit" class="all-friends-search-buttons"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <div class="show-friends" id="showSearchedPeople">
+                show searched people TODO
+            </div>
+        </div>
+        <div class="friend-requests">
+            <div class="friends-header">
+                <p>My Friend Requests</p>
+            </div>
+            <div class="show-friends" id="showMyFriendRequests">
+                show friend requests TODO
+            </div>
+        </div>
+        <div class="my-friends">
+            <div class="friends-header">
+                <p>My Friends</p>
+                <form action="">
+                    <input type="text" placeholder="Search my friends list" class="all-friends-searchbars">
+                    <button type="submit" class="all-friends-search-buttons"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <div class="show-friends" id="showMyFriendsList">
+                show my friends TODO
+            </div>
+        </div>
+    </div>
+</body>
+</html>
