@@ -6,7 +6,7 @@ import sys
 import datetime
 import bcrypt
 import traceback
-import PyJWT
+
 
 from db_con import get_db_instance, get_db
 from tools.token_tools import create_token
