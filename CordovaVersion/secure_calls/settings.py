@@ -6,6 +6,7 @@ import sys
 import datetime
 import bcrypt
 import traceback
+import PyJWT
 
 from db_con import get_db_instance, get_db
 from tools.token_tools import create_token
@@ -18,8 +19,9 @@ def handle_request():
     cur = g.db.cursor(); 
     try: 
 	cur.execute("select * from users where username='user1';") 
-	booklist=cur.fetchall() 
-	cur.close() 
+	userlist=cur.fetchall() 
+	cur.close()
+        print(userlist)
     except: 
 	logger.debug("cannot read from database") 
 	return json_response(data={"message": "Error occured while reading from database."}, status=500)
