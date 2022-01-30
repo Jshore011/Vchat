@@ -42,7 +42,10 @@
                     console.log("made login request");
                     console.log(data.token);
                     jwt = data.token;
-                    console.log(jwt);
+                   // console.log(jwt);
+                    $.get("settings.html", function(data){
+                        $("#login_page").replaceWith(data);
+                    });
             	    //location.replace("settings.html");
 		    //$('#login_page').hide();
 		    //$('#dashboard').show();
