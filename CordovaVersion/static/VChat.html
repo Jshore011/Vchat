@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href = "global_styling.css"/>
+    <link rel="stylesheet" type="text/css" href = "navigation_bar_styling.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="/static/VChat.js"></script>
+</head>
+<body>
+
+<div id="login_page">
+    <head><link rel="stylesheet" type="text/css" href = "login_signup_styling.css"/></head>
+    <div class="navigation-bar">
+        <div class="nav-bar-content">
+            <a href="homepage.html">
+                VChat
+            </a>
+        </div>
+    </div>
+    <div class="windowBox">
+        <label id="header">Log into an account</label>
+        <form id="login">
+            <label for="username">Username:</label>
+            <input type="text" class="textfield" id="username" name="username" value="Username">
+            <label for="password">Password:</label>
+            <input type="password" class="textfield" id="password" name="password" value="12212">
+            <input type="submit" class="button" value="Login" onclick="return login();">
+        </form>
+        <button id="goToSignup" class="button" onclick="page_switcher(1);">Already have an account?</button>
+    </div>
+</div>
+
+<div id="signup_page">
+    <div class="windowBox">
+        <label id="header">Create an account</label>
+        <form id="signup">
+            <label for="fname">Username:</label>
+            <input type="text" class="textfield" id="newname" name="newname" value="Username">
+            <label for="password">Password:</label>
+            <input type="password" class="textfield" id="newword" name="newword" value="12212">
+            <input type="submit" class="button" value="Signup" onclick="return signup();">
+        </form>
+        <button id="goToLogin" class="button" onclick="page_switcher(2);">Want to create a new account?</button>
+    </div>
+</div>
+
+<div id="chatRoom">
+    <head> <link rel="stylesheet" type="text/css" href = "chatroom_styling.css"/></head>
+    <div class="navigation-bar">
+        <div class="nav-bar-content">
+            <a href="homepage.html">
+                VChat
+            </a>
+            <a href="chatroom.html">
+                My Chatrooms
+            </a>
+            <a href="friends.html">
+                Friends
+            </a>
+            <a href="analytics.html">
+                Analytics
+            </a>
+            <a href="settings.html">
+                Settings
+            </a>
+            <div class="search-container">
+                <form action="/action_page.php">
+                    <input type="text" placeholder="Search.." id="searchBar">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="middle-container">
+        <div class="chat-members-container">
+            TODO <br>
+            Placeholder for chatroom name <br>
+            Chatroom members <br>
+            Button to add another member to chatroom
+            <button id="add_usr" style="font-size: 40px; background-color: mintcream; border-radius: 50%; height: 45px; width: 45px; margin-left: 20%">+<button>
+        </div>
+        <div class ="chat-container">
+            <div class="chat-window">
+                <div id="chatWindow">
+                    <table id="chatLog" style=" width: 100%">
+                        <tbody>
+                        <tr style="border-radius: 30%; border-style: solid; border-color: #1B1B1B; height: 40%">
+                            <td style="width: 5%">
+                                <img src="https://media.giphy.com/media/3oJtgd37mxeDib8go0/giphy.gif" style="width:55px; height:55px; border-radius: 50%">
+                            </td>
+                            <td class = "recvdMess" style="width: 45%"> message </td>
+                            <td style="width: 5%">
+                                <img src="https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif" style="width:55px; height:55px; border-radius: 50%">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="chat-input">
+                <div class="recorder">
+                    <button id="recordBtn"><i class="fa fa-microphone fa-4x"></i></button>
+                    <button id="stopBtn"><i class="fa fa-stop-circle fa-4x"></i></button>
+                </div>
+                <input type="text" id="recordedMessage">
+                <div class="recorder">
+                    <button id="sendBtn" onclick="sendChat();"><i class="fa fa-share-square fa-4x"></i></button>
+                    <audio id="voice_msg"></audio>
+                </div>
+            </div>
+            <div id="formats"></div>
+            <p><strong>Recordings:</strong></p>
+            <ol id="recordingsList"></ol>
+        </div>
+    </div>
+</div>  <!--this is the base for the table, all data/images within the html should be removed and populated dynamically with javascript as messages are sent/received-->
+
+<div id="settings_page">
+    <head><link rel="stylesheet" type="text/css" href = "settings_styling.css"/></head>
+    <div class="setting-container">
+        <div class="avatar-container">
+            <div class="avatar-upload">
+                <div class="avatar-edit">
+                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                    <label for="imageUpload"></label>
+                </div>
+                <div class="avatar-preview">
+                    <div id="imagePreview" style="background-image: url('https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg');">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="middle-container">
+            <div class="middle-container-content">
+                <p>Username:</p>
+                <label id="username">placeholder-name</label>
+                <button id="editUsername" onclick = "edit_username();">Edit</button>
+            </div>
+            <div class="middle-container-content">
+                <p>Email:</p>
+                <label id="email">placeholder-email</label>
+                <button id="editEmail" onclick="edit_email();">Edit</button>
+            </div>
+            <div class="middle-container-content">
+                <p>Password:</p>
+                <label id="password">placeholder-password</label>
+                <button id="editPassword" onclick="edit_pass()">Edit</button>
+            </div>
+            <div class="middle-container-content">
+                <p>Phone Number:</p>
+                <label id="phoneNumber"> placeholder-phoneNumber</label>
+                <button id="editPhoneNumber" onclick="edit_pass()">Edit</button>
+            </div>
+            <div class="middle-container-content">
+                <p>Input Device / Output Device:</p>
+                <label id="ioDevice">placeholder-IO-names</label>
+                <button id="editInputOutputDevices">Edit</button>
+            </div>
+            <div class="middle-container-content">
+                <p>Mode:</p>
+                <label id="Mode">light / dark</label>
+                <button class="dntoggle fa fa-moon-o"></button>
+            </div>
+        </div>
+        <div class="footer-container">
+            <button id="disableAccount">Disable Account</button>
+            <button id="deleteAccount">Delete Account</button>
+        </div>
+    </div>
+    <div>
+        <div class = username-container >
+            <div id = username_edit>
+                <form >
+                    <label id=addUserNameEditor>Change your Username</label><br>
+                    <label id=enterUNameTxt>Enter a new Username</label><br>
+                    <input type="text" id="newUname" name="newUname"><br><br>
+                    <div class = save-edit-button><input type="submit" value="save" class="button" id = addEdit></div>
+                    <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelEdit></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class = email-container >
+            <div id = email_edit>
+                <form >
+                    <label id=addEmailEditor>Change your Email</label><br>
+                    <label id=enterEmailTxt>Enter a new Email</label><br>
+                    <input type="text" id="newEmail" name="newEmail"><br><br>
+                    <div class = save-edit-button><input type="submit" value="save" class="button" id = addMail></div>
+                    <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelMail></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class = password-container >
+            <div id = password_edit>
+                <form >
+                    <label id=addPasswordEditor>Change your Password</label><br>
+                    <label id=entPasswordTxt>Enter a new Password</label><br>
+                    <input type="text" id="newPass" name="newPass"><br><br>
+                    <div class = save-edit-button><input type="submit" value="save" class="button" id = addPass></div>
+                    <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelPass></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class = phone-container >
+            <div id = phone_edit>
+                <form >
+                    <label id=addUserPhoneEditor>Change your Phone Number</label><br>
+                    <label id=enterPhoneTxt>Enter a new Phone Number</label><br>
+                    <input type="text" id="newPhone" name="newPhone"><br><br>
+                    <div class = save-edit-button><input type="submit" value="save" class="button" id = addPhone></div>
+                    <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelPhone></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = function(){
+        document.getElementById("login_page").style.display='';
+        document.getElementById("signup_page").style.display='none';
+        document.getElementById("settings_page").style.display='none';
+        document.getElementById("chatRoom").style.display='none';
+    };
+
+    function page_switcher(x){
+        switch(x){
+            case 1:
+                document.getElementById("login_page").style.display='none';
+                document.getElementById("settings_page").style.display='none';
+                document.getElementById("chatRoom").style.display='none';
+                document.getElementById('signup_page').style.display='block';
+            case 2:
+                document.getElementById("signup_page").style.display='none';
+                document.getElementById("settings_page").style.display='none';
+                document.getElementById("chatRoom").style.display='none';
+                document.getElementById('login_page').style.display='block';
+            case 3:
+                document.getElementById("login_page").style.display='none';
+                document.getElementById("signup_page").style.display='none';
+                document.getElementById("chatRoom").style.display='none';
+                document.getElementById('settings_page').style.display='block';
+            case 4:
+                document.getElementById("login_page").style.display='none';
+                document.getElementById("signup_page").style.display='none';
+                document.getElementById("settings_page").style.display='none';
+                document.getElementById('chatRoom').style.display='block';
+        }
+    }
+</script>
+
+</body>
+</html>
