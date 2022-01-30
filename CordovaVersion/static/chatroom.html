@@ -114,9 +114,14 @@
 
             console.log("message sent");
 
-            var voiceMsg = document.getElementById("audio");
+            var voiceMsg = document.getElementById("recordingsList").lastChild;
 
-           // voiceMsg.removeChild(voiceMsg.childNodes[0]);
+
+            var vchat = voiceMsg.cloneNode(true);
+            voiceMsg.removeChild(voiceMsg.childNodes[0]);
+            voiceMsg.removeChild(voiceMsg.childNodes[0]);
+
+
 
             row = chatWindow.insertRow(-1);
             cell1 = row.insertCell(0);
@@ -127,8 +132,7 @@
                 "                <img src=\"https://media.giphy.com/media/hXcEHA7zYRr4dUNQP8/giphy.gif\" style=\"width:55px; height:55px; border-radius: 50%\">\n" +
                 "               </td>";
             cell2.innerHTML += "<td class = \"sentMess\" style=\"width: 45%\"> <div id='VChatMsg'>" +
-                               "<audio controls=\"\">" +
-                               "<source src = voiceMsg type='audio/webm'></audio></div> " +
+                                vchat +
                                "</td>";
             cell3.innerHTML += "<td style=\"width: 5%\">\n" +
                 "                <img src=\"https://media.giphy.com/media/3oJtgd37mxeDib8go0/giphy.gif\" style=\"width:55px; height:55px; border-radius: 50%\">\n" +
