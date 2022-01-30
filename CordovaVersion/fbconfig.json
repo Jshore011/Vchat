@@ -1,6 +1,7 @@
 {
   "apiKey": "AIzaSyCjMU8ankorPuxvYnxQpbk5hX1a0ZjvwSk",
   "authDomain": "vchat-37136.firebaseapp.com",
+  "databaseURL": "https://vchat-37136.firebaseapp.com",
   "projectId": "vchat-37136",
   "storageBucket": "vchat-37136.appspot.com",
   "messagingSenderId": "993893663736",
