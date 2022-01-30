@@ -19,5 +19,8 @@
     "plugins": {
       "cordova-plugin-whitelist": {}
     }
+  },
+  "dependencies": {
+    "firebaseui": "^6.0.0"
   }
 }
