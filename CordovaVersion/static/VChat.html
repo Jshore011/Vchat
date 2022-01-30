@@ -12,16 +12,33 @@
     <script src="/static/VChat.js"></script>
 </head>
 <body>
-
-<div id="login_page">
-    <head><link rel="stylesheet" type="text/css" href = "login_signup_styling.css"/></head>
-    <div class="navigation-bar">
-        <div class="nav-bar-content">
-            <a href="homepage.html">
-                VChat
-            </a>
+<div class="navigation-bar">
+    <div class="nav-bar-content">
+        <a onclick="page_switcher(2)">
+            VChat
+        </a>
+        <a onclick="page_switcher(4);">
+            My Chatrooms
+        </a>
+        <a href="friends.html">
+            Friends
+        </a>
+        <a href="analytics.html">
+            Analytics
+        </a>
+        <a onclick="page_switcher(3);">
+            Settings
+        </a>
+        <div class="search-container">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Search.." id="searchBar">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
         </div>
     </div>
+</div>
+<div id="login_page">
+    <head><link rel="stylesheet" type="text/css" href = "login_signup_styling.css"/></head>
     <div class="windowBox">
         <label id="header">Log into an account</label>
         <form id="login">
@@ -29,7 +46,7 @@
             <input type="text" class="textfield" id="username" name="username" value="Username">
             <label for="password">Password:</label>
             <input type="password" class="textfield" id="password" name="password" value="12212">
-            <input type="submit" class="button" value="Login" onclick="return login();">
+            <input type="submit" class="button" value="Login" onclick="page_switcher(4);">
         </form>
         <button id="goToSignup" class="button" onclick="page_switcher(1);">Already have an account?</button>
     </div>
@@ -43,7 +60,7 @@
             <input type="text" class="textfield" id="newname" name="newname" value="Username">
             <label for="password">Password:</label>
             <input type="password" class="textfield" id="newword" name="newword" value="12212">
-            <input type="submit" class="button" value="Signup" onclick="return signup();">
+            <input type="submit" class="button" value="Signup" onclick="page_switcher(4);">
         </form>
         <button id="goToLogin" class="button" onclick="page_switcher(2);">Want to create a new account?</button>
     </div>
@@ -51,31 +68,7 @@
 
 <div id="chatRoom">
     <head> <link rel="stylesheet" type="text/css" href = "chatroom_styling.css"/></head>
-    <div class="navigation-bar">
-        <div class="nav-bar-content">
-            <a href="homepage.html">
-                VChat
-            </a>
-            <a href="chatroom.html">
-                My Chatrooms
-            </a>
-            <a href="friends.html">
-                Friends
-            </a>
-            <a href="analytics.html">
-                Analytics
-            </a>
-            <a href="settings.html">
-                Settings
-            </a>
-            <div class="search-container">
-                <form action="/action_page.php">
-                    <input type="text" placeholder="Search.." id="searchBar">
-                    <button type="submit"><i class="fa fa-search"></i></button>
-                </form>
-            </div>
-        </div>
-    </div>
+
     <div class="middle-container">
         <div class="chat-members-container">
             TODO <br>
@@ -227,39 +220,40 @@
 </div>
 
 <script>
+    //default display login page
     window.onload = function(){
-        document.getElementById("login_page").style.display='';
-        document.getElementById("signup_page").style.display='none';
-        document.getElementById("settings_page").style.display='none';
-        document.getElementById("chatRoom").style.display='none';
+        page_switcher();
     };
 
+    //switch function for page to be displayed
     function page_switcher(x){
         switch(x){
-            case 1:
+            case 1: //display signup_page
                 document.getElementById("login_page").style.display='none';
                 document.getElementById("settings_page").style.display='none';
                 document.getElementById("chatRoom").style.display='none';
-                document.getElementById('signup_page').style.display='block';
+                document.getElementById('signup_page').style.display='';
                 break;
-            case 2:
+            case 2: //display login_page
                 document.getElementById("signup_page").style.display='none';
                 document.getElementById("settings_page").style.display='none';
                 document.getElementById("chatRoom").style.display='none';
-                document.getElementById('login_page').style.display='block';
+                document.getElementById('login_page').style.display='';
                 break;
-            case 3:
+            case 3: //display settings_page
                 document.getElementById("login_page").style.display='none';
                 document.getElementById("signup_page").style.display='none';
                 document.getElementById("chatRoom").style.display='none';
-                document.getElementById('settings_page').style.display='block';
+                document.getElementById('settings_page').style.display='';
                 break;
-            case 4:
+            case 4: //display chatRoom
                 document.getElementById("login_page").style.display='none';
                 document.getElementById("signup_page").style.display='none';
                 document.getElementById("settings_page").style.display='none';
-                document.getElementById('chatRoom').style.display='block';
+                document.getElementById('chatRoom').style.display='';
                 break;
+            default:
+                page_switcher(2);
         }
     }
 </script>

@@ -17,12 +17,13 @@
 <script>
     //$('#dashboard').hide();
     function login(){
+    page_switcher(4);
     $.post("/open_api/login", {"username" : $("#username").val(), "password": $('#password').val()},
         function(data, textStatus){
             console.log("made login request");
             console.log(data.token);
             jwt = data.token;
-            page_switcher(4);
+
             // console.log(jwt);
            // $.get("settings.html", function(data){
            //     $("#login_page").replaceWith(data);
@@ -41,12 +42,13 @@
 
 <script>
         function signup(){
+        page_switcher(4);
         $.post("/open_api/signup", {"username" : $("#newname").val(), "password": $('#newword').val()},
             function(data, textStatus){
                 console.log("made signup request");
                 console.log(data.token);
                 jwt = data.token;
-                page_switcher(4);
+
 
             }, "json").fail(function(response){
             console.log("error");
