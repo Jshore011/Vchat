@@ -15,7 +15,7 @@ from tools.logging import logger
 
 def handle_request():
     logger.debug("Settings Handle Request")
-
+'''
     cur = g.db.cursor(); 
     try: 
 	cur.execute("select * from users where username='user1';") 
@@ -36,5 +36,5 @@ def handle_request():
 	message += "]}" 
 	print(message)
     #print("sending silly token")
-	    
+'''	    
     return json_response( token = create_token(  g.jwt_data ) , data = json.loads(message))

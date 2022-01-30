@@ -8,6 +8,12 @@ import bcrypt
 import traceback
 
 
+import firebase_admin
+import pyrebase
+import json
+from firebase_admin import credentials, auth
+
+
 from db_con import get_db_instance, get_db
 
 from tools.token_required import token_required
@@ -22,6 +28,11 @@ ERROR_MSG = "That Didn't work!"
 app = Flask(__name__)
 #add in flask json
 FlaskJSON(app)
+
+#connect to firebase
+cred = credentials.Certificate('fbAdminConfig.json')
+firebase = firebase_admin.initialize_app(cred)
+pb = pyrebase.initialize_app(json.load(open('fbconfig.json')))
 
 #g is flask for a global var storage 
 def init_new_env():
@@ -82,6 +93,7 @@ def exec_proc(proc_name):
 
     return resp
 
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(debug=True)
+#if __name__ == '__main__':
+    #app.run(host='0.0.0.0', port=80)
