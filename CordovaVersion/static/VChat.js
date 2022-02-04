@@ -1,25 +1,25 @@
 
 <script>
     function pageSwitch({string} loc){
-    switch(loc) {
-    case "login_page":
-    document.getElementById('login_page').style.display = "";
-    document.getElementById('signup_page').style.display = "none";
-    break;
-    case "signup_page":
-    document.getElementById('signup_page').style.display = "";
-    document.getElementById('login_page').style.display = "none";
-    break;
-}
-}
+        switch(loc) {
+        case "login_page":
+        document.getElementById('login_page').style.display = "";
+        document.getElementById('signup_page').style.display = "none";
+        break;
+        case "signup_page":
+        document.getElementById('signup_page').style.display = "";
+        document.getElementById('login_page').style.display = "none";
+        break;
+        }
+    }
 </script>
 
 <script>
     //$('#dashboard').hide();
-    function login(){
+    function login() {
     page_switcher(4);
     $.post("/open_api/login", {"username" : $("#username").val(), "password": $('#password').val()},
-        function(data, textStatus){
+        function(data, textStatus) {
             console.log("made login request");
             console.log(data.token);
             jwt = data.token;
@@ -32,12 +32,12 @@
             //$('#login_page').hide();
             //$('#dashboard').show();
 
-        }, "json").fail(function(response){
+        }, "json").fail(function(response) {
         console.log("error");
         console.log(response);
     })
     return false;
-}
+    }
 </script>
 
 <script>
