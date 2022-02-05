@@ -254,13 +254,18 @@
                 document.getElementById('chatRoom').style.display='';
                 break;
             default:
-                page_switcher(2);
+                document.getElementById("signup_page").style.display='none';
+                document.getElementById("settings_page").style.display='none';
+                document.getElementById("chatRoom").style.display='none';
+                document.getElementById('login_page').style.display='';
         }
     }
 </script>
+
 <script src="chatroom.js"></script>
 <script src="login.js"></script>
 <script src="signup.js"></script>
 <script src="settings.js"></script>
+
 </body>
 </html>

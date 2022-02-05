@@ -1,6 +1,6 @@
 function signup() {
 
-    if(($("#newname").val() == "" )||( $("newword").val() == "")){
+    if(($("#newname").val() === "" )||( $("newword").val() === "")){
         alert("Invalid input");
         return false;
     }

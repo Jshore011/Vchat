@@ -1,5 +1,24 @@
 //function that gets user info from database
-window.onload = function get_user(){
+//window.onload =
+function get_user(){
+    //$('#loginContainer').hide();
+    console.log("inside get_user")
+    //make secure call with the jwt
+    secure_get_with_token("/secure_api/settings",
+        function(data){
+            console.log("got data")
+            console.log("got user");
+            console.log(data);
+            for(var i = 0; i < data.length; i++){
+                console.log("inside loop")
+
+                $("#book"+(i+1)).append("<tr><td>" + data.data.books[i].title +
+                    "</td></tr><tr><td>" + data.data.books[i].price + "</td></tr>");
+            }
+
+        },
+        function(err){ console.log(err) });
+}function get_user(){
     //$('#loginContainer').hide();
     console.log("inside get_user")
     //make secure call with the jwt
