@@ -1,5 +1,5 @@
 
-<script>
+
     function pageSwitch({string} loc){
         switch(loc) {
         case "login_page":
@@ -14,7 +14,6 @@
     }
 </script>
 
-<script>
     //$('#dashboard').hide();
     function login() {
     page_switcher(4);
@@ -40,7 +39,6 @@
     }
 </script>
 
-<script>
         function signup(){
         page_switcher(4);
         $.post("/open_api/signup", {"username" : $("#newname").val(), "password": $('#newword').val()},
@@ -56,9 +54,7 @@
         })
         return false;
     }
-</script>
 
-<script>
 
     //each time a new chat is received a new row is added to the chatWindow with a sender icon, message object, and associated emoji
     function receiveChat() {
@@ -112,9 +108,7 @@
 
 
 }
-</script>
 
-<script>
     //recorder.js, based on https://github.com/addpipe/media-recorder-api-audio-demo/blob/master/js/app.js & https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
     URL = window.URL || window.webkitURL;
 
@@ -230,9 +224,7 @@
 
 }
 
-</script>
 
-<script>
     //function that gets user info from database
     window.onload = function get_user(){
     //$('#loginContainer').hide();
@@ -323,4 +315,3 @@
     var popup = document.getElementById("phone_edit");
     popup.classList.toggle("show");
 }
-</script>
