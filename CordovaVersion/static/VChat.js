@@ -1,6 +1,4 @@
-
-
-    function pageSwitch({string} loc){
+function pageSwitch({string} loc){
         switch(loc) {
         case "login_page":
         document.getElementById('login_page').style.display = "";
@@ -12,7 +10,7 @@
         break;
         }
     }
-</script>
+
 
     //$('#dashboard').hide();
     function login() {
@@ -37,7 +35,7 @@
     })
     return false;
     }
-</script>
+
 
         function signup(){
         page_switcher(4);
