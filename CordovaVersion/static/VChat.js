@@ -1,4 +1,4 @@
-function pageSwitch({string} loc){
+function pageSwitch({string}){
         switch(loc) {
         case "login_page":
         document.getElementById('login_page').style.display = "";
