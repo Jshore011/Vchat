@@ -39,7 +39,7 @@ function pageSwitch({string}){
 
         function signup(){
         page_switcher(4);
-        $.post("/open_api/signup", {"username" : $("#newname").val(), "password": $('#newword').val()},
+        $.post("/open_api/signup_firebase", {"username" : $("#newname").val(), "password": $('#newword').val()},
             function(data, textStatus){
                 console.log("made signup request");
                 console.log(data.token);
