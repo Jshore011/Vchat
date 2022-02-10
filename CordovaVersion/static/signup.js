@@ -4,7 +4,7 @@ function signup() {
         alert("Invalid input");
         return false;
     }
-    $.post("/open_api/signup", {"username": $("#newname").val(), "password": $('#newword').val()},
+    $.post("/open_api/signup_firebase", {"username": $("#newname").val(), "password": $('#newword').val()},
         function (data, textStatus) {
             console.log("made signup request");
             console.log(data.token);
