@@ -27,7 +27,7 @@
         $("#dashboard").hide();
         function login(){
             console.log("in login");
-            $.post("/auth", {"email":$('#email').val(), "password":$('#password').val()},
+            $.post("/auth", {"email":$('#email').val(), "password":$('#password').val()}),
 
                     $("#login").hide();
                     $("#dashboard").show();
