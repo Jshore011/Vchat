@@ -36,7 +36,7 @@ def handle_request():
     email = request.form['email']
     password = request.form['password']
 
-    user = auth.sign_in_with_email_and_password(email, password)
+    user = firebase.auth().signInWithEmailAndPassword(email, password)
 
     return "success"
 
