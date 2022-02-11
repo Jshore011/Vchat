@@ -28,12 +28,7 @@ cred = credentials.Certificate('fbAdminConfig.json')
 firebase = firebase_admin.initialize_app(cred)
 pb = pyrebase.initialize_app(json.load(open('fbconfig.json')))
 
-@app.route('/') #endpoint
-def index():
-    return redirect('/static/login.html')
-
-
-@app.route('/static/login') #endpoint
+@app.route('/auth') #endpoint
 def handle_request():
 
     auth = firebase.auth()

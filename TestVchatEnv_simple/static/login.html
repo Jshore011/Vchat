@@ -8,22 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
 </head>
     <body>
-        <script>
-            $("#login").show();
-            $("#dashboard").hide();
-            $.post("/login",{
-                    "email": $('#email').val(), "password":$('#password').val() },
-                function(data, textStatus) {
-                    //this gets called when browser receives response from server
-                    console.log(data.token);
-                    $("#login").hide();
-                    $("#dashboard").show();
-                }, "json").fail(function(response){
-                console.log("error");
-                console.log(response);
-            });
 
-        </script>
 
         <div id="login">
             <form>
@@ -36,9 +21,23 @@
         </div>
 
         <div id="dashboard">
-            <form>
-                You are in the dashboard!!
-            </form>
+            You are in the dashboard!!
         </div>
+
+        <script>
+            $("#dashboard").hide();
+            $.post("/auth",{
+                    "email": $('#email').val(), "password":$('#password').val() },
+                function(data, textStatus) {
+                    //this gets called when browser receives response from server
+                    console.log(data.token);
+                    $("#login").hide();
+                    $("#dashboard").show();
+                }, "json").fail(function(response){
+                console.log("error");
+                console.log(response);
+            });
+
+        </script>
     </body>
 </html>
