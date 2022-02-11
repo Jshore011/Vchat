@@ -65,34 +65,35 @@ function sendChat() {
     "               </td>";
 }
 
+//recorder.js, based on https://github.com/addpipe/media-recorder-api-audio-demo/blob/master/js/app.js & https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+URL = window.URL || window.webkitURL;
 
+var gumStream;
+var recorder;
+var chunks = [];
+var extension;
 
-function startRecording(){
-    console.log("recording in progress");//recorder.js, based on https://github.com/addpipe/media-recorder-api-audio-demo/blob/master/js/app.js & https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
-    URL = window.URL || window.webkitURL;
-
-    var gumStream;
-    var recorder;
-    var chunks = [];
-    var extension;
-
-    var recordButton = document.getElementById("recordBtn");
-    var stopButton = document.getElementById("stopBtn");
+var recordButton = document.getElementById("recordBtn");
+var stopButton = document.getElementById("stopBtn");
 
 //event listeners
-    recordButton.addEventListener("click", startRecording);
-    stopButton.addEventListener("click", stopRecording);
+recordButton.addEventListener("click", startRecording);
+stopButton.addEventListener("click", stopRecording);
 
 //true on chrome, false on firefox
-    console.log("audio/webm:"+MediaRecorder.isTypeSupported('audio/webm/codecs=opus'));
+console.log("audio/webm:"+MediaRecorder.isTypeSupported('audio/webm/codecs=opus'));
 //false on chrome, true on firefox
-    console.log("audio/ogg:"+MediaRecorder.isTypeSupported('audio/ogg;codecs=opus'));
+console.log("audio/ogg:"+MediaRecorder.isTypeSupported('audio/ogg;codecs=opus'));
 
-    if(MediaRecorder.isTypeSupported('audio/webm;codecs=opus')){
-        extension = "webm";
-    } else {
-        extension = "ogg"
-    }
+if(MediaRecorder.isTypeSupported('audio/webm;codecs=opus')){
+    extension = "webm";
+} else {
+    extension = "ogg"
+}
+
+function startRecording(){
+    console.log("recording in progress");
+
     var constraints = {audio:true};
 
     recordButton.disabled = true;
@@ -144,30 +145,7 @@ function startRecording(){
 
 function stopRecording() {
     console.log("stopButton clicked");
-    URL = window.URL || window.webkitURL;
 
-    var gumStream;
-    var recorder;
-    var chunks = [];
-    var extension;
-
-    var recordButton = document.getElementById("recordBtn");
-    var stopButton = document.getElementById("stopBtn");
-
-//event listeners
-    recordButton.addEventListener("click", startRecording);
-    stopButton.addEventListener("click", stopRecording);
-
-//true on chrome, false on firefox
-    console.log("audio/webm:"+MediaRecorder.isTypeSupported('audio/webm/codecs=opus'));
-//false on chrome, true on firefox
-    console.log("audio/ogg:"+MediaRecorder.isTypeSupported('audio/ogg;codecs=opus'));
-
-    if(MediaRecorder.isTypeSupported('audio/webm;codecs=opus')){
-        extension = "webm";
-    } else {
-        extension = "ogg"
-    }
     //disable the stop button, enable the record to allow for new recordings
     stopButton.disabled = true;
     recordButton.disabled = false;
