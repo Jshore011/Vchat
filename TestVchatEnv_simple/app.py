@@ -45,10 +45,10 @@ pb = pyrebase.initialize_app(json.load(open('fbconfig.json')))
 
 @app.route('/') #endpoint
 def index():
-    return redirect('/login.html')
+    return redirect('/static/login.html')
 
 
-
+@app.route('/') #endpoint
 def handle_request():
 
     logging.debug("firebase")
