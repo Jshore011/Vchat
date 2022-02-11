@@ -47,7 +47,7 @@ def signup_user():
 		print("newPassword:")
 		print(newpassword)
 		try:
-			user = auth.create_user_with_email_and_password(newemail, newpassword)
+			auth.create_user_with_email_and_password(newemail, newpassword)
 			return print("successful signup")
 		except:
 			return print("unsuccessful signup. Try again")
