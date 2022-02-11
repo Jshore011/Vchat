@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request, redirect, url_for, g
+from flask import Flask,render_template,request, redirect, url_for, g, request
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 import jwt
 
@@ -12,19 +12,6 @@ import pyrebase
 import json
 from firebase_admin import credentials, auth
 
-from db_con import get_db_instance, get_db
-
-from tools.token_required import token_required
-from tools.get_aws_secrets import get_secrets
-
-from tools.logging import logger
-import pyrebase
-
-from getpass import getpass
-from flask import request, g
-from flask_json import FlaskJSON, JsonError, json_response, as_json
-from tools.token_tools import create_token
-import bcrypt
 import psycopg2
 from psycopg2 import sql
 
