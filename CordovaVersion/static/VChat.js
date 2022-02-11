@@ -1,26 +1,11 @@
-
-function pageSwitch({string}){
-        switch(loc) {
-        case "login_page":
-        document.getElementById('login_page').style.display = "";
-        document.getElementById('signup_page').style.display = "none";
-        break;
-        case "signup_page":
-        document.getElementById('signup_page').style.display = "";
-        document.getElementById('login_page').style.display = "none";
-        break;
-        }
-    }
-
-
-    //$('#dashboard').hide();
+//$('#dashboard').hide();
    //???? function login() {
     //?????page_switcher(4);
     function login(){
         console.log("in login");
         $.post("/login_auth", {"email":$('#email').val(), "password":$('#password').val()}),
             $("#login_page").hide();
-        $("#dashboard").show();
+        $("#chatRoom").show();
     }
 
 
@@ -28,7 +13,7 @@ function pageSwitch({string}){
         console.log("in signup");
         $.post("/signup_auth", {"newemail":$('#newemail').val(), "newpassword":$('#newpassword').val()}),
             $("#signup_page").hide();
-        $("#dashboard").show();
+        $("#chatRoom").show();
     }
 
 
