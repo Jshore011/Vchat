@@ -26,7 +26,12 @@ def basic():
 
 	if request.method == 'POST':
 		email = request.form['email']
+		print("email:")
+		print(email)
+
 		password = request.form['password']
+		print("Password:")
+		print(password)
 		try:
 			auth.sign_in_with_email_and_password(email, password)
 			return print("successful login")
