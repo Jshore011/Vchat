@@ -1,6 +1,12 @@
 import pyrebase
 from flask import *
+import firebase_admin
+import pyrebase
+import json
+from firebase_admin import credentials, auth
+
 app = Flask(__name__)
+
 config = {
     "apiKey": "AIzaSyCjMU8ankorPuxvYnxQpbk5hX1a0ZjvwSk",
     "authDomain": "vchat-37136.firebaseapp.com",
