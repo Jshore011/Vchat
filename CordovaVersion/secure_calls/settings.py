@@ -36,5 +36,6 @@ def handle_request():
 	message += "]}" 
 	print(message)
     #print("sending silly token")
-'''	    
+
     return json_response( token = create_token(  g.jwt_data ) , data = json.loads(message))
+'''

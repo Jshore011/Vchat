@@ -80,12 +80,12 @@
     var extension;
 
 
-    var recordButton = document.getElementById("recordBtn");
-    var stopButton = document.getElementById("stopBtn");
+//    var recordButton = document.getElementById("recordBtn");
+//    var stopButton = document.getElementById("stopBtn");
 
     //event listeners
-    recordButton.addEventListener("click", startRecording);
-    stopButton.addEventListener("click", stopRecording);
+//    recordButton.addEventListener("click", startRecording);
+//    stopButton.addEventListener("click", stopRecording);
 
     //true on chrome, false on firefox
     console.log("audio/webm:"+MediaRecorder.isTypeSupported('audio/webm/codecs=opus'));
