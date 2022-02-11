@@ -203,7 +203,7 @@ function pageSwitch({string}){
 
 
     //function that gets user info from database
-    window.onload = function get_user(){
+    /*window.onload = function get_user(){
     //$('#loginContainer').hide();
     console.log("inside get_user")
     //make secure call with the jwt
@@ -219,9 +219,12 @@ function pageSwitch({string}){
     "</td></tr><tr><td>" + data.data.books[i].price + "</td></tr>");
 }
 
+
+
 },
     function(err){ console.log(err) });
 }
+*/
     //going to need this to populate label when the dictionary is returned, we need to loop through the dictionary
     //and assign each element to each label
     //document.getElementById("placeholder-name").value = val1;
