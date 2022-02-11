@@ -41,9 +41,15 @@
 
         function login(){
             console.log("in login");
-            $.post("/login_auth", {"email":$('#email').val(), "password":$('#password').val()}),
-                $("#login_page").hide();
-                $("#dashboard").show();
+            $.post("/login_auth", {"email":$('#email').val(), "password":$('#password').val()},
+                function (data) {
+                console.log(data);
+                    $("#login_page").hide();
+                    $("#dashboard").show();
+                }, "json").fail(function(response){
+                console.log("error");
+                console.log(response);
+            });
             return false;
         }
         function goToSignup(){
@@ -52,9 +58,15 @@
         }
         function signup(){
             console.log("in signup");
-            $.post("/signup_auth", {"newemail":$('#newemail').val(), "newpassword":$('#newpassword').val()}),
-                $("#signup_page").hide();
-                $("#dashboard").show();
+            $.post("/signup_auth", {"newemail":$('#newemail').val(), "newpassword":$('#newpassword').val()},
+                function (data) {
+                    console.log(data);
+                    $("#signup_page").hide();
+                    $("#dashboard").show();
+                }, "json").fail(function(response){
+                console.log("error");
+                console.log(response);
+            });
             return false;
         }
 
