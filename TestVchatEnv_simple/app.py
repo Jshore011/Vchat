@@ -51,36 +51,14 @@ def index():
 @app.route('/') #endpoint
 def handle_request():
 
-    logging.debug("firebase")
-    firebaseConfig ={
-        “apiKey”: "AIzaSyCjMU8ankorPuxvYnxQpbk5hX1a0ZjvwSk",
-
-        “authDomain”: "vchat-37136.firebaseapp.com",
-            "databaseURL": "https://vchat-37136.firebaseapp.com/",
-
-        “projectId”: "vchat-37136",
-
-        “storageBucket”: "vchat-37136.appspot.com",
-
-        “messagingSenderId”: "993893663736",
-
-        “appId”: "1:993893663736:web:87f489696d2f23656dcc0d",
-
-        “measurementId”: "G-7K5G0D6MMW"
-        }
-
-    firebase = pyrebase.initialize_app(firebaseConfig)
+    logging.debug("firebase login")
 
     auth = firebase.auth()
-
-        #pw = request.form['password']
-        #un = request.form['username']
 
     email = request.form['email']
     logger.debug(email)
     password = request.form['password']
     logger.debug(password)
-
 
     user = auth.sign_in_with_email_and_password(email, password)
 
