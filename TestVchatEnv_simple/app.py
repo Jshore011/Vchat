@@ -15,8 +15,6 @@ from firebase_admin import credentials, auth
 import psycopg2
 from psycopg2 import sql
 
-from tools.logging import logger
-
 ERROR_MSG = "That Didn't work!"
 
 #Create our app
@@ -38,14 +36,10 @@ def index():
 @app.route('/') #endpoint
 def handle_request():
 
-    logging.debug("firebase login")
-
     auth = firebase.auth()
 
     email = request.form['email']
-    logger.debug(email)
     password = request.form['password']
-    logger.debug(password)
 
     user = auth.sign_in_with_email_and_password(email, password)
 
