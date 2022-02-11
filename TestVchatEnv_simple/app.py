@@ -49,9 +49,9 @@ def signup_user():
 		print(newpassword)
 		try:
 			user=auth.create_user_with_email_and_password(newemail, newpassword)
-			return  json_response(status=200, data=user.get("localId"))
+			return  user.get("localId")
 		except:
-			return json_response(status=500, data="unsuccessful signup. Try again")
+			return "unsuccessful signup. Try again"
 
 if __name__ == '__main__':
 	app.run()

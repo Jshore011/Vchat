@@ -26,7 +26,7 @@
         <label for="newemail">Email address</label>
         <input type="newemail" id="newemail" name="newemail"  placeholder="Email address" >
         <label for="newpassword">Password</label>
-        <input type="newpassword" id="newpassword" name="newpassword"  placeholder="Password">
+        <input type="password" id="newpassword" name="newpassword"  placeholder="Password">
 
         <button type="submit" onclick="signup()">Sign up</button>
     </div>
@@ -41,16 +41,9 @@
 
         function login(){
             console.log("in login");
-            $.post("/login_auth", {"email":$('#email').val(), "password":$('#password').val()},
-                function (data) {
-                console.log(data);
+            $.post("/login_auth", {"email":$('#email').val(), "password":$('#password').val()}),
                     $("#login_page").hide();
                     $("#dashboard").show();
-                }, "json").fail(function(response){
-                console.log("error");
-                console.log(response);
-            });
-            return false;
         }
         function goToSignup(){
             $("#login_page").hide();
@@ -58,16 +51,9 @@
         }
         function signup(){
             console.log("in signup");
-            $.post("/signup_auth", {"newemail":$('#newemail').val(), "newpassword":$('#newpassword').val()},
-                function (data) {
-                    console.log(data);
+            $.post("/signup_auth", {"newemail":$('#newemail').val(), "newpassword":$('#newpassword').val()}),
                     $("#signup_page").hide();
                     $("#dashboard").show();
-                }, "json").fail(function(response){
-                console.log("error");
-                console.log(response);
-            });
-            return false;
         }
 
     </script>
