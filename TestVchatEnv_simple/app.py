@@ -20,10 +20,8 @@ firebase = pyrebase.initialize_app(config)
 
 auth = firebase.auth()
 
-@app.route('/auth', methods=['GET', 'POST'])
-
-def basic():
-
+@app.route('/login_auth', methods=['GET', 'POST'])
+def login_user():
 	if request.method == 'POST':
 		email = request.form['email']
 		print("email:")
@@ -34,10 +32,25 @@ def basic():
 		print(password)
 		try:
 			auth.sign_in_with_email_and_password(email, password)
-			return ("successful login")
+			return "successful login"
 		except:
-			return ("unsuccessful login")
+			return "unsuccessful login"
 
+@app.route('/signup_auth', methods=['GET', 'POST'])
+def signup_user():
+	if request.method == 'POST':
+		email = request.form['newemail']
+		print("newEmail:")
+		print(email)
+
+		password = request.form['newpassword']
+		print("newPassword:")
+		print(password)
+		try:
+			auth.create_user_with_email_and_password(email, password)
+			return "successful signup"
+		except:
+			return "unsuccessful signup. Try again"
 
 
 
