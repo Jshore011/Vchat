@@ -26,14 +26,12 @@
 
         <script>
             $("#dashboard").hide();
-            $.post("/auth",{
+            $.post("/app",{
                     "email": $('#email').val(), "password":$('#password').val() },
-                function(data, textStatus) {
-                    //this gets called when browser receives response from server
-                    console.log(data.token);
+                function() {
                     $("#login").hide();
                     $("#dashboard").show();
-                }, "json").fail(function(response){
+                }).fail(function(response){
                 console.log("error");
                 console.log(response);
             });
