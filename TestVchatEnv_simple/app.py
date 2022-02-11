@@ -4,6 +4,7 @@ import firebase_admin
 import pyrebase
 import json
 from firebase_admin import credentials, auth
+from flask_json import FlaskJSON, JsonError, json_response, as_json
 
 app = Flask(__name__)
 
