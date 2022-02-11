@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href = "global_styling.css"/>
-    <link rel="stylesheet" type="text/css" href = "navigation_bar_styling.css"/>
+    <link rel="stylesheet" type="text/css" href = "../temp/global_styling.css"/>
+    <link rel="stylesheet" type="text/css" href = "../temp/navigation_bar_styling.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -20,10 +20,10 @@
         <a onclick="page_switcher(4);">
             My Chatrooms
         </a>
-        <a href="friends.html">
+        <a href="../temp/friends.html">
             Friends
         </a>
-        <a href="analytics.html">
+        <a href="../temp/analytics.html">
             Analytics
         </a>
         <a onclick="page_switcher(3);">
@@ -38,7 +38,7 @@
     </div>
 </div>
 <div id="login_page">
-    <head><link rel="stylesheet" type="text/css" href = "login_signup_styling.css"/></head>
+    <head><link rel="stylesheet" type="text/css" href = "../temp/login_signup_styling.css"/></head>
     <div class="windowBox">
         <label id="login_header">Log into an account</label>
         <form id="login">
@@ -68,7 +68,7 @@
 
 <div id="chatRoom">
     <head>
-        <link rel="stylesheet" type="text/css" href = "chatroom_styling.css"/>
+        <link rel="stylesheet" type="text/css" href = "../temp/chatroom_styling.css"/>
     </head>
     <div class="middle-container">
         <div class="chat-members-container">
@@ -115,7 +115,7 @@
 </div>  <!--this is the base for the table, all data/images within the html should be removed and populated dynamically with javascript as messages are sent/received-->
 
 <div id="settings_page">
-    <head><link rel="stylesheet" type="text/css" href = "settings_styling.css"/></head>
+    <head><link rel="stylesheet" type="text/css" href = "../temp/settings_styling.css"/></head>
     <div class="setting-container">
         <div class="avatar-container">
             <div class="avatar-upload">
@@ -221,6 +221,7 @@
 </div>
 
 <script>
+    page_switcher(4)
     //default display login page
     window.onload = function(){
         page_switcher();
@@ -247,6 +248,7 @@
                 document.getElementById("chatRoom").style.display='none';
                 document.getElementById('settings_page').style.display='';
                 break;
+
             case 4: //display chatRoom
                 document.getElementById("login_page").style.display='none';
                 document.getElementById("signup_page").style.display='none';
