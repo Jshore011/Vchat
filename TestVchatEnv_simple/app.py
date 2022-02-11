@@ -23,18 +23,17 @@ auth = firebase.auth()
 @app.route('/', methods=['GET', 'POST'])
 
 def basic():
-	unsuccessful = 'Please check your credentials'
-	successful = 'Login successful'
+
 	if request.method == 'POST':
 		email = request.form['email']
 		password = request.form['password']
 		try:
 			auth.sign_in_with_email_and_password(email, password)
-			return render_template('login.html', s=successful)
+			return print("successful login")
 		except:
-			return render_template('login.html', us=unsuccessful)
+			return print("unsuccessful login")
 
-	return render_template('login.html')
+	return ('login.html')
 
 
 if __name__ == '__main__':
