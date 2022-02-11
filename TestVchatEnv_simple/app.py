@@ -34,11 +34,11 @@ def basic():
 		print(password)
 		try:
 			auth.sign_in_with_email_and_password(email, password)
-			return print("successful login")
+			return ("successful login")
 		except:
-			return print("unsuccessful login")
+			return ("unsuccessful login")
 
-    return print("return")
+
 
 
 if __name__ == '__main__':

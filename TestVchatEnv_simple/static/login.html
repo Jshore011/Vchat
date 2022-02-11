@@ -28,15 +28,10 @@
         function login(){
             console.log("in login");
             $.post("/auth", {"email":$('#email').val(), "password":$('#password').val()},
-                function(data, textStatus){
+
                     $("#login").hide();
                     $("#dashboard").show();
 
-                }, "json").fail( function(response){
-                //this gets called if the server throws and error
-                console.log("error");
-                console.log(response);
-            });
             return false;
         }
 
