@@ -33,7 +33,7 @@ def basic():
 		except:
 			return print("unsuccessful login")
 
-	return ('login.html')
+
 
 
 if __name__ == '__main__':
