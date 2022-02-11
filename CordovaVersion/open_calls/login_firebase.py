@@ -1,49 +1,41 @@
 import pyrebase
-
-from getpass import getpass
 from flask import request, g
+import json
+from firebase_admin import credentials, auth
 from flask_json import FlaskJSON, JsonError, json_response, as_json
-from tools.token_tools import create_token
 import bcrypt
 import psycopg2
 from psycopg2 import sql
-
 from tools.logging import logger
 
 def handle_request():
 
     logging.debug("firebase")
-firebaseConfg ={
-    “apiKey”: "AIzaSyCjMU8ankorPuxvYnxQpbk5hX1a0ZjvwSk",
-
-    “authDomain”: "vchat-37136.firebaseapp.com",
+    config = {
+        "apiKey": "AIzaSyCjMU8ankorPuxvYnxQpbk5hX1a0ZjvwSk",
+        "authDomain": "vchat-37136.firebaseapp.com",
         "databaseURL": "https://vchat-37136.firebaseapp.com/",
-
-    “projectId”: "vchat-37136",
-
-    “storageBucket”: "vchat-37136.appspot.com",
-
-    “messagingSenderId”: "993893663736",
-
-    “appId”: "1:993893663736:web:87f489696d2f23656dcc0d",
-
-    “measurementId”: "G-7K5G0D6MMW"
+        "projectId": "vchat-37136",
+        "storageBucket": "vchat-37136.appspot.com",
+        "messagingSenderId": "993893663736"
     }
 
-firebase = pyrebase.initialize_app(firebaseConfig)
+    firebase = pyrebase.initialize_app(config)
 
-auth = firebase.auth()
+    auth = firebase.auth()
+    if request.method == 'POST':
+            email = request.form['email']
+            print("email:")
+            print(email)
 
-    #pw = request.form['password']
-    #un = request.form['username']
+            password = request.form['password']
+            print("Password:")
+            print(password)
+            try:
+                auth.sign_in_with_email_and_password(email, password)
+                return "successful login"
+            except:
+                return "unsuccessful login"
 
-email = request.form['username']
-logger.debug(email)
-password = request.form['password']
-logger.debug(password)
-
-
-user = auth.signin_with_email_and_password(email, password)
-
-return "success"
+    return "success"
 
