@@ -33,7 +33,7 @@ def index():
     return redirect('/static/login.html')
 
 
-@app.route('/static/login') #endpoint
+@app.route('/login') #endpoint
 def handle_request():
 
     auth = firebase.auth()
