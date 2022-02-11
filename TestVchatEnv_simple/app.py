@@ -39,18 +39,18 @@ def login_user():
 @app.route('/signup_auth', methods=['GET', 'POST'])
 def signup_user():
 	if request.method == 'POST':
-		email = request.form['newemail']
+		newemail = request.form['newemail']
 		print("newEmail:")
-		print(email)
+		print(newemail)
 
-		password = request.form['newpassword']
+		newpassword = request.form['newpassword']
 		print("newPassword:")
-		print(password)
+		print(newpassword)
 		try:
-			user = auth.create_user_with_email_and_password(email, password)
-			return "successful signup"
+			user = auth.create_user_with_email_and_password(newemail, newpassword)
+			return print("successful signup")
 		except:
-			return "unsuccessful signup. Try again"
+			return print("unsuccessful signup. Try again")
 
 
 
