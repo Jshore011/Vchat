@@ -16,7 +16,7 @@
                 <input type="text" id="email" ><br>
                 <label for="password">Password:</label><br>
                 <input type="password" id ="password" name="password" ><br><br>
-                <input type="submit" value="Login" onclick="return send_form();">
+                <input type="submit" value="Login" onclick="login();">
             </form>
         </div>
 
@@ -26,16 +26,18 @@
 
         <script>
             $("#dashboard").hide();
-            $.post("/app",{
-                    "email": $('#email').val(), "password":$('#password').val() },
-                function() {
-                    $("#login").hide();
-                    $("#dashboard").show();
-                }).fail(function(response){
-                console.log("error");
-                console.log(response);
-            });
-
+            function login() {
+                $.post("/auth", {
+                        "email": $('#email').val(), "password": $('#password').val()
+                    },
+                    function () {
+                        $("#login").hide();
+                        $("#dashboard").show();
+                    }).fail(function (response) {
+                    console.log("error");
+                    console.log(response);
+                });
+            }
         </script>
     </body>
 </html>
