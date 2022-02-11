@@ -20,7 +20,7 @@ firebase = pyrebase.initialize_app(config)
 
 auth = firebase.auth()
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/auth', methods=['GET', 'POST'])
 
 def basic():
 

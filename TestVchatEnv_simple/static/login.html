@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 
 </head>
 <body>
-<div class="container">
-
-    <form action="/" method="post">
+    <div id="loginpage">
         <h2>Please sign in</h2>
         <label for="email">Email address</label>
         <input type="email" id="email" name="email"  placeholder="Email address" >
@@ -17,12 +15,30 @@
                 <input type="checkbox" value="remember-me"> Remember me
             </label>
         </div>
-        <button type="submit">Sign in</button>
-    </form>
+        <button type="submit" onclose="login()">Sign in</button>
+    </div>
 
-</div>
+    <div id="dashboard">
+        another page
+    </div>
 
+<script>
+    $("#dashboard").hide();
+    function login(){
+        console.log("in login");
+        $.post("/auth", {"email":$('#email').val(), "password":$('#password').val()},
+            function(data, textStatus){
+                $("#login").hide();
+                $("#dashboard").show();
+            }, "json").fail( function(response){
+            //this gets called if the server throws and error
+            console.log("error");
+            console.log(response);
+        });
+        return false;
+    }
 
+</script>
 
 <footer></footer>
 </body>
