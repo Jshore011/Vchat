@@ -29,7 +29,7 @@
             console.log("in login");
             $.post("/auth", {"email":$('#email').val(), "password":$('#password').val()}),
 
-                    $("#login").hide();
+                    $("#loginpage").hide();
                     $("#dashboard").show();
 
             return false;
