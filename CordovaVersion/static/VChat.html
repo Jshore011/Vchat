@@ -40,12 +40,12 @@
 <div id="login_page">
     <head><link rel="stylesheet" type="text/css" href = "login_signup_styling.css"/></head>
     <div class="windowBox">
-        <label id="login_header">Log into an account</label>
+        <label id="header">Log into an account</label>
         <form id="login">
-            <label for="email">Email:</label>
-            <input type="text" class="textfield" id="email" name="email">
+            <label for="username">Username:</label>
+            <input type="text" class="textfield" id="username" name="username" value="Username">
             <label for="password">Password:</label>
-            <input type="password" class="textfield" id="password" name="password">
+            <input type="password" class="textfield" id="password" name="password" value="12212">
             <input type="submit" class="button" value="Login" onclick="page_switcher(4);">
         </form>
         <button id="goToSignup" class="button" onclick="page_switcher(1);">Already have an account?</button>
@@ -54,12 +54,12 @@
 
 <div id="signup_page">
     <div class="windowBox">
-        <label id="signup_header">Create an account</label>
+        <label id="header">Create an account</label>
         <form id="signup">
-            <label for="newemail">Email:</label>
-            <input type="text" class="textfield" id="newemail" name="newemail">
-            <label for="newpassword">Password:</label>
-            <input type="password" class="textfield" id="newpassword" name="newpassword">
+            <label for="fname">Username:</label>
+            <input type="text" class="textfield" id="newname" name="newname" value="Username">
+            <label for="password">Password:</label>
+            <input type="password" class="textfield" id="newword" name="newword" value="12212">
             <input type="submit" class="button" value="Signup" onclick="page_switcher(4);">
         </form>
         <button id="goToLogin" class="button" onclick="page_switcher(2);">Want to create a new account?</button>
@@ -76,7 +76,7 @@
             Placeholder for chatroom name <br>
             Chatroom members <br>
             Button to add another member to chatroom
-            <button id="add_usr" style="font-size: 40px; background-color: mintcream; border-radius: 50%; height: 45px; width: 45px; margin-left: 20%">+</button>
+            <button id="add_usr" style="font-size: 40px; background-color: mintcream; border-radius: 50%; height: 45px; width: 45px; margin-left: 20%">+<button>
         </div>
         <div class ="chat-container">
             <div class="chat-window">
@@ -137,12 +137,12 @@
             </div>
             <div class="middle-container-content">
                 <p>Email:</p>
-                <label id="email_in_settings">placeholder-email</label>
+                <label id="email">placeholder-email</label>
                 <button id="editEmail" onclick="edit_email();">Edit</button>
             </div>
             <div class="middle-container-content">
                 <p>Password:</p>
-                <label id="password_in_settings">placeholder-password</label>
+                <label id="password">placeholder-password</label>
                 <button id="editPassword" onclick="edit_pass()">Edit</button>
             </div>
             <div class="middle-container-content">
@@ -185,7 +185,7 @@
                 <form >
                     <label id=addEmailEditor>Change your Email</label><br>
                     <label id=enterEmailTxt>Enter a new Email</label><br>
-                    <input type="text" id="newEmail_in_settings" name="newEmail_in_settings"><br><br>
+                    <input type="text" id="newEmail" name="newEmail"><br><br>
                     <div class = save-edit-button><input type="submit" value="save" class="button" id = addMail></div>
                     <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelMail></div>
                 </form>
@@ -198,7 +198,7 @@
                 <form >
                     <label id=addPasswordEditor>Change your Password</label><br>
                     <label id=entPasswordTxt>Enter a new Password</label><br>
-                    <input type="text" id="newPass_in_settings" name="newPass_in_settings"><br><br>
+                    <input type="text" id="newPass" name="newPass"><br><br>
                     <div class = save-edit-button><input type="submit" value="save" class="button" id = addPass></div>
                     <div class = cancel-edit-button><input type="submit" value="cancel" class="button" id = cancelPass></div>
                 </form>
@@ -261,13 +261,11 @@
         }
     }
 </script>
-<script src="VChat.js"></script>
-<!--
+
 <script src="chatroom.js"></script>
 <script src="login.js"></script>
 <script src="signup.js"></script>
 <script src="settings.js"></script>
--->
 
 </body>
 </html>

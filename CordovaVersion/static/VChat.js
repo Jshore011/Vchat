@@ -13,23 +13,45 @@ function pageSwitch({string}){
 
 
     //$('#dashboard').hide();
-   //???? function login() {
+    function login() {
     page_switcher(4);
-    function login(){
-        console.log("in login");
-        $.post("/login_auth", {"email":$('#email').val(), "password":$('#password').val()}),
-            $("#login_page").hide();
-        $("#dashboard").show();
+    $.post("/open_api/login", {"username" : $("#username").val(), "password": $('#password').val()},
+        function(data, textStatus) {
+            console.log("made login request");
+            console.log(data.token);
+            jwt = data.token;
+
+            // console.log(jwt);
+           // $.get("settings.html", function(data){
+           //     $("#login_page").replaceWith(data);
+           // });
+            //location.replace("settings.html");
+            //$('#login_page').hide();
+            //$('#dashboard').show();
+
+        }, "json").fail(function(response) {
+        console.log("error");
+        console.log(response);
+    })
+    return false;
     }
 
 
-    function signup(){
-        console.log("in signup");
-        $.post("/signup_auth", {"newemail":$('#newemail').val(), "newpassword":$('#newpassword').val()}),
-            $("#signup_page").hide();
-        $("#dashboard").show();
-    }
+        function signup(){
+        page_switcher(4);
+        $.post("/open_api/signup_firebase", {"username" : $("#newname").val(), "password": $('#newword').val()},
+            function(data, textStatus){
+                console.log("made signup request");
+                console.log(data.token);
+                jwt = data.token;
 
+
+            }, "json").fail(function(response){
+            console.log("error");
+            console.log(response);
+        })
+        return false;
+    }
 
 
     //each time a new chat is received a new row is added to the chatWindow with a sender icon, message object, and associated emoji
@@ -275,20 +297,19 @@ function pageSwitch({string}){
     function edit_username(){
     var popup = document.getElementById("username_edit");
     popup.classList.toggle("show");
-    }
+}
     //function for popup that allows user to edit Email
     function edit_email(){
     var popup = document.getElementById("email_edit");
     popup.classList.toggle("show");
-    }
+}
     //function for popup that allows user to edit password
     function edit_pass(){
     var popup = document.getElementById("password_edit");
     popup.classList.toggle("show");
-    }
+}
     //function for popup that allows user to edit Phone Number
     function edit_phone(){
     var popup = document.getElementById("phone_edit");
     popup.classList.toggle("show");
-    }
-
+}
