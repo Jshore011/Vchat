@@ -3,16 +3,16 @@
 //?????page_switcher(4);
 function login(){
     console.log("in login");
-    $.post("/login_auth", {"email":$('#email').val(), "password":$('#password').val()});
-        //$("#login_page").hide();
-        //$("#chatRoom").show();
+    $.post("/login_auth", {"email":$('#email').val(), "password":$('#password').val()}),
+        $("#login_page").hide();
+    $("#chatRoom").show();
 }
 
 function signup(){
     console.log("in signup");
-    $.post("/signup_auth", {"newemail":$('#newemail').val(), "newpassword":$('#newpassword').val()});
-        //$("#signup_page").hide();
-        //$("#chatRoom").show();
+    $.post("/signup_auth", {"newemail":$('#newemail').val(), "newpassword":$('#newpassword').val()}),
+        $("#signup_page").hide();
+    $("#chatRoom").show();
 }
 
 //each time a new chat is received a new row is added to the chatWindow with a sender icon, message object, and associated emoji
