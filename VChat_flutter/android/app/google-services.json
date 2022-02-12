@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "993893663736",
+    "project_id": "vchat-37136",
+    "storage_bucket": "vchat-37136.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993893663736:android:8ef02ee8f6e390e06dcc0d",
+        "android_client_info": {
+          "package_name": "com.Vchat.Vchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993893663736-e3pqipt0l8plfh21aeh9chivbsvtgjpv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDE1taiQspuZBHLtxHI-1Voy-PkDLX1UGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993893663736-e3pqipt0l8plfh21aeh9chivbsvtgjpv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
