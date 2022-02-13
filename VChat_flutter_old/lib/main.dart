@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:vchat_flutter/screens/Home.dart';
 import 'package:vchat_flutter/screens/Login.dart';
 
 import 'package:vchat_flutter/screens/Signup.dart';
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
           bodyText1: TextStyle(fontSize: 18.0),
         ),
       ),
-      home: HomePage(),
+      home: LoginPage(),
     );
   }
 }
