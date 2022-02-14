@@ -6,6 +6,7 @@ import 'package:vchat_flutter/screens/Signup.dart';
 
 
 void main() {
+  Firebase.initializeApp();
   runApp(MyApp());
 }
 

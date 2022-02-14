@@ -23,10 +23,24 @@ if (flutterVersionName == null) {
 
 apply plugin: 'com.android.application'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.google.gms.google-services'
 
+dependencies {
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:29.1.0')
+
+
+    // Add the dependency for the Firebase SDK for Google Analytics
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation 'com.google.firebase:firebase-analytics'
+
+
+    // Add the dependencies for any other desired Firebase products
+    // https://firebase.google.com/docs/android/setup#available-libraries
+}
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -36,10 +50,13 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.Vchat.Vchat"
-        minSdkVersion 16
-        targetSdkVersion 30
+        minSdk 31
+        targetSdk 31
         versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        //versionName flutterVersionName
+//        applicationIdSuffix flutterVersionName
+//        versionNameSuffix flutterVersionName
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
@@ -47,10 +64,23 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+//            applicationIdSuffix flutterVersionName
+//            versionNameSuffix flutterVersionName
+        }
+    }
+    buildToolsVersion '31.0.0'
+    ndkVersion '23.1.7779620'
+}
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '25.3.0'
+            }
         }
     }
 }
-
 flutter {
     source '../..'
 }

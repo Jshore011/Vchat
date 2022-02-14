@@ -29,6 +29,13 @@
             {
               "client_id": "993893663736-e3pqipt0l8plfh21aeh9chivbsvtgjpv.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "993893663736-676md1rcdt4l4fl60tmqcjkkg5s44bd7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Vchat.Vchat"
+              }
             }
           ]
         }

@@ -5,10 +5,10 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:7.1.1'
         classpath 'com.google.gms:google-services:4.3.10'
-        implementation platform('com.google.firebase:firebase-bom:29.1.0')
-        implementation 'com.google.firebase:firebase-analytics'
+//        implementation platform('com.google.firebase:firebase-bom:29.1.0')
+//        implementation 'com.google.firebase:firebase-analytics'
     }
 }
 
