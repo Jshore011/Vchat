@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                                         .pushAndRemoveUntil(
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            ProfilePage(user: user),
+                                            NavBarPage(user: user),
                                       ),
                                       ModalRoute.withName('/'),
                                     );
