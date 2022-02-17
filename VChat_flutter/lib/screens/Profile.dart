@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vchat_flutter/screens/Home.dart';
+import 'package:vchat_flutter/screens/UserSettings.dart';
 import 'package:vchat_flutter/screens/Wadapak.dart';
 import 'package:vchat_flutter/screens/Signup.dart';
 import 'package:vchat_flutter/util/fire_auth.dart';
@@ -226,7 +227,7 @@ class _NavBarPageState extends State<NavBarPage> {
                                     ),
                                     Container(
                                       color: Colors.green,
-                                      child: Wadapak(),
+                                      child: UserSettingsPage(),
                                     )
                                   ]
                               )

@@ -4,7 +4,7 @@ import 'package:vchat_flutter/screens/Home.dart';
 import 'package:vchat_flutter/screens/Profile.dart';
 import 'package:vchat_flutter/screens/Login.dart';
 import 'package:vchat_flutter/screens/Signup.dart';
-
+import 'package:vchat_flutter/screens/UserSettings.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
