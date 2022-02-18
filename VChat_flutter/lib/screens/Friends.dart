@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class UserSettingsPage extends StatefulWidget{
-  const UserSettingsPage({Key? key}) : super(key: key);
+class FriendsPage extends StatefulWidget{
+  const FriendsPage({Key? key}) : super(key: key);
   @override
-  _UserSettingsPageState createState() => _UserSettingsPageState();
+  _FriendsPageState createState() => _FriendsPageState();
 }
 
-class _UserSettingsPageState extends State<UserSettingsPage> {
-  final _userSettingsFormKey = GlobalKey<FormState>();
+class _FriendsPageState extends State<FriendsPage> {
+  final _friendsFormKey = GlobalKey<FormState>();
 
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
@@ -44,7 +44,7 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Form(
-                  key: _userSettingsFormKey,
+                  key: _friendsFormKey,
                   child: Column(
                     children: <Widget>[
                       TextFormField(
@@ -65,7 +65,7 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                         focusNode: _focusPassword,
                         obscureText: true,
                         decoration: const InputDecoration(
-                          hintText: "Password"
+                            hintText: "Password"
                         ),
                       ),
                       TextFormField(

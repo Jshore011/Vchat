@@ -6,6 +6,10 @@ import 'package:vchat_flutter/screens/Wadapak.dart';
 import 'package:vchat_flutter/screens/Signup.dart';
 import 'package:vchat_flutter/util/fire_auth.dart';
 
+import 'Analytics.dart';
+import 'Chatroom.dart';
+import 'Friends.dart';
+
 
 class NavBarPage extends StatefulWidget {
   final User user;
@@ -193,17 +197,35 @@ class _NavBarPageState extends State<NavBarPage> {
               ListTile(
                 leading: Icon(Icons.home),
                 title: Text('Home'),
-                onTap: () => null,
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HomePage()),
+                  );
+                },
               ),
               ListTile(
                 leading: Icon(Icons.chat_rounded),
                 title: Text('Chatrooms'),
-                onTap: () => null,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ChatroomPage()),
+                    );
+                  }
               ),
               ListTile(
                 leading: Icon(Icons.person),
                 title: Text('Friends'),
-                onTap: () => null,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FriendsPage()),
+                    );
+                  }
               ),
               ListTile(
                 leading: Icon(Icons.analytics_rounded),
@@ -212,7 +234,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => UserSettingsPage())
+                          builder: (context) => AnalyticsPage()),
                   );
                 }
               ),

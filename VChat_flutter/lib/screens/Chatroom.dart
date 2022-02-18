@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class UserSettingsPage extends StatefulWidget{
-  const UserSettingsPage({Key? key}) : super(key: key);
+class ChatroomPage extends StatefulWidget{
+  const ChatroomPage({Key? key}) : super(key: key);
   @override
-  _UserSettingsPageState createState() => _UserSettingsPageState();
+  _ChatroomPageState createState() => _ChatroomPageState();
 }
 
-class _UserSettingsPageState extends State<UserSettingsPage> {
-  final _userSettingsFormKey = GlobalKey<FormState>();
+class _ChatroomPageState extends State<ChatroomPage> {
+  final _chatroomFormKey = GlobalKey<FormState>();
 
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
@@ -44,7 +44,7 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Form(
-                  key: _userSettingsFormKey,
+                  key: _chatroomFormKey,
                   child: Column(
                     children: <Widget>[
                       TextFormField(
@@ -65,7 +65,7 @@ class _UserSettingsPageState extends State<UserSettingsPage> {
                         focusNode: _focusPassword,
                         obscureText: true,
                         decoration: const InputDecoration(
-                          hintText: "Password"
+                            hintText: "Password"
                         ),
                       ),
                       TextFormField(
