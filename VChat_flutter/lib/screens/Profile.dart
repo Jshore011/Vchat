@@ -208,33 +208,23 @@ class _NavBarPageState extends State<NavBarPage> {
               ListTile(
                 leading: Icon(Icons.analytics_rounded),
                 title: Text('Analytics'),
-                onTap: () => null,
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => UserSettingsPage())
+                  );
+                }
               ),
               Divider(),
               ListTile(
                 leading: Icon(Icons.settings),
                 title: Text('Settings'),
-                onTap: () => {
-                  setState(() {
-                    test = Center(
-                        child: Column(
-                            children: [
-                              Row(
-                                  children: [
-                                    Text("this is text"),
-                                    Padding(padding: EdgeInsets.all(100.0),
-                                      child: Text("padded text!"),
-                                    ),
-                                    Container(
-                                      color: Colors.green,
-                                      child: UserSettingsPage(),
-                                    )
-                                  ]
-                              )
-                            ]
-                        )
-                    );
-                  })
+                onTap: () {
+                  Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  UserSettingsPage()),
+                );
                 },
               ),
               Divider(),
