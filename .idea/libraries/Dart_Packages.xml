@@ -226,6 +226,13 @@
             </list>
           </value>
         </entry>
+        <entry key="settings_ui">
+          <value>
+            <list>
+              <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/settings_ui-0.2.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="sky_engine">
           <value>
             <list>
@@ -321,6 +328,7 @@
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/pedantic-1.11.1/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-2.1.2/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/quiver-3.0.1+1/lib" />
+      <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/settings_ui-0.2.0/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.1/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/stack_trace-1.10.0/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/stream_channel-2.1.0/lib" />
