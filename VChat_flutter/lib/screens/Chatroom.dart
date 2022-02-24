@@ -1,138 +1,80 @@
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
-class ChatroomPage extends StatefulWidget{
-  const ChatroomPage({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+
+class ChatroomPage extends StatefulWidget {
+
   @override
   _ChatroomPageState createState() => _ChatroomPageState();
 }
 
 class _ChatroomPageState extends State<ChatroomPage> {
-  final _chatroomFormKey = GlobalKey<FormState>();
-
-  final _emailTextController = TextEditingController();
-  final _passwordTextController = TextEditingController();
-  final _phoneNumberTextController = TextEditingController();
-  final _usernameTextController = TextEditingController();
-  final _nameTextController = TextEditingController();
-
-  final _focusEmail = FocusNode();
-  final _focusPassword = FocusNode();
-  final _focusPhoneNumber = FocusNode();
-  final _focusUsername = FocusNode();
-  final _focusName = FocusNode();
-
-  final bool _isProcessing = false;
-
+  bool isUploaded = false;
   @override
   Widget build(BuildContext context) {
-    //throw UnimplementedError();
-    return GestureDetector(
-      onTap: () {
-        _focusEmail.unfocus();
-        _focusPassword.unfocus();
-        _focusUsername.unfocus();
-        _focusPassword.unfocus();
+    return Scaffold(
+      appBar: AppBar(centerTitle: true, title: Text('Voting Panel')),
+      body: _buildBody(context),
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: Firestore.instance.collection('candidate').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) return LinearProgressIndicator();
+
+        return _buildList(context, snapshot.data.documents);
       },
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('User Settings'),
+    );
+  }
+
+  Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
+    return ListView(
+      padding: const EdgeInsets.only(top: 20.0),
+      children: snapshot.map((data) => _buildListItem(context, data)).toList(),
+    );
+  }
+
+  Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
+    final record = Record.fromSnapshot(data);
+
+    return Padding(
+      key: ValueKey(record.name),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.grey),
+          borderRadius: BorderRadius.circular(5.0),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Form(
-                  key: _chatroomFormKey,
-                  child: Column(
-                    children: <Widget>[
-                      TextFormField(
-                        controller: _emailTextController,
-                        focusNode: _focusEmail,
-                        decoration: InputDecoration(
-                          hintText: "Email",
-                          errorBorder: UnderlineInputBorder(
-                            borderRadius: BorderRadius.circular(3.0),
-                            borderSide: const BorderSide(
-                              color: Colors.red,
-                            ),
-                          ),
-                        ),
-                      ),
-                      TextFormField(
-                        controller: _passwordTextController,
-                        focusNode: _focusPassword,
-                        obscureText: true,
-                        decoration: const InputDecoration(
-                            hintText: "Password"
-                        ),
-                      ),
-                      TextFormField(
-                        controller: _nameTextController,
-                        focusNode: _focusName,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          hintText: "Name",
-                          errorBorder: UnderlineInputBorder(
-                            borderRadius: BorderRadius.circular(3.0),
-                            borderSide: const BorderSide(
-                              color: Colors.red,
-                            ),
-                          ),
-                        ),
-                      ),
-                      TextFormField(
-                        controller: _usernameTextController,
-                        focusNode: _focusUsername,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          hintText: "Username",
-                          errorBorder: UnderlineInputBorder(
-                            borderRadius: BorderRadius.circular(3.0),
-                            borderSide: const BorderSide(
-                              color: Colors.red,
-                            ),
-                          ),
-                        ),
-                      ),
-                      TextFormField(
-                        controller: _phoneNumberTextController,
-                        focusNode: _focusPhoneNumber,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          hintText: "Phone Number",
-                          errorBorder: UnderlineInputBorder(
-                            borderRadius: BorderRadius.circular(3.0),
-                            borderSide: const BorderSide(
-                              color: Colors.red,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 32.0),
-                      if (_isProcessing) const CircularProgressIndicator() else Row(
-                        children: [
-                          Expanded(
-                            child: ElevatedButton(
-                              // TODO: implement onPressed
-                              onPressed: () {  },
-                              child: const Text(
-                                'Save Changes',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
+        child: ListTile(
+          title: Text(record.name),
+          trailing: Text(record.votes.toString()),
+          onTap: () => record.reference.update({'votes': record.votes + 1}),
         ),
       ),
     );
   }
+}
+
+class Record {
+  final String name;
+  final int votes;
+  final DocumentReference reference;
+
+  Record.fromMap(Map<String, dynamic> map, {required this.reference})
+      : assert(map['name'] != null),
+        assert(map['votes'] != null),
+        name = map['name'],
+        votes = map['votes'];
+
+  Record.fromSnapshot(DocumentSnapshot snapshot)
+      : this.fromMap(snapshot.data, reference: snapshot.reference);
+
+  @override
+  String toString() => "Record<$name:$votes>";
 }

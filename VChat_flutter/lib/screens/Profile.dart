@@ -6,6 +6,7 @@ import 'package:vchat_flutter/screens/Wadapak.dart';
 import 'package:vchat_flutter/screens/Signup.dart';
 import 'package:vchat_flutter/util/fire_auth.dart';
 
+import '../main.dart';
 import 'Analytics.dart';
 import 'Chatroom.dart';
 import 'Friends.dart';
@@ -212,7 +213,7 @@ class _NavBarPageState extends State<NavBarPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ChatroomPage()),
+                            builder: (context) => ChatroomPage(title: '',)),
                     );
                   }
               ),

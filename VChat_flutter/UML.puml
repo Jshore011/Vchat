@@ -1,0 +1,215 @@
+@startuml
+set namespaceSeparator ::
+
+class "vchat_flutter::main.dart::MyApp" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "vchat_flutter::main.dart::MyApp"
+
+class "vchat_flutter::screens::Analytics.dart::AnalyticsPage" {
+  +_AnalyticsPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "vchat_flutter::screens::Analytics.dart::AnalyticsPage"
+
+class "vchat_flutter::screens::Analytics.dart::_AnalyticsPageState" {
+  -GlobalKey<FormState> _analyticsFormKey
+  -TextEditingController _emailTextController
+  -TextEditingController _passwordTextController
+  -TextEditingController _phoneNumberTextController
+  -TextEditingController _usernameTextController
+  -TextEditingController _nameTextController
+  -FocusNode _focusEmail
+  -FocusNode _focusPassword
+  -FocusNode _focusPhoneNumber
+  -FocusNode _focusUsername
+  -FocusNode _focusName
+  -bool _isProcessing
+  +Widget build()
+}
+
+"vchat_flutter::screens::Analytics.dart::_AnalyticsPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"vchat_flutter::screens::Analytics.dart::_AnalyticsPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"vchat_flutter::screens::Analytics.dart::_AnalyticsPageState" o-- "flutter::src::widgets::focus_manager.dart::FocusNode"
+"flutter::src::widgets::framework.dart::State" <|-- "vchat_flutter::screens::Analytics.dart::_AnalyticsPageState"
+
+class "vchat_flutter::screens::Chatroom.dart::ChatroomPage" {
+  +_ChatroomPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "vchat_flutter::screens::Chatroom.dart::ChatroomPage"
+
+class "vchat_flutter::screens::Chatroom.dart::_ChatroomPageState" {
+  -GlobalKey<FormState> _chatroomFormKey
+  -TextEditingController _emailTextController
+  -TextEditingController _passwordTextController
+  -TextEditingController _phoneNumberTextController
+  -TextEditingController _usernameTextController
+  -TextEditingController _nameTextController
+  -FocusNode _focusEmail
+  -FocusNode _focusPassword
+  -FocusNode _focusPhoneNumber
+  -FocusNode _focusUsername
+  -FocusNode _focusName
+  -bool _isProcessing
+  +Widget build()
+}
+
+"vchat_flutter::screens::Chatroom.dart::_ChatroomPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"vchat_flutter::screens::Chatroom.dart::_ChatroomPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"vchat_flutter::screens::Chatroom.dart::_ChatroomPageState" o-- "flutter::src::widgets::focus_manager.dart::FocusNode"
+"flutter::src::widgets::framework.dart::State" <|-- "vchat_flutter::screens::Chatroom.dart::_ChatroomPageState"
+
+class "vchat_flutter::screens::Friends.dart::FriendsPage" {
+  +_FriendsPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "vchat_flutter::screens::Friends.dart::FriendsPage"
+
+class "vchat_flutter::screens::Friends.dart::_FriendsPageState" {
+  -GlobalKey<FormState> _friendsFormKey
+  -TextEditingController _emailTextController
+  -TextEditingController _passwordTextController
+  -TextEditingController _phoneNumberTextController
+  -TextEditingController _usernameTextController
+  -TextEditingController _nameTextController
+  -FocusNode _focusEmail
+  -FocusNode _focusPassword
+  -FocusNode _focusPhoneNumber
+  -FocusNode _focusUsername
+  -FocusNode _focusName
+  -bool _isProcessing
+  +Widget build()
+}
+
+"vchat_flutter::screens::Friends.dart::_FriendsPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"vchat_flutter::screens::Friends.dart::_FriendsPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"vchat_flutter::screens::Friends.dart::_FriendsPageState" o-- "flutter::src::widgets::focus_manager.dart::FocusNode"
+"flutter::src::widgets::framework.dart::State" <|-- "vchat_flutter::screens::Friends.dart::_FriendsPageState"
+
+class "vchat_flutter::screens::Home.dart::HomePage" {
+  +_HomePageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "vchat_flutter::screens::Home.dart::HomePage"
+
+class "vchat_flutter::screens::Home.dart::_HomePageState" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "vchat_flutter::screens::Home.dart::_HomePageState"
+
+class "vchat_flutter::screens::Login.dart::LoginPage" {
+  +_LoginPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "vchat_flutter::screens::Login.dart::LoginPage"
+
+class "vchat_flutter::screens::Login.dart::_LoginPageState" {
+  -GlobalKey<FormState> _LoginFormKey
+  -TextEditingController _emailTextController
+  -TextEditingController _passwordTextController
+  -FocusNode _focusEmail
+  -FocusNode _focusPassword
+  -bool _isProcessing
+  +Widget build()
+}
+
+"vchat_flutter::screens::Login.dart::_LoginPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"vchat_flutter::screens::Login.dart::_LoginPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"vchat_flutter::screens::Login.dart::_LoginPageState" o-- "flutter::src::widgets::focus_manager.dart::FocusNode"
+"flutter::src::widgets::framework.dart::State" <|-- "vchat_flutter::screens::Login.dart::_LoginPageState"
+
+class "vchat_flutter::screens::Profile.dart::NavBarPage" {
+  +User user
+  +_NavBarPageState createState()
+}
+
+"vchat_flutter::screens::Profile.dart::NavBarPage" o-- "firebase_auth::firebase_auth.dart::User"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "vchat_flutter::screens::Profile.dart::NavBarPage"
+
+class "vchat_flutter::screens::Profile.dart::_NavBarPageState" {
+  -User _currentUser
+  -bool _isSigningOut
+  +FirebaseAuth auth
+  +Center test
+  +void initState()
+  +Widget build()
+}
+
+"vchat_flutter::screens::Profile.dart::_NavBarPageState" o-- "firebase_auth::firebase_auth.dart::User"
+"vchat_flutter::screens::Profile.dart::_NavBarPageState" o-- "firebase_auth::firebase_auth.dart::FirebaseAuth"
+"vchat_flutter::screens::Profile.dart::_NavBarPageState" o-- "flutter::src::widgets::basic.dart::Center"
+"flutter::src::widgets::framework.dart::State" <|-- "vchat_flutter::screens::Profile.dart::_NavBarPageState"
+
+class "vchat_flutter::screens::Signup.dart::RegisterPage" {
+  +_RegisterPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "vchat_flutter::screens::Signup.dart::RegisterPage"
+
+class "vchat_flutter::screens::Signup.dart::_RegisterPageState" {
+  -GlobalKey<FormState> _registerFormKey
+  -TextEditingController _nameTextController
+  -TextEditingController _emailTextController
+  -TextEditingController _passwordTextController
+  -FocusNode _focusName
+  -FocusNode _focusEmail
+  -FocusNode _focusPassword
+  -bool _isProcessing
+  +Widget build()
+}
+
+"vchat_flutter::screens::Signup.dart::_RegisterPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"vchat_flutter::screens::Signup.dart::_RegisterPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"vchat_flutter::screens::Signup.dart::_RegisterPageState" o-- "flutter::src::widgets::focus_manager.dart::FocusNode"
+"flutter::src::widgets::framework.dart::State" <|-- "vchat_flutter::screens::Signup.dart::_RegisterPageState"
+
+class "vchat_flutter::screens::UserSettings.dart::UserSettingsPage" {
+  +_UserSettingsPageState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "vchat_flutter::screens::UserSettings.dart::UserSettingsPage"
+
+class "vchat_flutter::screens::UserSettings.dart::_UserSettingsPageState" {
+  -GlobalKey<FormState> _userSettingsFormKey
+  -TextEditingController _emailTextController
+  -TextEditingController _passwordTextController
+  -TextEditingController _phoneNumberTextController
+  -TextEditingController _usernameTextController
+  -TextEditingController _nameTextController
+  -FocusNode _focusEmail
+  -FocusNode _focusPassword
+  -FocusNode _focusPhoneNumber
+  -FocusNode _focusUsername
+  -FocusNode _focusName
+  -bool _isProcessing
+  +Widget build()
+}
+
+"vchat_flutter::screens::UserSettings.dart::_UserSettingsPageState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"vchat_flutter::screens::UserSettings.dart::_UserSettingsPageState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"vchat_flutter::screens::UserSettings.dart::_UserSettingsPageState" o-- "flutter::src::widgets::focus_manager.dart::FocusNode"
+"flutter::src::widgets::framework.dart::State" <|-- "vchat_flutter::screens::UserSettings.dart::_UserSettingsPageState"
+
+class "vchat_flutter::screens::Wadapak.dart::Wadapak" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "vchat_flutter::screens::Wadapak.dart::Wadapak"
+
+class "vchat_flutter::util::fire_auth.dart::FireAuth" {
+  {static} +Future<User?> registerUsingEmailPassword()
+  {static} +Future<User?> signInUsingEmailPassword()
+  {static} +Future<User?> refreshUser()
+}
+
+class "vchat_flutter::util::validator.dart::Validator" {
+  {static} +String validateName()
+  {static} +String validateEmail()
+  {static} +String validatePassword()
+}
+
+
+@enduml
