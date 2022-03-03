@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "993893663736",
+    "firebase_url": "https://vchat-37136-default-rtdb.firebaseio.com",
+    "project_id": "vchat-37136",
+    "storage_bucket": "vchat-37136.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993893663736:android:8ef02ee8f6e390e06dcc0d",
+        "android_client_info": {
+          "package_name": "com.Vchat.Vchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993893663736-e3pqipt0l8plfh21aeh9chivbsvtgjpv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDE1taiQspuZBHLtxHI-1Voy-PkDLX1UGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993893663736-e3pqipt0l8plfh21aeh9chivbsvtgjpv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "993893663736-676md1rcdt4l4fl60tmqcjkkg5s44bd7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Vchat.Vchat"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993893663736:android:8fcbfbda362e30ee6dcc0d",
+        "android_client_info": {
+          "package_name": "com.example.vchat_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "993893663736-ednhguuoa4mk8mboct0vaj9oe9ilvlka.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vchat_flutter",
+            "certificate_hash": "74f781481effe212306c3dcb088ddee72414d20f"
+          }
+        },
+        {
+          "client_id": "993893663736-e3pqipt0l8plfh21aeh9chivbsvtgjpv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDE1taiQspuZBHLtxHI-1Voy-PkDLX1UGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "993893663736-e3pqipt0l8plfh21aeh9chivbsvtgjpv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "993893663736-676md1rcdt4l4fl60tmqcjkkg5s44bd7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Vchat.Vchat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
