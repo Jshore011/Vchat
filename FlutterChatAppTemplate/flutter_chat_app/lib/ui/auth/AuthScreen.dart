@@ -15,18 +15,15 @@ class AuthScreen extends StatelessWidget {
         children: <Widget>[
           Center(
             child: Image.asset(
-              'assets/images/auth_image.png',
-              width: 150.0,
+              'assets/images/vchat_logo.png',
               height: 150.0,
-              color: Color(COLOR_PRIMARY),
-              fit: BoxFit.cover,
             ),
           ),
           Padding(
             padding:
                 const EdgeInsets.only(left: 16, top: 32, right: 16, bottom: 8),
             child: Text(
-              'welcome',
+              'Welcome to VChat',
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Color(COLOR_PRIMARY),
@@ -37,7 +34,7 @@ class AuthScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
             child: Text(
-              'welcomeSubtitle',
+              'Where your Voice takes shape.',
               style: TextStyle(fontSize: 18),
               textAlign: TextAlign.center,
             ).tr(),
