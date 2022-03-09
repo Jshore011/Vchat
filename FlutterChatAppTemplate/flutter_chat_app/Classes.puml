@@ -1,0 +1,753 @@
+@startuml
+set namespaceSeparator ::
+
+class "instachatty::main.dart::MyApp" {
+  +MyAppState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::main.dart::MyApp"
+
+class "instachatty::main.dart::MyAppState" {
+  {static} +User? currentUser
+  +StreamSubscription<dynamic> tokenStream
+  +GlobalKey<NavigatorState> navigatorKey
+  -bool _initialized
+  -bool _error
+  +void initializeFlutterFire()
+  +Widget build()
+  +void initState()
+  +void dispose()
+  +void didChangeAppLifecycleState()
+}
+
+"instachatty::main.dart::MyAppState" o-- "instachatty::model::User.dart::User"
+"instachatty::main.dart::MyAppState" o-- "dart::async::StreamSubscription<dynamic>"
+"instachatty::main.dart::MyAppState" o-- "flutter::src::widgets::framework.dart::GlobalKey<NavigatorState>"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::main.dart::MyAppState"
+"flutter::src::widgets::binding.dart::WidgetsBindingObserver" <|-- "instachatty::main.dart::MyAppState"
+
+class "instachatty::main.dart::OnBoarding" {
+  +State<StatefulWidget> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::main.dart::OnBoarding"
+
+class "instachatty::main.dart::OnBoardingState" {
+  +Future<dynamic> hasFinishedOnBoarding()
+  +void initState()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::main.dart::OnBoardingState"
+
+class "instachatty::model::BlockUserModel.dart::BlockUserModel" {
+  +Timestamp createdAt
+  +String dest
+  +String source
+  +String type
+  +Map<String, dynamic> toJson()
+}
+
+"instachatty::model::BlockUserModel.dart::BlockUserModel" o-- "cloud_firestore_platform_interface::src::timestamp.dart::Timestamp"
+
+class "instachatty::model::ChannelParticipation.dart::ChannelParticipation" {
+  +String channel
+  +String user
+  +Map<String, dynamic> toJson()
+}
+
+class "instachatty::model::ChatModel.dart::ChatModel" {
+  +List<MessageData> message
+  +List<User> members
+}
+
+class "instachatty::model::ChatVideoContainer.dart::ChatVideoContainer" {
+  +Url videoUrl
+  +String thumbnailUrl
+}
+
+"instachatty::model::ChatVideoContainer.dart::ChatVideoContainer" o-- "instachatty::model::MessageData.dart::Url"
+
+class "instachatty::model::ContactModel.dart::ContactModel" {
+  +ContactType type
+  +User user
+}
+
+"instachatty::model::ContactModel.dart::ContactModel" o-- "instachatty::model::ContactModel.dart::ContactType"
+"instachatty::model::ContactModel.dart::ContactModel" o-- "instachatty::model::User.dart::User"
+
+class "instachatty::model::ContactModel.dart::ContactType" {
+  +int index
+  {static} +List<ContactType> values
+  {static} +ContactType FRIEND
+  {static} +ContactType PENDING
+  {static} +ContactType BLOCKED
+  {static} +ContactType UNKNOWN
+  {static} +ContactType ACCEPT
+}
+
+"instachatty::model::ContactModel.dart::ContactType" o-- "instachatty::model::ContactModel.dart::ContactType"
+"dart::core::Enum" <|-- "instachatty::model::ContactModel.dart::ContactType"
+
+class "instachatty::model::ConversationModel.dart::ConversationModel" {
+  +String id
+  +String creatorId
+  +String lastMessage
+  +String name
+  +Timestamp lastMessageDate
+  +Map<String, dynamic> toJson()
+  +Map<String, dynamic> toPayload()
+}
+
+"instachatty::model::ConversationModel.dart::ConversationModel" o-- "cloud_firestore_platform_interface::src::timestamp.dart::Timestamp"
+
+class "instachatty::model::HomeConversationModel.dart::HomeConversationModel" {
+  +bool isGroupChat
+  +List<User> members
+  +ConversationModel? conversationModel
+}
+
+"instachatty::model::HomeConversationModel.dart::HomeConversationModel" o-- "instachatty::model::ConversationModel.dart::ConversationModel"
+
+class "instachatty::model::MessageData.dart::MessageData" {
+  +String messageID
+  +Url url
+  +String content
+  +Timestamp created
+  +String recipientFirstName
+  +String recipientLastName
+  +String recipientProfilePictureURL
+  +String recipientID
+  +String senderFirstName
+  +String senderLastName
+  +String senderProfilePictureURL
+  +String senderID
+  +String videoThumbnail
+  +Map<String, dynamic> toJson()
+}
+
+"instachatty::model::MessageData.dart::MessageData" o-- "instachatty::model::MessageData.dart::Url"
+"instachatty::model::MessageData.dart::MessageData" o-- "cloud_firestore_platform_interface::src::timestamp.dart::Timestamp"
+
+class "instachatty::model::MessageData.dart::Url" {
+  +String mime
+  +String url
+  +Map<String, dynamic> toJson()
+}
+
+class "instachatty::model::User.dart::User" {
+  +String email
+  +String firstName
+  +String lastName
+  +UserSettings settings
+  +String phoneNumber
+  +bool active
+  +Timestamp lastOnlineTimestamp
+  +String userID
+  +String profilePictureURL
+  +bool selected
+  +String fcmToken
+  +String appIdentifier
+  +String fullName()
+  +Map<String, dynamic> toJson()
+  +Map<String, dynamic> toPayload()
+}
+
+"instachatty::model::User.dart::User" o-- "instachatty::model::User.dart::UserSettings"
+"instachatty::model::User.dart::User" o-- "cloud_firestore_platform_interface::src::timestamp.dart::Timestamp"
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "instachatty::model::User.dart::User"
+
+class "instachatty::model::User.dart::UserSettings" {
+  +bool allowPushNotifications
+  +Map<String, dynamic> toJson()
+}
+
+class "instachatty::services::FirebaseHelper.dart::FireStoreUtils" {
+  {static} +FirebaseMessaging firebaseMessaging
+  {static} +FirebaseFirestore firestore
+  {static} +Reference storage
+  +List<User?> friends
+  +List<User?> pendingList
+  +List<User?> receivedRequests
+  +List<ContactModel> contactsList
+  +StreamController<List<HomeConversationModel>> conversationsStream
+  +List<HomeConversationModel> homeConversations
+  +List<BlockUserModel> blockedList
+  {static} +Future<User?> getCurrentUser()
+  {static} +Future<User?> updateCurrentUser()
+  {static} +Future<String> uploadUserImageToFireStorage()
+  {static} +Future<File> compressImage()
+  +Future<Url> uploadChatImageToFireStorage()
+  +Future<ChatVideoContainer> uploadChatVideoToFireStorage()
+  +Future<String> uploadVideoThumbnailToFireStorage()
+  +Future<List<ContactModel>> getContacts()
+  +Future<List<User>> getFriends()
+  +Future<List<User>> getPendingRequests()
+  +Future<List<User>> getReceivedRequests()
+  +dynamic onFriendAccept()
+  +dynamic onUnFriend()
+  +dynamic onCancelRequest()
+  +dynamic sendFriendRequest()
+  +Stream<List<HomeConversationModel>> getConversations()
+  +Stream<List<User>> getGroupMembers()
+  +Stream<List<String>> getGroupMembersIDs()
+  +Stream<User> getUserByID()
+  +Future<ConversationModel?> getChannelByIdOrNull()
+  +Stream<ChatModel> getChatMessages()
+  +Future<void> sendMessage()
+  +Future<bool> createConversation()
+  +Future<void> updateChannel()
+  +Future<void> createChannelParticipation()
+  +Future<List<User>> getAllUsers()
+  +Future<HomeConversationModel> createGroupChat()
+  +Future<bool> leaveGroup()
+  +Future<bool> blockUser()
+  +Stream<bool> getBlocks()
+  +bool validateIfUserBlocked()
+  +Future<Url> uploadAudioFile()
+  {static} +dynamic loginWithFacebook()
+  {static} +dynamic handleFacebookLogin()
+  {static} +dynamic loginWithApple()
+  {static} +dynamic handleAppleLogin()
+  {static} +Future<String?> firebaseCreateNewUser()
+  {static} +Future<dynamic> loginWithEmailAndPassword()
+  {static} +dynamic firebaseSubmitPhoneNumber()
+  {static} +Future<dynamic> firebaseSubmitPhoneNumberCode()
+  {static} +dynamic firebaseSignUpWithEmailAndPassword()
+  -Future<File> _compressVideo()
+  {static} +Future<UserCredential?> reAuthUser()
+  {static} +dynamic resetPassword()
+  {static} +dynamic deleteUser()
+}
+
+"instachatty::services::FirebaseHelper.dart::FireStoreUtils" o-- "firebase_messaging::firebase_messaging.dart::FirebaseMessaging"
+"instachatty::services::FirebaseHelper.dart::FireStoreUtils" o-- "cloud_firestore::cloud_firestore.dart::FirebaseFirestore"
+"instachatty::services::FirebaseHelper.dart::FireStoreUtils" o-- "firebase_storage::firebase_storage.dart::Reference"
+"instachatty::services::FirebaseHelper.dart::FireStoreUtils" o-- "dart::async::StreamController<List<HomeConversationModel>>"
+
+class "instachatty::ui::accountDetails::AccountDetailsScreen.dart::AccountDetailsScreen" {
+  +User user
+  +_AccountDetailsScreenState createState()
+}
+
+"instachatty::ui::accountDetails::AccountDetailsScreen.dart::AccountDetailsScreen" o-- "instachatty::model::User.dart::User"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::accountDetails::AccountDetailsScreen.dart::AccountDetailsScreen"
+
+class "instachatty::ui::accountDetails::AccountDetailsScreen.dart::_AccountDetailsScreenState" {
+  +User user
+  -GlobalKey<FormState> _key
+  -AutovalidateMode _validate
+  +String? firstName
+  +String? email
+  +String? mobile
+  +String? lastName
+  +void initState()
+  +Widget build()
+  -dynamic _validateAndSave()
+  -dynamic _updateUser()
+}
+
+"instachatty::ui::accountDetails::AccountDetailsScreen.dart::_AccountDetailsScreenState" o-- "instachatty::model::User.dart::User"
+"instachatty::ui::accountDetails::AccountDetailsScreen.dart::_AccountDetailsScreenState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"instachatty::ui::accountDetails::AccountDetailsScreen.dart::_AccountDetailsScreenState" o-- "flutter::src::widgets::form.dart::AutovalidateMode"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::accountDetails::AccountDetailsScreen.dart::_AccountDetailsScreenState"
+
+class "instachatty::ui::auth::AuthScreen.dart::AuthScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "instachatty::ui::auth::AuthScreen.dart::AuthScreen"
+
+class "instachatty::ui::chat::ChatScreen.dart::ChatScreen" {
+  +HomeConversationModel homeConversationModel
+  +_ChatScreenState createState()
+}
+
+"instachatty::ui::chat::ChatScreen.dart::ChatScreen" o-- "instachatty::model::HomeConversationModel.dart::HomeConversationModel"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::chat::ChatScreen.dart::ChatScreen"
+
+class "instachatty::ui::chat::ChatScreen.dart::_ChatScreenState" {
+  -ImagePicker _imagePicker
+  +HomeConversationModel homeConversationModel
+  -TextEditingController _messageController
+  -FireStoreUtils _fireStoreUtils
+  -TextEditingController _groupNameController
+  +RecordingState currentRecordingState
+  +Timer audioMessageTimer
+  +String audioMessageTime
+  -FlutterSoundRecorder? _myRecorder
+  +String tempPathForAudioMessages
+  +Stream<ChatModel> chatStream
+  +void initState()
+  +dynamic setupStream()
+  +Widget build()
+  -Widget _buildAudioMessageRecorder()
+  +Widget buildSubTitle()
+  -dynamic _onGroupChatSettingsClick()
+  -dynamic _onCameraClick()
+  +Widget buildMessage()
+  +Widget myMessageView()
+  -Widget _myMessageContentWidget()
+  +Widget remoteMessageView()
+  -Widget _remoteMessageContentWidget()
+  +Future<Track> loadTrack()
+  -Future<bool> _checkChannelNullability()
+  -dynamic _sendMessage()
+  +void dispose()
+  -Widget _showRenameGroupDialog()
+  -dynamic _onPrivateChatSettingsClick()
+  -dynamic _showAlertDialog()
+  -dynamic _onMicClicked()
+  -dynamic _onSendRecord()
+  -dynamic _onCancelRecording()
+  -dynamic _onStartRecording()
+}
+
+"instachatty::ui::chat::ChatScreen.dart::_ChatScreenState" o-- "image_picker::image_picker.dart::ImagePicker"
+"instachatty::ui::chat::ChatScreen.dart::_ChatScreenState" o-- "instachatty::model::HomeConversationModel.dart::HomeConversationModel"
+"instachatty::ui::chat::ChatScreen.dart::_ChatScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"instachatty::ui::chat::ChatScreen.dart::_ChatScreenState" o-- "instachatty::services::FirebaseHelper.dart::FireStoreUtils"
+"instachatty::ui::chat::ChatScreen.dart::_ChatScreenState" o-- "instachatty::ui::chat::ChatScreen.dart::RecordingState"
+"instachatty::ui::chat::ChatScreen.dart::_ChatScreenState" o-- "dart::async::Timer"
+"instachatty::ui::chat::ChatScreen.dart::_ChatScreenState" o-- "flutter_sound::public::flutter_sound_recorder.dart::FlutterSoundRecorder"
+"instachatty::ui::chat::ChatScreen.dart::_ChatScreenState" o-- "dart::async::Stream<ChatModel>"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::chat::ChatScreen.dart::_ChatScreenState"
+
+class "instachatty::ui::chat::ChatScreen.dart::RecordingState" {
+  +int index
+  {static} +List<RecordingState> values
+  {static} +RecordingState HIDDEN
+  {static} +RecordingState VISIBLE
+  {static} +RecordingState Recording
+}
+
+"instachatty::ui::chat::ChatScreen.dart::RecordingState" o-- "instachatty::ui::chat::ChatScreen.dart::RecordingState"
+"dart::core::Enum" <|-- "instachatty::ui::chat::ChatScreen.dart::RecordingState"
+
+class "instachatty::ui::chat::PlayerWidget.dart::PlayerWidget" {
+  +String url
+  +Color color
+  +_PlayerWidgetState createState()
+}
+
+"instachatty::ui::chat::PlayerWidget.dart::PlayerWidget" o-- "dart::ui::Color"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::chat::PlayerWidget.dart::PlayerWidget"
+
+class "instachatty::ui::chat::PlayerWidget.dart::_PlayerWidgetState" {
+  -FlutterSoundPlayer _myPlayer
+  -StreamController<PlaybackDisposition> _localController
+  -_SliderPosition _sliderPosition
+  +Stream<PlaybackDisposition> playerStream
+  +void initState()
+  +void dispose()
+  +Widget build()
+  -Widget _buildPlayPauseButton()
+  -Widget _buildPlayBar()
+  -Widget _buildDuration()
+  +Future<void> resume()
+  +Future<void> pause()
+  +Future<void> start()
+  +dynamic buttonClick()
+  +void setupPlayer()
+}
+
+"instachatty::ui::chat::PlayerWidget.dart::_PlayerWidgetState" o-- "flutter_sound::public::flutter_sound_player.dart::FlutterSoundPlayer"
+"instachatty::ui::chat::PlayerWidget.dart::_PlayerWidgetState" o-- "dart::async::StreamController<PlaybackDisposition>"
+"instachatty::ui::chat::PlayerWidget.dart::_PlayerWidgetState" o-- "instachatty::ui::chat::PlayerWidget.dart::_SliderPosition"
+"instachatty::ui::chat::PlayerWidget.dart::_PlayerWidgetState" o-- "dart::async::Stream<PlaybackDisposition>"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::chat::PlayerWidget.dart::_PlayerWidgetState"
+
+class "instachatty::ui::chat::PlayerWidget.dart::CustomTrackShape" {
+  +Rect getPreferredRect()
+}
+
+"flutter::src::material::slider_theme.dart::RoundedRectSliderTrackShape" <|-- "instachatty::ui::chat::PlayerWidget.dart::CustomTrackShape"
+
+class "instachatty::ui::chat::PlayerWidget.dart::_SliderPosition" {
+  -Duration _position
+  +Duration maxPosition
+  -bool _disposed
+  +Duration position
+  +void dispose()
+}
+
+"flutter::src::foundation::change_notifier.dart::ChangeNotifier" <|-- "instachatty::ui::chat::PlayerWidget.dart::_SliderPosition"
+
+class "instachatty::ui::contacts::ContactsScreen.dart::ContactsScreen" {
+  +User user
+  +_ContactsScreenState createState()
+}
+
+"instachatty::ui::contacts::ContactsScreen.dart::ContactsScreen" o-- "instachatty::model::User.dart::User"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::contacts::ContactsScreen.dart::ContactsScreen"
+
+class "instachatty::ui::contacts::ContactsScreen.dart::_ContactsScreenState" {
+  +User user
+  +TextEditingController controller
+  +FireStoreUtils fireStoreUtils
+  -Future<List<ContactModel>> _future
+  +void initState()
+  +Widget build()
+  -dynamic _onSearchTextChanged()
+  +void dispose()
+  +String getStatusByType()
+  -dynamic _onContactButtonClicked()
+  +dynamic buildList()
+}
+
+"instachatty::ui::contacts::ContactsScreen.dart::_ContactsScreenState" o-- "instachatty::model::User.dart::User"
+"instachatty::ui::contacts::ContactsScreen.dart::_ContactsScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"instachatty::ui::contacts::ContactsScreen.dart::_ContactsScreenState" o-- "instachatty::services::FirebaseHelper.dart::FireStoreUtils"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::contacts::ContactsScreen.dart::_ContactsScreenState"
+
+class "instachatty::ui::contactUs::ContactUsScreen.dart::ContactUsScreen" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "instachatty::ui::contactUs::ContactUsScreen.dart::ContactUsScreen"
+
+class "instachatty::ui::conversations::ConversationsScreen.dart::ConversationsScreen" {
+  +User user
+  +State<StatefulWidget> createState()
+}
+
+"instachatty::ui::conversations::ConversationsScreen.dart::ConversationsScreen" o-- "instachatty::model::User.dart::User"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::conversations::ConversationsScreen.dart::ConversationsScreen"
+
+class "instachatty::ui::conversations::ConversationsScreen.dart::_ConversationsState" {
+  +User user
+  +FireStoreUtils fireStoreUtils
+  -Future<List<User>> _friendsFuture
+  -Stream<List<HomeConversationModel>> _conversationsStream
+  +TextEditingController controller
+  +void initState()
+  +Widget build()
+  -Widget _buildConversationRow()
+  -dynamic _onSearch()
+  +dynamic buildItem()
+}
+
+"instachatty::ui::conversations::ConversationsScreen.dart::_ConversationsState" o-- "instachatty::model::User.dart::User"
+"instachatty::ui::conversations::ConversationsScreen.dart::_ConversationsState" o-- "instachatty::services::FirebaseHelper.dart::FireStoreUtils"
+"instachatty::ui::conversations::ConversationsScreen.dart::_ConversationsState" o-- "dart::async::Stream<List<HomeConversationModel>>"
+"instachatty::ui::conversations::ConversationsScreen.dart::_ConversationsState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::conversations::ConversationsScreen.dart::_ConversationsState"
+
+class "instachatty::ui::createGroup::CreateGroupScreen.dart::CreateGroupScreen" {
+  +_CreateGroupScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::createGroup::CreateGroupScreen.dart::CreateGroupScreen"
+
+class "instachatty::ui::createGroup::CreateGroupScreen.dart::_CreateGroupScreenState" {
+  -List<User> _selectedUsers
+  -Future<List<User>> _futureUsers
+  -FireStoreUtils _fireStoreUtils
+  -TextEditingController _groupNameController
+  +void initState()
+  +Widget build()
+  +void dispose()
+}
+
+"instachatty::ui::createGroup::CreateGroupScreen.dart::_CreateGroupScreenState" o-- "instachatty::services::FirebaseHelper.dart::FireStoreUtils"
+"instachatty::ui::createGroup::CreateGroupScreen.dart::_CreateGroupScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::createGroup::CreateGroupScreen.dart::_CreateGroupScreenState"
+
+class "instachatty::ui::fullScreenImageViewer::FullScreenImageViewer.dart::FullScreenImageViewer" {
+  +String imageUrl
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "instachatty::ui::fullScreenImageViewer::FullScreenImageViewer.dart::FullScreenImageViewer"
+
+class "instachatty::ui::fullScreenVideoViewer::FullScreenVideoViewer.dart::FullScreenVideoViewer" {
+  +String videoUrl
+  +String heroTag
+  +_FullScreenVideoViewerState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::fullScreenVideoViewer::FullScreenVideoViewer.dart::FullScreenVideoViewer"
+
+class "instachatty::ui::fullScreenVideoViewer::FullScreenVideoViewer.dart::_FullScreenVideoViewerState" {
+  -VideoPlayerController _controller
+  +String videoUrl
+  +String heroTag
+  +void initState()
+  +Widget build()
+  +void dispose()
+}
+
+"instachatty::ui::fullScreenVideoViewer::FullScreenVideoViewer.dart::_FullScreenVideoViewerState" o-- "video_player::video_player.dart::VideoPlayerController"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::fullScreenVideoViewer::FullScreenVideoViewer.dart::_FullScreenVideoViewerState"
+
+class "instachatty::ui::home::HomeScreen.dart::HomeScreen" {
+  +User user
+  +_HomeState createState()
+}
+
+"instachatty::ui::home::HomeScreen.dart::HomeScreen" o-- "instachatty::model::User.dart::User"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::home::HomeScreen.dart::HomeScreen"
+
+class "instachatty::ui::home::HomeScreen.dart::_HomeState" {
+  +User user
+  -DrawerSelection _drawerSelection
+  -String _appBarTitle
+  -Widget _currentWidget
+  +void initState()
+  +Widget build()
+}
+
+"instachatty::ui::home::HomeScreen.dart::_HomeState" o-- "instachatty::model::User.dart::User"
+"instachatty::ui::home::HomeScreen.dart::_HomeState" o-- "instachatty::ui::home::HomeScreen.dart::DrawerSelection"
+"instachatty::ui::home::HomeScreen.dart::_HomeState" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::home::HomeScreen.dart::_HomeState"
+
+class "instachatty::ui::home::HomeScreen.dart::DrawerSelection" {
+  +int index
+  {static} +List<DrawerSelection> values
+  {static} +DrawerSelection Conversations
+  {static} +DrawerSelection Contacts
+  {static} +DrawerSelection Search
+  {static} +DrawerSelection Profile
+}
+
+"instachatty::ui::home::HomeScreen.dart::DrawerSelection" o-- "instachatty::ui::home::HomeScreen.dart::DrawerSelection"
+"dart::core::Enum" <|-- "instachatty::ui::home::HomeScreen.dart::DrawerSelection"
+
+class "instachatty::ui::login::LoginScreen.dart::LoginScreen" {
+  +State<StatefulWidget> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::login::LoginScreen.dart::LoginScreen"
+
+class "instachatty::ui::login::LoginScreen.dart::_LoginScreen" {
+  -GlobalKey<FormState> _key
+  -AutovalidateMode _validate
+  +String? email
+  +String? password
+  +Widget build()
+  -dynamic _login()
+  +void dispose()
+  +dynamic loginWithFacebook()
+  +dynamic loginWithApple()
+}
+
+"instachatty::ui::login::LoginScreen.dart::_LoginScreen" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"instachatty::ui::login::LoginScreen.dart::_LoginScreen" o-- "flutter::src::widgets::form.dart::AutovalidateMode"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::login::LoginScreen.dart::_LoginScreen"
+
+class "instachatty::ui::onBoarding::OnBoardingScreen.dart::OnBoardingScreen" {
+  +_OnBoardingScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::onBoarding::OnBoardingScreen.dart::OnBoardingScreen"
+
+class "instachatty::ui::onBoarding::OnBoardingScreen.dart::_OnBoardingScreenState" {
+  +PageController pageController
+  -List<String> _titlesList
+  -List<String> _subtitlesList
+  -List<dynamic> _imageList
+  -int _currentIndex
+  +Widget build()
+  +Widget getPage()
+  +Future<bool> setFinishedOnBoarding()
+}
+
+"instachatty::ui::onBoarding::OnBoardingScreen.dart::_OnBoardingScreenState" o-- "flutter::src::widgets::page_view.dart::PageController"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::onBoarding::OnBoardingScreen.dart::_OnBoardingScreenState"
+
+class "instachatty::ui::phoneAuth::PhoneNumberInputScreen.dart::PhoneNumberInputScreen" {
+  +bool login
+  +_PhoneNumberInputScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::phoneAuth::PhoneNumberInputScreen.dart::PhoneNumberInputScreen"
+
+class "instachatty::ui::phoneAuth::PhoneNumberInputScreen.dart::_PhoneNumberInputScreenState" {
+  -ImagePicker _imagePicker
+  -TextEditingController _firstNameController
+  -TextEditingController _lastNameController
+  -GlobalKey<FormState> _key
+  +String? firstName
+  +String? lastName
+  -String? _phoneNumber
+  -String? _verificationID
+  -bool _isPhoneValid
+  -bool _codeSent
+  -AutovalidateMode _validate
+  +Widget build()
+  -void _submitCode()
+  +Future<void> retrieveLostData()
+  -dynamic _onCameraClick()
+  -dynamic _signUp()
+  -dynamic _submitPhoneNumber()
+}
+
+"instachatty::ui::phoneAuth::PhoneNumberInputScreen.dart::_PhoneNumberInputScreenState" o-- "image_picker::image_picker.dart::ImagePicker"
+"instachatty::ui::phoneAuth::PhoneNumberInputScreen.dart::_PhoneNumberInputScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"instachatty::ui::phoneAuth::PhoneNumberInputScreen.dart::_PhoneNumberInputScreenState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"instachatty::ui::phoneAuth::PhoneNumberInputScreen.dart::_PhoneNumberInputScreenState" o-- "flutter::src::widgets::form.dart::AutovalidateMode"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::phoneAuth::PhoneNumberInputScreen.dart::_PhoneNumberInputScreenState"
+
+class "instachatty::ui::profile::ProfileScreen.dart::ProfileScreen" {
+  +User user
+  +_ProfileScreenState createState()
+}
+
+"instachatty::ui::profile::ProfileScreen.dart::ProfileScreen" o-- "instachatty::model::User.dart::User"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::profile::ProfileScreen.dart::ProfileScreen"
+
+class "instachatty::ui::profile::ProfileScreen.dart::_ProfileScreenState" {
+  -ImagePicker _imagePicker
+  +User user
+  +void initState()
+  +Widget build()
+  -dynamic _onCameraClick()
+  -Future<void> _imagePicked()
+}
+
+"instachatty::ui::profile::ProfileScreen.dart::_ProfileScreenState" o-- "image_picker::image_picker.dart::ImagePicker"
+"instachatty::ui::profile::ProfileScreen.dart::_ProfileScreenState" o-- "instachatty::model::User.dart::User"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::profile::ProfileScreen.dart::_ProfileScreenState"
+
+class "instachatty::ui::reauthScreen::reauth_user_screen.dart::ReAuthUserScreen" {
+  +AuthProviders provider
+  +String? email
+  +String? phoneNumber
+  +bool deleteUser
+  +_ReAuthUserScreenState createState()
+}
+
+"instachatty::ui::reauthScreen::reauth_user_screen.dart::ReAuthUserScreen" o-- "instachatty::ui::reauthScreen::reauth_user_screen.dart::AuthProviders"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::reauthScreen::reauth_user_screen.dart::ReAuthUserScreen"
+
+class "instachatty::ui::reauthScreen::reauth_user_screen.dart::_ReAuthUserScreenState" {
+  -TextEditingController _passwordController
+  +Widget body
+  -String? _verificationID
+  +void initState()
+  +Widget build()
+  +Widget buildPasswordField()
+  +Widget buildFacebookButton()
+  +Widget buildAppleButton()
+  +Widget buildPhoneField()
+  +void dispose()
+  +dynamic passwordButtonPressed()
+  +dynamic facebookButtonPressed()
+  +dynamic appleButtonPressed()
+  -dynamic _submitPhoneNumber()
+  -void _submitCode()
+  +void buildBody()
+}
+
+"instachatty::ui::reauthScreen::reauth_user_screen.dart::_ReAuthUserScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"instachatty::ui::reauthScreen::reauth_user_screen.dart::_ReAuthUserScreenState" o-- "flutter::src::widgets::framework.dart::Widget"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::reauthScreen::reauth_user_screen.dart::_ReAuthUserScreenState"
+
+class "instachatty::ui::reauthScreen::reauth_user_screen.dart::AuthProviders" {
+  +int index
+  {static} +List<AuthProviders> values
+  {static} +AuthProviders PASSWORD
+  {static} +AuthProviders PHONE
+  {static} +AuthProviders FACEBOOK
+  {static} +AuthProviders APPLE
+}
+
+"instachatty::ui::reauthScreen::reauth_user_screen.dart::AuthProviders" o-- "instachatty::ui::reauthScreen::reauth_user_screen.dart::AuthProviders"
+"dart::core::Enum" <|-- "instachatty::ui::reauthScreen::reauth_user_screen.dart::AuthProviders"
+
+class "instachatty::ui::resetPasswordScreen::ResetPasswordScreen.dart::ResetPasswordScreen" {
+  +_ResetPasswordScreenState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::resetPasswordScreen::ResetPasswordScreen.dart::ResetPasswordScreen"
+
+class "instachatty::ui::resetPasswordScreen::ResetPasswordScreen.dart::_ResetPasswordScreenState" {
+  -GlobalKey<FormState> _key
+  -AutovalidateMode _validate
+  -String _emailAddress
+  +Widget build()
+  +dynamic resetPassword()
+}
+
+"instachatty::ui::resetPasswordScreen::ResetPasswordScreen.dart::_ResetPasswordScreenState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"instachatty::ui::resetPasswordScreen::ResetPasswordScreen.dart::_ResetPasswordScreenState" o-- "flutter::src::widgets::form.dart::AutovalidateMode"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::resetPasswordScreen::ResetPasswordScreen.dart::_ResetPasswordScreenState"
+
+class "instachatty::ui::search::SearchScreen.dart::SearchScreen" {
+  +User user
+  +_SearchScreenState createState()
+}
+
+"instachatty::ui::search::SearchScreen.dart::SearchScreen" o-- "instachatty::model::User.dart::User"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::search::SearchScreen.dart::SearchScreen"
+
+class "instachatty::ui::search::SearchScreen.dart::_SearchScreenState" {
+  +User user
+  +TextEditingController controller
+  +FireStoreUtils fireStoreUtils
+  -Future<List<ContactModel>> _future
+  +void initState()
+  +Widget build()
+  -dynamic _onSearchTextChanged()
+  +void dispose()
+  +String getStatusByType()
+  -dynamic _onContactButtonClicked()
+  +dynamic buildList()
+}
+
+"instachatty::ui::search::SearchScreen.dart::_SearchScreenState" o-- "instachatty::model::User.dart::User"
+"instachatty::ui::search::SearchScreen.dart::_SearchScreenState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"instachatty::ui::search::SearchScreen.dart::_SearchScreenState" o-- "instachatty::services::FirebaseHelper.dart::FireStoreUtils"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::search::SearchScreen.dart::_SearchScreenState"
+
+class "instachatty::ui::settings::SettingsScreen.dart::SettingsScreen" {
+  +User user
+  +_SettingsScreenState createState()
+}
+
+"instachatty::ui::settings::SettingsScreen.dart::SettingsScreen" o-- "instachatty::model::User.dart::User"
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::settings::SettingsScreen.dart::SettingsScreen"
+
+class "instachatty::ui::settings::SettingsScreen.dart::_SettingsScreenState" {
+  +User user
+  +void initState()
+  +Widget build()
+}
+
+"instachatty::ui::settings::SettingsScreen.dart::_SettingsScreenState" o-- "instachatty::model::User.dart::User"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::settings::SettingsScreen.dart::_SettingsScreenState"
+
+class "instachatty::ui::signUp::SignUpScreen.dart::SignUpScreen" {
+  +State<StatefulWidget> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "instachatty::ui::signUp::SignUpScreen.dart::SignUpScreen"
+
+class "instachatty::ui::signUp::SignUpScreen.dart::_SignUpState" {
+  -ImagePicker _imagePicker
+  -TextEditingController _passwordController
+  -GlobalKey<FormState> _key
+  +String? firstName
+  +String? lastName
+  +String? email
+  +String? mobile
+  +String? password
+  +String? confirmPassword
+  -AutovalidateMode _validate
+  +Widget build()
+  +Future<void> retrieveLostData()
+  -dynamic _onCameraClick()
+  +Widget formUI()
+  +void dispose()
+  -dynamic _signUpWithEmailAndPassword()
+}
+
+"instachatty::ui::signUp::SignUpScreen.dart::_SignUpState" o-- "image_picker::image_picker.dart::ImagePicker"
+"instachatty::ui::signUp::SignUpScreen.dart::_SignUpState" o-- "flutter::src::widgets::editable_text.dart::TextEditingController"
+"instachatty::ui::signUp::SignUpScreen.dart::_SignUpState" o-- "flutter::src::widgets::framework.dart::GlobalKey<FormState>"
+"instachatty::ui::signUp::SignUpScreen.dart::_SignUpState" o-- "flutter::src::widgets::form.dart::AutovalidateMode"
+"flutter::src::widgets::framework.dart::State" <|-- "instachatty::ui::signUp::SignUpScreen.dart::_SignUpState"
+
+
+@enduml
