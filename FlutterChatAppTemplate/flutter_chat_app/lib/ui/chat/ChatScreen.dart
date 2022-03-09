@@ -1270,7 +1270,7 @@ class _ChatScreenState extends State<ChatScreen> {
     var status = await Permission.microphone.request();
     if (status == PermissionStatus.granted) {
       await _myRecorder!.startRecorder(
-          toFile: tempPathForAudioMessages, codec: Codec.aacADTS);
+          toFile: tempPathForAudioMessages );
       audioMessageTimer = Timer.periodic(Duration(seconds: 1), (timer) {
         setState(() {
           audioMessageTime = updateTime(audioMessageTimer);
