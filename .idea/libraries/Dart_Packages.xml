@@ -128,6 +128,13 @@
             </list>
           </value>
         </entry>
+        <entry key="dio">
+          <value>
+            <list>
+              <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/dio-4.0.3/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="easy_localization">
           <value>
             <list>
@@ -174,6 +181,7 @@
           <value>
             <list>
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-1.4.1/lib" />
+              <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-3.2.0/lib" />
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-3.3.9/lib" />
             </list>
           </value>
@@ -182,6 +190,7 @@
           <value>
             <list>
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_platform_interface-4.3.1/lib" />
+              <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_platform_interface-6.1.4/lib" />
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_platform_interface-6.2.1/lib" />
             </list>
           </value>
@@ -190,6 +199,7 @@
           <value>
             <list>
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-1.3.1/lib" />
+              <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-3.2.0/lib" />
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-3.3.9/lib" />
             </list>
           </value>
@@ -198,6 +208,7 @@
           <value>
             <list>
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.12.0/lib" />
+              <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.10.0/lib" />
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.13.1/lib" />
             </list>
           </value>
@@ -206,6 +217,7 @@
           <value>
             <list>
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.2.4/lib" />
+              <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.1.0/lib" />
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.2.5/lib" />
             </list>
           </value>
@@ -214,6 +226,7 @@
           <value>
             <list>
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.5.4/lib" />
+              <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.2.0/lib" />
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.6.1/lib" />
             </list>
           </value>
@@ -379,6 +392,13 @@
             </list>
           </value>
         </entry>
+        <entry key="form_field_validator">
+          <value>
+            <list>
+              <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/form_field_validator-1.1.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="google_sign_in">
           <value>
             <list>
@@ -390,6 +410,7 @@
           <value>
             <list>
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_platform_interface-2.1.2/lib" />
+              <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_platform_interface-2.1.1/lib" />
             </list>
           </value>
         </entry>
@@ -467,6 +488,13 @@
           <value>
             <list>
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.3/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="json_annotation">
+          <value>
+            <list>
+              <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/json_annotation-4.3.0/lib" />
             </list>
           </value>
         </entry>
@@ -656,6 +684,7 @@
           <value>
             <list>
               <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-2.1.2/lib" />
+              <option value="$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-2.0.2/lib" />
             </list>
           </value>
         </entry>
@@ -1025,6 +1054,7 @@
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.1/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/csslib-0.17.1/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.4/lib" />
+      <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/dio-4.0.3/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/easy_localization-3.0.0/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/easy_logger-0.0.2/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/equatable-2.0.3/lib" />
@@ -1032,15 +1062,21 @@
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/ffi-1.1.2/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.2/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-1.4.1/lib" />
+      <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-3.2.0/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-3.3.9/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_platform_interface-4.3.1/lib" />
+      <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_platform_interface-6.1.4/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_platform_interface-6.2.1/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-1.3.1/lib" />
+      <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-3.2.0/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-3.3.9/lib" />
+      <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.10.0/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.12.0/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-1.13.1/lib" />
+      <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.1.0/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.2.4/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_platform_interface-4.2.5/lib" />
+      <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.2.0/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.5.4/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-1.6.1/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-10.0.9/lib" />
@@ -1062,7 +1098,9 @@
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_sound_platform_interface-8.3.9/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_sound_web-8.3.9/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-5.1.0/lib" />
+      <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/form_field_validator-1.1.0/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in-5.2.3/lib" />
+      <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_platform_interface-2.1.1/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_platform_interface-2.1.2/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_web-0.10.0+4/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/html-0.15.0/lib" />
@@ -1075,6 +1113,7 @@
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/intl_phone_number_input-0.7.0+2/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.3/lib" />
+      <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/json_annotation-4.3.0/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/libphonenumber-2.0.2/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/libphonenumber_platform_interface-0.3.1/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/libphonenumber_plugin-0.2.3/lib" />
@@ -1101,6 +1140,7 @@
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/photo_view-0.12.0/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/pin_code_fields-7.3.0/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/platform-3.1.0/lib" />
+      <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-2.0.2/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-2.1.2/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/process-4.2.4/lib" />
       <root url="file://$USER_HOME$/Documents/flutter_windows_2.10.1-stable/flutter/.pub-cache/hosted/pub.dartlang.org/provider-5.0.0/lib" />
