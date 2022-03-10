@@ -1,4 +1,4 @@
-name: instachatty
+name: VChat
 description: A new Flutter application.
 publish_to: 'none'
 version: 1.0.0+1
@@ -42,7 +42,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.9.1
 
 flutter_icons:
-  android: false
+  android: true
   ios: true
   remove_alpha_ios: true
   image_path: 'assets/images/Vchat_launcher_icon.png'
