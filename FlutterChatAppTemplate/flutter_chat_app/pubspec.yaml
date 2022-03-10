@@ -45,7 +45,7 @@ flutter_icons:
   android: false
   ios: true
   remove_alpha_ios: true
-  image_path: 'assets/images/logo.png'
+  image_path: 'assets/images/Vchat_launcher_icon.png'
 
 flutter:
   uses-material-design: true
