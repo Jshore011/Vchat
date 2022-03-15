@@ -101,13 +101,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                 });
 
                                 if (_registerFormKey.currentState!
-                                    .validate()) {
-                                  User? user = await FireAuth
+                                  .validate()) {
+                                    User? user = await FireAuth
                                       .registerUsingEmailPassword(
                                     name: _nameTextController.text,
                                     email: _emailTextController.text,
-                                    password:
-                                    _passwordTextController.text,
+                                    password: _passwordTextController.text,
                                   );
 
                                   setState(() {
