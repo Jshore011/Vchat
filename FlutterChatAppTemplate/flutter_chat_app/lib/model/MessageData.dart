@@ -75,7 +75,7 @@ class MessageData {
       'senderLastName': this.senderLastName,
       'senderProfilePictureURL': this.senderProfilePictureURL,
       'senderID': this.senderID,
-      'videoThumbnail': this.videoThumbnail
+      //'videoThumbnail': this.videoThumbnail
     };
   }
 }
