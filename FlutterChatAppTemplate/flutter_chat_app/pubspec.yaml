@@ -5,6 +5,7 @@ version: 1.0.0+1
 environment:
   sdk: '>=2.13.4 <3.0.0'
 dependencies:
+  speech_to_text: ^2.5.0
   firebase_core: ^1.4.0
   firebase_auth: ^3.0.1
   cloud_firestore: ^2.4.0
