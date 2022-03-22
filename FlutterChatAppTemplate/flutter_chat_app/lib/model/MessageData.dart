@@ -57,8 +57,8 @@ class MessageData {
         senderFirstName: parsedJson['senderFirstName'] ?? '',
         senderLastName: parsedJson['senderLastName'] ?? '',
         senderProfilePictureURL: parsedJson['senderProfilePictureURL'] ?? '',
-        senderID: parsedJson['senderID'] ?? '',
-        videoThumbnail: parsedJson['videoThumbnail'] ?? '');
+        senderID: parsedJson['senderID'] ?? '');
+        //videoThumbnail: parsedJson['videoThumbnail'] ?? '');
   }
 
   Map<String, dynamic> toJson() {
