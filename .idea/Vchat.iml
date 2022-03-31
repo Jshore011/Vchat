@@ -17,6 +17,9 @@
       <excludeFolder url="file://$MODULE_DIR$/FlutterChatAppTemplate/flutter_chat_app/build" />
       <excludeFolder url="file://$MODULE_DIR$/FlutterChatAppTemplate/flutter_chat_app/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/FlutterChatAppTemplate/flutter_chat_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/watson_demo/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/watson_demo/build" />
+      <excludeFolder url="file://$MODULE_DIR$/watson_demo/.pub" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
