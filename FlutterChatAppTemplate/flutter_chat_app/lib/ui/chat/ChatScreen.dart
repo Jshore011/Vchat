@@ -15,7 +15,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:instachatty/constants.dart';
 import 'package:instachatty/main.dart';
 import 'package:instachatty/model/ChatModel.dart';
-import 'package:instachatty/model/ChatVideoContainer.dart';
+//import 'package:instachatty/model/ChatVideoContainer.dart';
 import 'package:instachatty/model/ConversationModel.dart';
 import 'package:instachatty/model/HomeConversationModel.dart';
 import 'package:instachatty/model/MessageData.dart';
@@ -518,22 +518,22 @@ class _ChatScreenState extends State<ChatScreen> {
             }
           },
         ),
-        CupertinoActionSheetAction(
-          child: Text('chooseVideoFromGallery').tr(),
-          isDefaultAction: false,
-          onPressed: () async {
-            Navigator.pop(context);
-            XFile? galleryVideo =
-                await _imagePicker.pickVideo(source: ImageSource.gallery);
-            if (galleryVideo != null) {
-              ChatVideoContainer videoContainer =
-                  await _fireStoreUtils.uploadChatVideoToFireStorage(
-                      File(galleryVideo.path), context);
-              _sendMessage(
-                  '', videoContainer.videoUrl, videoContainer.thumbnailUrl);
-            }
-          },
-        ),
+        // CupertinoActionSheetAction(
+        //   child: Text('chooseVideoFromGallery').tr(),
+        //   isDefaultAction: false,
+        //   onPressed: () async {
+        //     Navigator.pop(context);
+        //     XFile? galleryVideo =
+        //         await _imagePicker.pickVideo(source: ImageSource.gallery);
+        //     if (galleryVideo != null) {
+        //       ChatVideoContainer videoContainer =
+        //           await _fireStoreUtils.uploadChatVideoToFireStorage(
+        //               File(galleryVideo.path), context);
+        //       _sendMessage(
+        //           '', videoContainer.videoUrl, videoContainer.thumbnailUrl);
+        //     }
+        //   },
+        // ),
         CupertinoActionSheetAction(
           child: Text('takeAPicture').tr(),
           isDestructiveAction: false,
@@ -548,22 +548,22 @@ class _ChatScreenState extends State<ChatScreen> {
             }
           },
         ),
-        CupertinoActionSheetAction(
-          child: Text('recordVideo').tr(),
-          isDestructiveAction: false,
-          onPressed: () async {
-            Navigator.pop(context);
-            XFile? recordedVideo =
-                await _imagePicker.pickVideo(source: ImageSource.camera);
-            if (recordedVideo != null) {
-              ChatVideoContainer videoContainer =
-                  await _fireStoreUtils.uploadChatVideoToFireStorage(
-                      File(recordedVideo.path), context);
-              _sendMessage(
-                  '', videoContainer.videoUrl, videoContainer.thumbnailUrl);
-            }
-          },
-        )
+        // CupertinoActionSheetAction(
+        //   child: Text('recordVideo').tr(),
+        //   isDestructiveAction: false,
+        //   onPressed: () async {
+        //     Navigator.pop(context);
+        //     XFile? recordedVideo =
+        //         await _imagePicker.pickVideo(source: ImageSource.camera);
+        //     if (recordedVideo != null) {
+        //       ChatVideoContainer videoContainer =
+        //           await _fireStoreUtils.uploadChatVideoToFireStorage(
+        //               File(recordedVideo.path), context);
+        //       _sendMessage(
+        //           '', videoContainer.videoUrl, videoContainer.thumbnailUrl);
+        //     }
+        //   },
+        // )
       ],
       cancelButton: CupertinoActionSheetAction(
         child: Text(

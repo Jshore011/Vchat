@@ -18,7 +18,7 @@ import 'package:instachatty/main.dart';
 import 'package:instachatty/model/BlockUserModel.dart';
 import 'package:instachatty/model/ChannelParticipation.dart';
 import 'package:instachatty/model/ChatModel.dart';
-import 'package:instachatty/model/ChatVideoContainer.dart';
+//import 'package:instachatty/model/ChatVideoContainer.dart';
 import 'package:instachatty/model/ContactModel.dart';
 import 'package:instachatty/model/ConversationModel.dart';
 import 'package:instachatty/model/HomeConversationModel.dart';
@@ -29,8 +29,8 @@ import 'package:instachatty/ui/reauthScreen/reauth_user_screen.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:the_apple_sign_in/the_apple_sign_in.dart' as apple;
 import 'package:uuid/uuid.dart';
-import 'package:video_compress/video_compress.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
+// import 'package:video_compress/video_compress.dart';
+// import 'package:video_thumbnail/video_thumbnail.dart';
 
 class FireStoreUtils {
   static FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
@@ -117,45 +117,45 @@ class FireStoreUtils {
         mime: metaData.contentType ?? 'image', url: downloadUrl.toString());
   }
 
-  Future<ChatVideoContainer> uploadChatVideoToFireStorage(
-      File video, BuildContext context) async {
-    showProgress(context, 'Uploading video...', false);
-    var uniqueID = Uuid().v4();
-    File compressedVideo = await _compressVideo(video);
-    Reference upload = storage.child('videos/$uniqueID.mp4');
-    SettableMetadata metadata = SettableMetadata(contentType: 'video');
-    UploadTask uploadTask = upload.putFile(compressedVideo, metadata);
-    uploadTask.snapshotEvents.listen((event) {
-      updateProgress(
-          'Uploading video ${(event.bytesTransferred.toDouble() / 1000).toStringAsFixed(2)} /'
-          '${(event.totalBytes.toDouble() / 1000).toStringAsFixed(2)} '
-          'KB');
-    });
-    var storageRef = (await uploadTask.whenComplete(() {})).ref;
-    var downloadUrl = await storageRef.getDownloadURL();
-    var metaData = await storageRef.getMetadata();
-    final uint8list = await VideoThumbnail.thumbnailFile(
-        video: downloadUrl,
-        thumbnailPath: (await getTemporaryDirectory()).path,
-        imageFormat: ImageFormat.PNG);
-    final file = File(uint8list!);
-    String thumbnailDownloadUrl = await uploadVideoThumbnailToFireStorage(file);
-    hideProgress();
-    return ChatVideoContainer(
-        videoUrl: Url(
-            url: downloadUrl.toString(), mime: metaData.contentType ?? 'video'),
-        thumbnailUrl: thumbnailDownloadUrl);
-  }
+  // Future<ChatVideoContainer> uploadChatVideoToFireStorage(
+  //     File video, BuildContext context) async {
+  //   showProgress(context, 'Uploading video...', false);
+  //   var uniqueID = Uuid().v4();
+  //   File compressedVideo = await _compressVideo(video);
+  //   Reference upload = storage.child('videos/$uniqueID.mp4');
+  //   SettableMetadata metadata = SettableMetadata(contentType: 'video');
+  //   UploadTask uploadTask = upload.putFile(compressedVideo, metadata);
+  //   uploadTask.snapshotEvents.listen((event) {
+  //     updateProgress(
+  //         'Uploading video ${(event.bytesTransferred.toDouble() / 1000).toStringAsFixed(2)} /'
+  //         '${(event.totalBytes.toDouble() / 1000).toStringAsFixed(2)} '
+  //         'KB');
+  //   });
+  //   var storageRef = (await uploadTask.whenComplete(() {})).ref;
+  //   var downloadUrl = await storageRef.getDownloadURL();
+  //   var metaData = await storageRef.getMetadata();
+  //   final uint8list = await VideoThumbnail.thumbnailFile(
+  //       video: downloadUrl,
+  //       thumbnailPath: (await getTemporaryDirectory()).path,
+  //       imageFormat: ImageFormat.PNG);
+  //   final file = File(uint8list!);
+  //   String thumbnailDownloadUrl = await uploadVideoThumbnailToFireStorage(file);
+  //   hideProgress();
+  //   return ChatVideoContainer(
+  //       videoUrl: Url(
+  //           url: downloadUrl.toString(), mime: metaData.contentType ?? 'video'),
+  //       thumbnailUrl: thumbnailDownloadUrl);
+  // }
 
-  Future<String> uploadVideoThumbnailToFireStorage(File file) async {
-    var uniqueID = Uuid().v4();
-    File compressedImage = await compressImage(file);
-    Reference upload = storage.child('thumbnails/$uniqueID.png');
-    UploadTask uploadTask = upload.putFile(compressedImage);
-    var downloadUrl =
-        await (await uploadTask.whenComplete(() {})).ref.getDownloadURL();
-    return downloadUrl.toString();
-  }
+  // Future<String> uploadVideoThumbnailToFireStorage(File file) async {
+  //   var uniqueID = Uuid().v4();
+  //   File compressedImage = await compressImage(file);
+  //   Reference upload = storage.child('thumbnails/$uniqueID.png');
+  //   UploadTask uploadTask = upload.putFile(compressedImage);
+  //   var downloadUrl =
+  //       await (await uploadTask.whenComplete(() {})).ref.getDownloadURL();
+  //   return downloadUrl.toString();
+  // }
 
   Future<List<ContactModel>> getContacts(
       String userID, bool searchScreen) async {
@@ -1108,19 +1108,19 @@ class FireStoreUtils {
   /// being compressed
   /// @param file the video file that will be compressed
   /// @return File a new compressed file with smaller size
-  Future<File> _compressVideo(File file) async {
-    MediaInfo? info = await VideoCompress.compressVideo(file.path,
-        quality: VideoQuality.DefaultQuality,
-        deleteOrigin: false,
-        includeAudio: true,
-        frameRate: 24);
-    if (info != null) {
-      File compressedVideo = File(info.path!);
-      return compressedVideo;
-    } else {
-      return file;
-    }
-  }
+  // Future<File> _compressVideo(File file) async {
+  //   MediaInfo? info = await VideoCompress.compressVideo(file.path,
+  //       quality: VideoQuality.DefaultQuality,
+  //       deleteOrigin: false,
+  //       includeAudio: true,
+  //       frameRate: 24);
+  //   if (info != null) {
+  //     File compressedVideo = File(info.path!);
+  //     return compressedVideo;
+  //   } else {
+  //     return file;
+  //   }
+  // }
 
   static Future<auth.UserCredential?> reAuthUser(AuthProviders provider,
       {String? email,
