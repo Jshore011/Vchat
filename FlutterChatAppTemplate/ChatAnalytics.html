@@ -1,0 +1,168 @@
+<!-- THIS IS A TEMP MOCK UP --> 
+<!DOCTYPE html>
+<html>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<head>
+<title>Chat Message Analytics</title>
+<style>
+		 #box {
+           	width: 100px;
+  			border: 6px groove black;
+  			padding: 20px;
+  			margin: 10px;
+         }
+         .cloud {
+         position: absolute;
+         top: 80px;
+         left: 30%;
+         }
+         #circle {
+         	position: relative;
+            left: 35px;
+            width:100px;
+            height:100px;
+            border-style: dotted;
+            border-color: grey;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            background: lightgrey;
+         }
+         
+         #sad-circle {
+         	position: relative;
+            left: -15px;
+            width:50px;
+            height:50px;
+            border-style: dotted;
+            border-color: grey;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            background: lightblue;
+            padding: 2px;
+            margin: 2px;
+         }
+         #joy-circle {
+            position: relative;
+            left: -15px;
+            width:50px;
+            height:50px;
+            border-style: dotted;
+            border-color: grey;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            background: yellow;
+            padding: 2px;
+            margin: 2px;
+         }
+         #anger-circle {
+         	position: relative;
+            left: -15px;
+            width:50px;
+            height:50px;
+            border-style: dotted;
+            border-color: grey;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            background: red;
+            padding: 2px;
+            margin: 2px;
+         }
+         #disgust-circle {
+         	position: relative;
+            left: -15px;
+            width:50px;
+            height:50px;
+            border-style: dotted;
+            border-color: grey;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            background: lightgreen;
+            padding: 2px;
+            margin: 2px;
+         }
+         
+         #fear-circle{
+         	position: relative;
+            left: -15px;
+            width:50px;
+            height:50px;
+            border-style: dotted;
+            border-color: grey;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+            background: violet;
+            padding: 2px;
+            margin: 2px;
+         }
+         #title {
+         position: absolute;
+         left: 30%;
+         }
+
+      </style>
+</head>
+<body>
+<h1 id="title">Chat Message Analytics</h1>
+
+
+<div id="circle"></div>
+<div id="box" style="border">
+	<div id="sad-circle">Sad</div>
+	<div id="joy-circle">Joy</div>
+	<div id="anger-circle">Anger</div>
+	<div id="disgust-circle">Disgust</div>
+    <div id="fear-circle">Fear</div>
+</div>
+
+<ul class="cloud" role="navigation" aria-label="Webdev tag cloud">		<h1>Keyword Tag Cloud</h2>
+  <li><a data-weight="4" href="/tag/http">HTTP</a></li>
+  <li><a data-weight="2" href="/tag/ember">Ember</a></li>
+  <li><a data-weight="5" href="/tag/sass">Sass</a></li>
+  <li><a data-weight="8" href="/tag/html">HTML</a></li>
+  <li><a data-weight="6" href="/tag/flexbox">FlexBox</a></li>
+  <li><a data-weight="4" href="/tag/api">API</a></li>
+  <li><a data-weight="5" href="/tag/vuejs">VueJS</a></li>
+  <li><a data-weight="6" href="/tag/grid">Grid</a></li>
+  <li><a data-weight="3" href="/tag/rest">Rest</a></li>
+  <li><a data-weight="9" href="/tag/javascript">JavaScript</a></li>
+  <li><a data-weight="3" href="/tag/animation">Animation</a></li>
+  <li><a data-weight="7" href="/tag/react">React</a></li>
+  <li><a data-weight="8" href="/tag/css">CSS</a></li>
+  <li><a data-weight="1" href="/tag/cache">Cache</a></li>
+  <li><a data-weight="3" href="/tag/less">Less</a></li>
+</ul>
+
+<div id="myChart" style="width:100%; max-width:600px; height:500px;"></div>
+
+<script>
+google.charts.load('current',{packages:['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+// Set Data
+var data = google.visualization.arrayToDataTable([
+  ['Price', 'Size'],
+  [50,7],[60,8],[70,8],[80,9],[90,9],
+  [100,9],[110,10],[120,11],
+  [130,14],[140,14],[150,15]
+]);
+// Set Options
+var options = {
+  title: 'Emotional Context Over Time',
+  hAxis: {title: 'Time'},
+  vAxis: {title: 'Emotion'},
+  legend: 'none'
+};
+// Draw
+var chart = new google.visualization.LineChart(document.getElementById('myChart'));
+chart.draw(data, options);
+}
+</script>
+</body>
+</html>
