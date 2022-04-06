@@ -229,7 +229,7 @@ class OnBoardingState extends State<OnBoarding> {
       backgroundColor: Color(COLOR_PRIMARY),
       body: Center(
         child: CircularProgressIndicator.adaptive(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.black,
           valueColor: AlwaysStoppedAnimation(Color(COLOR_PRIMARY)),
         ),
       ),
