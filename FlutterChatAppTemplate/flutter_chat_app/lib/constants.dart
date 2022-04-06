@@ -1,9 +1,9 @@
 library constants;
 
 const FINISHED_ON_BOARDING = 'finishedOnBoarding';
-const COLOR_ACCENT = 0xFF7693f8;
-const COLOR_PRIMARY_DARK = 0xFF003c94;
-const COLOR_PRIMARY = 0xFF3E66C5;
+const COLOR_ACCENT = 0xFFB2DFDB;//main accent-tealish
+const COLOR_PRIMARY_DARK = 0xFFFFCCBC; //top bar-orange
+const COLOR_PRIMARY = 0xFF4DB6AC; //login button
 const FACEBOOK_BUTTON_COLOR = 0xFF415893;
 const USERS = 'users';
 const SOCIAL_GRAPH = 'social_graph';
