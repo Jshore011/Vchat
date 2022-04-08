@@ -609,7 +609,7 @@ class FireStoreUtils {
         .doc(conversationModel.id)
         .collection(THREAD)
         .doc();
-    message.messageID = ref.id;
+    message.messageID = ref.id; //TODO: sending to firestore?
     ref.set(message.toJson());
     List<User> payloadFriends;
     if (isGroup) {
@@ -681,6 +681,8 @@ class FireStoreUtils {
         .collection(CHANNELS)
         .doc(conversationModel.id)
         .update(conversationModel.toJson());
+        //TODO: add emotion...maybe
+        //TODO: add keywords...maybe
   }
 
   Future<void> createChannelParticipation(

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:flutter_sound/public/flutter_sound_player.dart';
 
+import '../../services/helper.dart';
+
 class PlayerWidget extends StatefulWidget {
   final String url;
   final Color color;
@@ -40,7 +42,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
-      children: [_buildPlayPauseButton(), _buildPlayBar(), _buildDuration()],
+      children: [_buildPlayPauseButton(), _buildPlayBar(), _buildDuration(), _buildEmoji()],
     );
   }
 
@@ -53,6 +55,14 @@ class _PlayerWidgetState extends State<PlayerWidget> {
         iconSize: 35,
         color: widget.color,
       );
+
+  Widget _buildEmoji() => Expanded(
+      child: Image.asset(
+        Directionality.of(context) == TextDirection.ltr
+            ? 'assets/images/joy.png'
+            : 'assets/images/sad.png',
+        height: 20,
+      ));
 
   Widget _buildPlayBar() => Expanded(
         child: StreamBuilder<PlaybackDisposition>(
