@@ -18,6 +18,7 @@ import 'package:instachatty/model/ChatModel.dart';
 //import 'package:instachatty/model/ChatVideoContainer.dart';
 import 'package:instachatty/model/ConversationModel.dart';
 import 'package:instachatty/model/HomeConversationModel.dart';
+import 'package:instachatty/model/IFrame.dart';
 import 'package:instachatty/model/MessageData.dart';
 import 'package:instachatty/model/User.dart';
 import 'package:instachatty/services/FirebaseHelper.dart';
@@ -28,6 +29,7 @@ import 'package:instachatty/ui/fullScreenVideoViewer/FullScreenVideoViewer.dart'
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_to_text.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
 
 import 'package:speech_to_text/speech_to_text.dart' as stt;
@@ -119,7 +121,25 @@ class _ChatScreenState extends State<ChatScreen> {
                     'settings'.tr(),
                     style: TextStyle(fontSize: 18),
                   ),
-                ))
+                )),
+                PopupMenuItem(
+                    child: ListTile(
+                      dense: true,
+                      onTap: () {
+                        launch('http://54.193.55.43/static/ChatAnalytics.html');
+                      },
+                      contentPadding: const EdgeInsets.all(0),
+                      leading: Icon(
+                        Icons.analytics,
+                        color: isDarkMode(context)
+                            ? Colors.grey.shade200
+                            : Colors.black,
+                      ),
+                      title: Text(
+                        'Chat analytics'.tr(),
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ))
               ];
             },
           ),
