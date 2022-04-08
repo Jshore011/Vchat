@@ -22,6 +22,7 @@ import 'package:instachatty/model/MessageData.dart';
 import 'package:instachatty/model/User.dart';
 import 'package:instachatty/services/FirebaseHelper.dart';
 import 'package:instachatty/services/helper.dart';
+import 'package:instachatty/ui/analytics/ChatAnalytics.dart';
 import 'package:instachatty/ui/chat/PlayerWidget.dart';
 import 'package:instachatty/ui/fullScreenImageViewer/FullScreenImageViewer.dart';
 import 'package:instachatty/ui/fullScreenVideoViewer/FullScreenVideoViewer.dart';
@@ -136,6 +137,22 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                       title: Text(
                         'Chat analytics'.tr(),
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    )),
+                PopupMenuItem(
+                    child: ListTile(
+                      dense: true,
+                      onTap: () {pushReplacement(context, AnalyticsPage());},
+                      contentPadding: const EdgeInsets.all(0),
+                      leading: Icon(
+                        Icons.analytics,
+                        color: isDarkMode(context)
+                            ? Colors.grey.shade200
+                            : Colors.black,
+                      ),
+                      title: Text(
+                        'Chatroom analytics alt'.tr(),
                         style: TextStyle(fontSize: 18),
                       ),
                     ))
