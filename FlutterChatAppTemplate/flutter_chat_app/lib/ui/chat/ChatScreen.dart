@@ -18,7 +18,6 @@ import 'package:instachatty/model/ChatModel.dart';
 //import 'package:instachatty/model/ChatVideoContainer.dart';
 import 'package:instachatty/model/ConversationModel.dart';
 import 'package:instachatty/model/HomeConversationModel.dart';
-import 'package:instachatty/model/IFrame.dart';
 import 'package:instachatty/model/MessageData.dart';
 import 'package:instachatty/model/User.dart';
 import 'package:instachatty/services/FirebaseHelper.dart';
@@ -126,7 +125,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     child: ListTile(
                       dense: true,
                       onTap: () {
-                        launch('http://54.193.55.43/static/ChatAnalytics.html');
+                        launch('http://54.193.55.43/static/ChatAnalytics.html'); //TODO: need to update each time we launch the server
                       },
                       contentPadding: const EdgeInsets.all(0),
                       leading: Icon(
