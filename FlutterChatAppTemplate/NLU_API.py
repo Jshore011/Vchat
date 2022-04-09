@@ -41,10 +41,19 @@ data = ibm_response
 for d in data:    
     print(d)
     if(d == "keywords"):
-        print("keyword is: ", data[d])
+        #print("keyword is: ", data[d])
         k_words = data[d]
-        for k in k_words:
-            print(k)
+        print(len(k_words))
+        count = len(k_words)
+        for i in range(count):
+            for words in k_words[i]:
+                print('CASE: ' + str(i) + ' key is: ' + str(words) + ' and value is ' + str(k_words[i][words]))
+            ##keyword = k_words(words)
+            ##for kw in keywords:
+               
+                #print(kw)
+
+                #print("hi")
     if(d == "emotion"):
         print("emotion is: ", data[d])
         doc = data[d]
