@@ -33,11 +33,11 @@ natural_language_understanding = NaturalLanguageUnderstandingV1(
 )
 natural_language_understanding.set_service_url(url)
 ibm_response = natural_language_understanding.analyze(
-    text="I am really excited to go see the Red Hot Chili Peppers in June. They are one of my favorite bands! I hope that they play my favorite song 'Bicycle Song'",
+    text="My milkshake brings all the boys to the yard. And they're like, it's better than yours. You're damn right, it's better than yours. I could teach you, but I'd have to charge.",
     features=Features(emotion=EmotionOptions(),
                           keywords=KeywordsOptions())).get_result()
 
-print( json.dumps(ibm_response, indent=2))
+print(json.dumps(ibm_response, indent=2))
 
 data = ibm_response
 
@@ -49,16 +49,21 @@ for d in data:
         k_words = data[d]
         print(len(k_words) , "keywords found")
         count = len(k_words)
+        keys = '{"keywords":['
+        print("Adding keywords")
         for i in range(count):
             print("Case: ", i)
             for words in k_words[i]:
                 print('key is: ' + str(words) + ' and value is "' + str(k_words[i][words])+'"')
-
+                if(words == 'text'):
+                    keys += '{"keyword":"'+str(k_words[i][words])+'"},'
+        keys += '{"end":"none"}]}'
     
     if(d == "emotion"):
         print("Emotions Detected: ")
         #print("emotion is: ", data[d])
         doc = data[d]
+        emotions = '{"emotions":['
         for do in doc:
             emote = doc[do]
             for emo in emote:
@@ -67,7 +72,11 @@ for d in data:
                 for e in em:
                     print(e, em[e])
                     if(em[e] > score):
+                        emotions += '{"emotion":"'+ str(e) + ', "score":"' + str(em[e]) + '"},'
                         score = em[e]
                         top = e
                 print("Overall Emotion: ", top)
+            emotions += '{"top":"' + str(top) + '"}]}'
+print(keys)
+print(emotions)
 #need to return the json file, still working on it. will reference existing Flask server example
