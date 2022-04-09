@@ -1,28 +1,20 @@
 from flask import Flask,render_template,request, redirect, url_for, g
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 import jwt
-
 import sys
 import datetime
 import bcrypt
 import traceback
-
-
 import firebase_admin
 import pyrebase
 import json
 from firebase_admin import credentials, auth
-
-
 from db_con import get_db_instance, get_db
-
 from tools.token_required import token_required
 from tools.get_aws_secrets import get_secrets
-
 from tools.logging import logger
 
 ERROR_MSG = "That Didn't work!"
-
 
 #Create our app
 app = Flask(__name__)
@@ -34,7 +26,7 @@ cred = credentials.Certificate('fbAdminConfig.json')
 firebase = firebase_admin.initialize_app(cred)
 pb = pyrebase.initialize_app(json.load(open('fbconfig.json')))
 
-#g is flask for a global var storage 
+#g is flask for a global var storage
 def init_new_env():
     if 'db' not in g:
         g.db = get_db()
