@@ -53,4 +53,4 @@ for d in data:
             for emo in emote:
                 em = emote[emo]
                 for e in em:
-                    print(e)
+                    print(e, em[e])
