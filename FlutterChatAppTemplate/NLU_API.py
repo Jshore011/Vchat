@@ -42,5 +42,15 @@ for d in data:
     print(d)
     if(d == "keywords"):
         print("keyword is: ", data[d])
+        k_words = data[d]
+        for k in k_words:
+            print(k)
     if(d == "emotion"):
         print("emotion is: ", data[d])
+        doc = data[d]
+        for do in doc:
+            emote = doc[do]
+            for emo in emote:
+                em = emote[emo]
+                for e in em:
+                    print(e)
