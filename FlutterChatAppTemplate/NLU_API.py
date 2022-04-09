@@ -19,8 +19,11 @@ import json
 #def handle_request():
 
 #logger.debug("NLU Analysis Handle Request")
-    
-key = '_J9y8uEfAGCf0-AGEwW-cj15eWxpEDnqFQnqBSSimkDv'#os.environ.get('IBM_API_KEY')
+
+if 'IBM_API_KEY' in os.environ:
+    print("yes")
+key = '_J9y8uEfAGCf0-AGEwW-cj15eWxpEDnqFQnqBSSimkDv'
+#print(os.environ.get('IBM_API_KEY'))
 url = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/4c6d89e4-9a1a-41f2-962a-dc42e5854346"
     
 authenticator = IAMAuthenticator(key)
@@ -30,36 +33,41 @@ natural_language_understanding = NaturalLanguageUnderstandingV1(
 )
 natural_language_understanding.set_service_url(url)
 ibm_response = natural_language_understanding.analyze(
-    text="Everytime I start to make progress, something happens that puts me back and wastes my time",
+    text="I am really excited to go see the Red Hot Chili Peppers in June. They are one of my favorite bands! I hope that they play my favorite song 'Bicycle Song'",
     features=Features(emotion=EmotionOptions(),
                           keywords=KeywordsOptions())).get_result()
 
 print( json.dumps(ibm_response, indent=2))
-#need to return the json file, still working on it. will reference existing Flask server example
 
 data = ibm_response
+
+#parse response data
 for d in data:    
-    print(d)
+    #print(d)
     if(d == "keywords"):
-        #print("keyword is: ", data[d])
+        
         k_words = data[d]
-        print(len(k_words))
+        print(len(k_words) , "keywords found")
         count = len(k_words)
         for i in range(count):
+            print("Case: ", i)
             for words in k_words[i]:
-                print('CASE: ' + str(i) + ' key is: ' + str(words) + ' and value is ' + str(k_words[i][words]))
-            ##keyword = k_words(words)
-            ##for kw in keywords:
-               
-                #print(kw)
+                print('key is: ' + str(words) + ' and value is "' + str(k_words[i][words])+'"')
 
-                #print("hi")
+    
     if(d == "emotion"):
-        print("emotion is: ", data[d])
+        print("Emotions Detected: ")
+        #print("emotion is: ", data[d])
         doc = data[d]
         for do in doc:
             emote = doc[do]
             for emo in emote:
                 em = emote[emo]
+                score = 0
                 for e in em:
                     print(e, em[e])
+                    if(em[e] > score):
+                        score = em[e]
+                        top = e
+                print("Overall Emotion: ", top)
+#need to return the json file, still working on it. will reference existing Flask server example
