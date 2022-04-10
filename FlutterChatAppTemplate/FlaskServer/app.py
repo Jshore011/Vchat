@@ -5,10 +5,10 @@ import sys
 import datetime
 import bcrypt
 import traceback
-import firebase_admin
-import pyrebase
+#import firebase_admin
+#import pyrebase
 import json
-from firebase_admin import credentials, auth
+#from firebase_admin import credentials, auth
 from db_con import get_db_instance, get_db
 from tools.token_required import token_required
 from tools.get_aws_secrets import get_secrets
@@ -22,9 +22,9 @@ app = Flask(__name__)
 FlaskJSON(app)
 
 #connect to firebase
-cred = credentials.Certificate('fbAdminConfig.json')
-firebase = firebase_admin.initialize_app(cred)
-pb = pyrebase.initialize_app(json.load(open('fbconfig.json')))
+#cred = credentials.Certificate('fbAdminConfig.json')
+#firebase = firebase_admin.initialize_app(cred)
+#pb = pyrebase.initialize_app(json.load(open('fbconfig.json')))
 
 #g is flask for a global var storage
 def init_new_env():
@@ -37,7 +37,7 @@ def init_new_env():
 #So.. we redirect to the endpoint we want to load the base page
 @app.route('/') #endpoint
 def index():
-    return redirect('/static/index.html')
+    return redirect('/static/ChatAnalytics.html')
 
 
 @app.route("/secure_api/<proc_name>",methods=['GET', 'POST'])
@@ -64,7 +64,7 @@ def exec_secure_proc(proc_name):
 
 
 
-@app.route("/open_api/<proc_name>",methods=['GET', 'POST'])
+@app.route("/open_api/<proc_name>/",methods=['GET', 'POST'])
 def exec_proc(proc_name):
     logger.debug(f"Call to {proc_name}")
 

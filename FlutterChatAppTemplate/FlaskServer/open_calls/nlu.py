@@ -1,5 +1,6 @@
 import os
 import json
+
 from ibm_watson import NaturalLanguageUnderstandingV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from ibm_watson.natural_language_understanding_v1 import Features, EmotionOptions, KeywordsOptions
@@ -8,16 +9,16 @@ import requests as req
 
 from flask import request, g
 from flask_json import FlaskJSON, JsonError, json_response, as_json
-from tools.token_tools import create_token
+#from tools.token_tools import create_token
 from psycopg2 import sql
 
 import json
 
-from tools.logging import logger
+#from tools.logging import logger
 
 
 def handle_request():
-
+    print("made it here")
     logger.debug("NLU Analysis Handle Request")
 
     if 'IBM_API_KEY' in os.environ:
@@ -80,4 +81,4 @@ def handle_request():
     print(keys)
     print(emotions)
     #need to return the json file, still working on it. will reference existing Flask server example
-    return json_response(data= json.loads(keys, strict = False), data2= json.loads(emotions, strict = False)) 
+#    return json_response(data= json.loads(keys, strict = False), data2= json.loads(emotions, strict = False)) 

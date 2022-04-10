@@ -1,6 +1,7 @@
 <!-- THIS IS A TEMP MOCK UP --> 
 <!DOCTYPE html>
 <html>
+  <script src="/static/ajaxProtocols.js"></script>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -193,7 +194,35 @@
       $("#cloud").show();
       $("#myChart").show();
       $("#button").hide();
-  }
+      console.log("showAnalytics called")
+      
+      var emotions = {"emotions":[{"emotion":"sadness", "score":"0.4545"},{"emotion":"joy","score":"0.6711"},{"emotion":"anger", "score":"0.4545"},{"emotion":"disgust","score":"0.6711"},{"emotion":"fear","score":"0.6711"}]};
+      console.log(emotions);
+
+      var target = '';
+      var target_div = '';
+      var content = '';
+      
+      for(var i = 0; i < Object.keys(emotions.emotions).length; i++){
+	  console.log(emotions.emotions[i].emotion, emotions.emotions[i].score);
+	  target = emotions.emotions[i].emotion +"-circle";
+	  target_div = document.getElementById(String(target));
+	  console.log(String(target));
+	  content = emotions.emotions[i].score;
+	  target_div.innerText += content;
+	  
+      }
+  }     
+      // backend issues with ibm-watson import
+      //      $.get("/open_api/nlu", function(data){
+      //	  console.log("made it here");
+	  
+      //      });
+      //  }
+	//		    function(err){
+	//			console.log("error");
+	//			console.log(err)} );
+ 
   
   function drawChart() {
       // Set Data
