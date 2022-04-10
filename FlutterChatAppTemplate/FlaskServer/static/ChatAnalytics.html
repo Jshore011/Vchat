@@ -206,12 +206,39 @@
       for(var i = 0; i < Object.keys(emotions.emotions).length; i++){
 	  console.log(emotions.emotions[i].emotion, emotions.emotions[i].score);
 	  target = emotions.emotions[i].emotion +"-circle";
-	  target_div = document.getElementById(String(target));
+	  
 	  console.log(String(target));
 	  content = emotions.emotions[i].score;
-	  target_div.innerText += content;
-	  
+	  //target_div.innerText += content;
+	  switch(String(target)){
+	  case 'sadness-circle':
+	      console.log("sad af");
+	      target_div = document.getElementById("sad-circle");
+	      break;
+	  case 'joy-circle':
+	      console.log("happy af");
+	      target_div = document.getElementById("joy-circle");
+	      break;
+	  case 'anger-circle':
+	      console.log("mad af");
+	      target_div = document.getElementById("anger-circle");
+	      break;
+	  case 'disgust-circle':
+	      console.log("gross af");
+	      target_div = document.getElementById("disgust-circle");
+	      break;
+	  case 'fear-circle':
+	      console.log("scared af");
+	      target_div = document.getElementById("fear-circle");
+	      break;
+	  }
+	  var text = document.createElement("p");
+	  var node = document.createTextNode(content);
+	  text.append(node);
+
+	  document.getElementById("sad-score").append(text);
       }
+      
   }     
       // backend issues with ibm-watson import
       //      $.get("/open_api/nlu", function(data){
