@@ -22,7 +22,7 @@ import 'package:instachatty/model/MessageData.dart';
 import 'package:instachatty/model/User.dart';
 import 'package:instachatty/services/FirebaseHelper.dart';
 import 'package:instachatty/services/helper.dart';
-import 'package:instachatty/ui/analytics/ChatAnalytics.dart';
+import 'package:instachatty/ui/analytics/ChatAnalyticsAlt.dart';
 import 'package:instachatty/ui/chat/PlayerWidget.dart';
 import 'package:instachatty/ui/fullScreenImageViewer/FullScreenImageViewer.dart';
 import 'package:instachatty/ui/fullScreenVideoViewer/FullScreenVideoViewer.dart';
