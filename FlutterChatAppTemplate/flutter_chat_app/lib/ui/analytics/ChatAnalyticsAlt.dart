@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
+import 'package:flutter/services.dart';
 
 class AnalyticsPage extends StatelessWidget {
   final _htmlContent = """
@@ -19,9 +20,14 @@ class AnalyticsPage extends StatelessWidget {
   """;
 
   const AnalyticsPage({Key? key}) : super(key: key);
+
+  set geturl(geturl) {
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //Url geturl = upload;
       appBar: AppBar(
         title: const Text('Analytics'),
       ),
