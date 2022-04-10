@@ -61,7 +61,7 @@
       }
       #sad-score {
           position: relative;
-       	  left: 5%;
+       	  left: 15%;
       }
       #joy-circle {
           position: relative;
@@ -79,7 +79,7 @@
       }
       #joy-score {
           position: relative;
-          left: 5%;
+          left: 15%;
       }
       #anger-circle {
           position: relative;
@@ -97,7 +97,7 @@
       }
       #anger-score {
           position: relative;
-          left: 5%;
+          left: 15%;
       }
       #disgust-circle {
           position: relative;
@@ -115,7 +115,7 @@
       }
       #disgust-score {
           position: relative;
-          left: 5%;
+          left: 15%;
       }
       
       #fear-circle{
@@ -134,7 +134,7 @@
       }
       #fear-score {
           position: relative;
-          left: 5px;
+          left: 15%;
       }
       #title {
           position: absolute;
@@ -149,11 +149,11 @@
 
     <div id="circle"><div id="overall-score">Overall Emotion</div></div>
     <div id="box" style="border">
-      <div id="sad-circle"><div id="sad-score">SADNESS CONFIDENCE SCORE: %</div></div> 
-      <div id="joy-circle"><div id="joy-score">JOY CONFIDENCE SCORE: %</div></div>   
-      <div id="anger-circle"><div id="anger-score">ANGER CONFIDENCE SCORE: %</div></div>  
-      <div id="disgust-circle"><div id="disgust-score">DISGUST CONFIDENCE SCORE: %</div></div>
-      <div id="fear-circle"><div id="fear-score">FEAR CONFIDENCE SCORE: %</div></div>    
+      <div id="sad-circle"><div id="sad-score"></div></div> 
+      <div id="joy-circle"><div id="joy-score"></div></div>   
+      <div id="anger-circle"><div id="anger-score"></div></div>  
+      <div id="disgust-circle"><div id="disgust-score"></div></div>
+      <div id="fear-circle"><div id="fear-score"></div></div>    
     </div>
 
     <ul class="cloud" id="cloud"role="navigation" aria-label="Webdev tag cloud">		
@@ -196,7 +196,7 @@
       $("#button").hide();
       console.log("showAnalytics called")
       
-      var emotions = {"emotions":[{"emotion":"sadness", "score":"0.4545"},{"emotion":"joy","score":"0.6711"},{"emotion":"anger", "score":"0.4545"},{"emotion":"disgust","score":"0.6711"},{"emotion":"fear","score":"0.6711"}]};
+      var emotions = {"emotions":[{"emotion":"sadness", "score":"0.4545"},{"emotion":"joy","score":"0.6711"},{"emotion":"anger", "score":"0.0545"},{"emotion":"disgust","score":"0.6711"},{"emotion":"fear","score":"0.0011"}]};
       console.log(emotions);
 
       var target = '';
@@ -205,38 +205,37 @@
       
       for(var i = 0; i < Object.keys(emotions.emotions).length; i++){
 	  console.log(emotions.emotions[i].emotion, emotions.emotions[i].score);
-	  target = emotions.emotions[i].emotion +"-circle";
+	  target = emotions.emotions[i].emotion +"-score";
 	  
 	  console.log(String(target));
 	  content = emotions.emotions[i].score;
-	  //target_div.innerText += content;
-	  switch(String(target)){
-	  case 'sadness-circle':
-	      console.log("sad af");
-	      target_div = document.getElementById("sad-circle");
-	      break;
-	  case 'joy-circle':
-	      console.log("happy af");
-	      target_div = document.getElementById("joy-circle");
-	      break;
-	  case 'anger-circle':
-	      console.log("mad af");
-	      target_div = document.getElementById("anger-circle");
-	      break;
-	  case 'disgust-circle':
-	      console.log("gross af");
-	      target_div = document.getElementById("disgust-circle");
-	      break;
-	  case 'fear-circle':
-	      console.log("scared af");
-	      target_div = document.getElementById("fear-circle");
-	      break;
-	  }
+	  
 	  var text = document.createElement("p");
 	  var node = document.createTextNode(content);
 	  text.append(node);
-
-	  document.getElementById("sad-score").append(text);
+	  //target_div.innerText += content;
+	  switch(String(target)){
+	  case 'sadness-score':
+	      console.log("sad af");
+	      document.getElementById("sad-score").append(text);
+	      break;
+	  case 'joy-score':
+	      console.log("happy af");
+	      document.getElementById("joy-score").append(text);
+	      break;
+	  case 'anger-score':
+	      console.log("mad af");
+	      document.getElementById("anger-score").append(text);
+	      break;
+	  case 'disgust-score':
+	      console.log("gross af");
+	      document.getElementById("disgust-score").append(text);
+	      break;
+	  case 'fear-score':
+	      console.log("scared af");
+	      document.getElementById("fear-score").append(text);
+	      break;
+	  }
       }
       
   }     
