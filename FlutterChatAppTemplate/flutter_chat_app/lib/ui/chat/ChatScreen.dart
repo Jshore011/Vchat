@@ -7,8 +7,13 @@ import 'package:easy_localization/easy_localization.dart' as easyLocal;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_sound/flutter_sound.dart';
+import 'package:google_speech/config/recognition_config.dart';
+import 'package:google_speech/config/recognition_config_v1.dart';
+import 'package:google_speech/speech_client_authenticator.dart';
+import 'package:google_speech/speech_to_text.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instachatty/constants.dart';
 import 'package:instachatty/main.dart';
@@ -57,6 +62,9 @@ class _ChatScreenState extends State<ChatScreen> {
 
   //Will be the filepath where the audio file saves locally
   late String filepath;
+  //Each transcribed message should start off as an empty String
+  String transcribedMessage = '';
+  bool is_transcribing = false;
 
   late Stream<ChatModel> chatStream;
 
@@ -1286,6 +1294,7 @@ class _ChatScreenState extends State<ChatScreen> {
   _onSendRecord() async {
     await _myRecorder!.stopRecorder();
     audioMessageTimer.cancel();
+    transcribe();
     setState(() {
       audioMessageTime = 'startRecording'.tr();
       currentRecordingState = RecordingState.HIDDEN;
@@ -1319,5 +1328,43 @@ class _ChatScreenState extends State<ChatScreen> {
         currentRecordingState = RecordingState.Recording;
       });
     }
+  }
+
+  transcribe() async {
+    setState(() {
+      is_transcribing = true;
+    });
+    final serviceAccount = ServiceAccount.fromString(
+      '${(await rootBundle.loadString('assets/transcriptions/vchat-testing-0c09a0fbb667.json'))}'
+    );
+    final speechToText = SpeechToText.viaServiceAccount(serviceAccount);
+
+    final config = RecognitionConfig(
+      audioChannelCount: 1,
+      encoding: AudioEncoding.LINEAR16,
+      model:RecognitionModel.basic,
+      enableAutomaticPunctuation: true,
+      sampleRateHertz: 16000,
+      languageCode: 'en-US'
+    );
+
+    final audio = await _getAudioContent(tempPathForAudioMessages);
+    await speechToText.recognize(config, audio).then((value) {
+      setState(() {
+        transcribedMessage = value.results.map((e) => e.alternatives.first.transcript).join('n');
+        print(transcribedMessage);
+      });
+    }).whenComplete(() {
+      setState(() {
+        is_transcribing = false;
+      });
+      _sendMessage(transcribedMessage,
+          Url(mime: '', url: ''), '');
+      transcribedMessage = '';
+    });
+  }
+
+  Future<List<int>> _getAudioContent(String path) async {
+    return File(path).readAsBytesSync().toList();
   }
 }
