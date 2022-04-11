@@ -799,7 +799,7 @@ class FireStoreUtils {
   Future<Url> uploadAudioFile(File file, BuildContext context) async {
     showProgress(context, 'Uploading Audio...', false);
     var uniqueID = Uuid().v4();
-    Reference upload = storage.child('audio/$uniqueID.mp3');
+    Reference upload = storage.child('audio/$uniqueID.wav');
     SettableMetadata metadata = SettableMetadata(contentType: 'audio');
     UploadTask uploadTask = upload.putFile(file, metadata);
     uploadTask.snapshotEvents.listen((event) {

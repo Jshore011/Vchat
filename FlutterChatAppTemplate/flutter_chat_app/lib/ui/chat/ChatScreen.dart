@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:avatar_glow/avatar_glow.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart' as easyLocal;
@@ -10,7 +9,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_sound/flutter_sound.dart';
-import 'package:highlight_text/highlight_text.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instachatty/constants.dart';
 import 'package:instachatty/main.dart';
@@ -28,11 +26,9 @@ import 'package:instachatty/ui/fullScreenImageViewer/FullScreenImageViewer.dart'
 import 'package:instachatty/ui/fullScreenVideoViewer/FullScreenVideoViewer.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:speech_to_text/speech_to_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
-
-import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:path/path.dart' as path;
 
 enum RecordingState { HIDDEN, VISIBLE, Recording }
 
@@ -59,20 +55,15 @@ class _ChatScreenState extends State<ChatScreen> {
 
   late String tempPathForAudioMessages;
 
-  late Stream<ChatModel> chatStream;
+  //Will be the filepath where the audio file saves locally
+  late String filepath;
 
-  late stt.SpeechToText _speech;
-  late bool _isListening;
-  String _text = '';
-  double _confidence = 1.0;
+  late Stream<ChatModel> chatStream;
 
   @override
   void initState() {
     super.initState();
-
-    _speech = stt.SpeechToText();
-    _isListening = false;
-
+    filepath = '/sdcard/Download/temp.wav';
     _myRecorder!.openRecorder();
     homeConversationModel = widget.homeConversationModel;
     if (homeConversationModel.isGroupChat)
@@ -240,16 +231,6 @@ class _ChatScreenState extends State<ChatScreen> {
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Row(
                   children: <Widget>[
-                    IconButton(
-                      onPressed: () => _listen(innerContext),
-                      // icon: Icon(
-                        // Icons.camera_alt,
-                        // color: Color(COLOR_PRIMARY),
-                        icon: Icon(_isListening ? Icons.stop : Icons.mic
-
-
-                      ),
-                    ),
                     Expanded(
                         child: Padding(
                             padding: const EdgeInsets.only(left: 2.0, right: 2),
@@ -341,32 +322,6 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
               ),
               _buildAudioMessageRecorder(innerContext),
-              // AvatarGlow(
-              //   animate: _isListening,
-              //   glowColor: Colors.blue,
-              //   endRadius: 75.0,
-              //   duration: const Duration(milliseconds: 2000),
-              //   repeatPauseDuration: const Duration(milliseconds: 100),
-              //   repeat: true,
-              //   child: FloatingActionButton(
-              //     onPressed: _listen,
-              //     child: Icon(_isListening ? Icons.stop : Icons.mic),
-              //   ),
-              // ),
-              SingleChildScrollView(
-                reverse: true,
-                child: Container(padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
-                  child: TextHighlight(
-                    text: _text,
-                    words: {},
-                    textStyle: const TextStyle(
-                      fontSize: 32.0,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                    )
-                  )
-                ),
-              ),
             ],
           ),
         );
@@ -1314,9 +1269,13 @@ class _ChatScreenState extends State<ChatScreen> {
   _onMicClicked() async {
     if (currentRecordingState == RecordingState.HIDDEN) {
       FocusScope.of(context).unfocus();
+      Directory dir = Directory(path.dirname(filepath));
+      if (!dir.existsSync()) {
+        dir.createSync();
+      }
       Directory tempDir = await getTemporaryDirectory();
       var uniqueID = Uuid().v4();
-      tempPathForAudioMessages = '${tempDir.path}/$uniqueID';
+      tempPathForAudioMessages = '${tempDir.path}/$uniqueID.wav';
       currentRecordingState = RecordingState.VISIBLE;
     } else {
       currentRecordingState = RecordingState.HIDDEN;
@@ -1349,6 +1308,7 @@ class _ChatScreenState extends State<ChatScreen> {
     var status = await Permission.microphone.request();
     if (status == PermissionStatus.granted) {
       await _myRecorder!.startRecorder(
+          codec: Codec.pcm16WAV,
           toFile: tempPathForAudioMessages );
       audioMessageTimer = Timer.periodic(Duration(seconds: 1), (timer) {
         setState(() {
@@ -1360,39 +1320,4 @@ class _ChatScreenState extends State<ChatScreen> {
       });
     }
   }
-
-  void _listen(BuildContext innerContext) async {
-      if (!_isListening) {
-        _onStartRecording(innerContext);
-        bool available = await _speech.initialize(
-          onStatus: (val) => print('onStatus: $val'),
-          onError: (val) => print('onError: $val'),
-          debugLogging: true,
-        );
-        if (available) {
-          setState(() => _isListening = true);
-          _speech.listen(
-            onResult: (val) => setState(() {
-                  _text = val.recognizedWords;
-                  // if(val.hasConfidenceRating && val.confidence > 0) {
-                  //   _confidence = val.confidence;
-                  // }
-            }),
-          );
-        }
-      }
-      else {
-        setState(() => _isListening = false);
-        _speech.stop();
-        if(_text != '') {
-          _sendMessage(_text,
-              Url(mime: '', url: ''), '');
-          _text = '';
-          _buildAudioMessageRecorder(innerContext);
-          _onSendRecord();
-        } else {
-          _onCancelRecording();
-        }
-      }
-    }
 }

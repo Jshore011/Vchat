@@ -39,7 +39,7 @@ android {
 
     defaultConfig {
         applicationId "com.Vchat.Vchat"
-        minSdkVersion 21
+        minSdkVersion 23
         multiDexEnabled = true
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
