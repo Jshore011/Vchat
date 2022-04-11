@@ -158,21 +158,7 @@
 
     <ul class="cloud" id="cloud"role="navigation" aria-label="Webdev tag cloud">		
       <h1>Keyword Tag Cloud</h2>
-<li><a data-weight="4" href="/tag/http">IBM</a></li>
-<li><a data-weight="2" href="/tag/ember">VChat</a></li>
-<li><a data-weight="5" href="/tag/sass">meeting</a></li>
-<li><a data-weight="8" href="/tag/html">Watson</a></li>
-<li><a data-weight="6" href="/tag/flexbox">CSUSM</a></li>
-<li><a data-weight="4" href="/tag/api">API</a></li>
-<li><a data-weight="5" href="/tag/vuejs">Graduation</a></li>
-<li><a data-weight="6" href="/tag/grid">Software Engineering</a></li>
-<li><a data-weight="3" href="/tag/rest">challenging</a></li>
-<li><a data-weight="9" href="/tag/javascript">Amazon</a></li>
-<li><a data-weight="3" href="/tag/animation">game programming</a></li>
-<li><a data-weight="7" href="/tag/react">VR</a></li>
-<li><a data-weight="8" href="/tag/css">grades</a></li>
-<li><a data-weight="1" href="/tag/cache">project</a></li>
-<li><a data-weight="3" href="/tag/less">tomorrow</a></li>
+<li><a data-weight="4" href="/tag/http">test value</a></li>
 </ul>
 
 <div id="myChart" style="width:100%; max-width:600px; height:500px;"></div>
@@ -199,6 +185,8 @@
       var emotions = {"emotions":[{"emotion":"sadness", "score":"0.4545"},{"emotion":"joy","score":"0.6711"},{"emotion":"anger", "score":"0.0545"},{"emotion":"disgust","score":"0.6711"},{"emotion":"fear","score":"0.0011"}]};
       console.log(emotions);
 
+      var keywords = {"keywords":[{"keyword":"Capstone"},{"keyword":"VChat"},{"keyword":"Software Engineering"},{"keyword":"grades"},{"keyword":"conference"},{"keyword":"testing"},{"keyword":"analytics"},{"end":"None"}]};
+      
       var target = '';
       var target_div = '';
       var content = '';
@@ -208,7 +196,7 @@
 	  target = emotions.emotions[i].emotion +"-score";
 	  
 	  console.log(String(target));
-	  content = emotions.emotions[i].score;
+	  content = emotions.emotions[i].emotion + ": " +emotions.emotions[i].score;
 	  
 	  var text = document.createElement("p");
 	  var node = document.createTextNode(content);
@@ -235,6 +223,18 @@
 	      console.log("scared af");
 	      document.getElementById("fear-score").append(text);
 	      break;
+	  }
+      }
+
+      for (var j = 0; j < Object.keys(keywords.keywords).length - 1; j ++){
+	  console.log(keywords.keywords[j].keyword);
+	  if(keywords.keywords[j].keyword == 'None'){
+	      console.log("no more keywords");
+	  } else {
+	      var key = keywords.keywords[j].keyword;
+	      var li = document.createElement('li');
+              li.innerHTML = key;
+              document.getElementById("cloud").appendChild(li);
 	  }
       }
       
