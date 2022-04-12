@@ -146,7 +146,7 @@
     <h1 id="title">Chat Message Analytics</h1>
 
 
-    <div id="circle"><div id="overall-score"></div></div>
+    <div id="circle"><div id="overall"></div></div>
     <div id="box" style="border">
       <div id="sad-circle"><div id="sad-score"></div></div> 
       <div id="joy-circle"><div id="joy-score"></div></div>   
@@ -180,27 +180,43 @@
       $("#myChart").show();
       $("#button").hide();
       console.log("showAnalytics called")
+
+      // backend issues with ibm-watson import
+      //      $.get("/open_api/nlu", function(data){
+      //          console.log("made it here");
+
+      //      });
+      //  }
+        //                  function(err){
+        //                      console.log("error");
+        //                      console.log(err)} );
+
       
-      var emotions = {"emotions":[{"emotion":"sadness", "score":"0.4545"},{"emotion":"joy","score":"0.6711"},{"emotion":"anger", "score":"0.0545"},{"emotion":"disgust","score":"0.6711"},{"emotion":"fear","score":"0.0011"},{"top":"joy"}]};
+      var emotions = {"emotions":[{"emotion":"sadness", "score":"0.4545"},{"emotion":"joy","score":"0.6711"},{"emotion":"anger", "score":"0.0545"},{"emotion":"disgust","score":"0.3511"},{"emotion":"fear","score":"0.0011"},{"top":"joy"}]};
       console.log(emotions);
 
       var keywords = {"keywords":[{"keyword":"Capstone"},{"keyword":"VChat"},{"keyword":"Software Engineering"},{"keyword":"grades"},{"keyword":"conference"},{"keyword":"testing"},{"keyword":"analytics"},{"end":"None"}]};
-      
-      var target = '';
-      var target_div = '';
-      var content = '';
-      
+            
       for(var i = 0; i < Object.keys(emotions.emotions).length; i++){
-	  console.log(emotions.emotions[i].emotion, emotions.emotions[i].score);
-	  target = emotions.emotions[i].emotion +"-score";
+	  var target = '';
+	  var target_div = '';
+	  var content = '';
+	  if(i == Object.keys(emotions.emotions).length - 1){
+	      console.log(emotions.emotions[i].top);
+              
+              console.log(String(target));
+              content = emotions.emotions[i].top;
+	  } else {
+	      console.log(emotions.emotions[i].emotion, emotions.emotions[i].score);
+	      target = emotions.emotions[i].emotion +"-score";
 	  
-	  console.log(String(target));
-	  content = emotions.emotions[i].emotion + ": " + parseFloat(emotions.emotions[i].score) * 100 +"%";
-	  
+	      console.log(String(target));
+	      content = emotions.emotions[i].emotion + ": " + parseFloat(emotions.emotions[i].score);
+	  }
 	  var text = document.createElement("p");
 	  var node = document.createTextNode(content);
 	  text.append(node);
-	  //target_div.innerText += content;
+	  
 	  switch(String(target)){	      
 	  case 'sadness-score':
 	      console.log("sad af");
@@ -222,9 +238,11 @@
 	      console.log("scared af");
 	      document.getElementById("fear-score").append(text);
 	      break;
-	  case 'top':
-	      console.log("Overall Emotion "+emotions.emotions[i].top);
-	      document.getElementById("overall-score").append(emotions.emotions[i]);
+	  default:
+	      node = document.createTextNode("Overall Emotion: "+content);
+	      text.append(node);
+	      console.log(node);
+	      document.getElementById("overall").append(text);
 	  }
       }
 
@@ -235,22 +253,13 @@
 	  } else {
 	      var key = keywords.keywords[j].keyword;
 	      var li = document.createElement('li');
-              li.innerHTML = key;
+	      li.innerHTML = key;
               document.getElementById("cloud").appendChild(li);
 	  }
       }
       
   }     
-      // backend issues with ibm-watson import
-      //      $.get("/open_api/nlu", function(data){
-      //	  console.log("made it here");
-	  
-      //      });
-      //  }
-	//		    function(err){
-	//			console.log("error");
-	//			console.log(err)} );
- 
+
   
   function drawChart() {
       // Set Data
