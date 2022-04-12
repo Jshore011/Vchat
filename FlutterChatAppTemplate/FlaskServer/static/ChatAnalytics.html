@@ -42,8 +42,7 @@
       }
       #overall-score{
 	  position: relative;
-	  top: 30%;
-          left: 25%;
+          left: 125%;
       }
       #sad-circle {
           position: relative;
@@ -61,7 +60,7 @@
       }
       #sad-score {
           position: relative;
-       	  left: 15%;
+       	  left: 125%;
       }
       #joy-circle {
           position: relative;
@@ -79,7 +78,7 @@
       }
       #joy-score {
           position: relative;
-          left: 15%;
+          left: 125%;
       }
       #anger-circle {
           position: relative;
@@ -97,7 +96,7 @@
       }
       #anger-score {
           position: relative;
-          left: 15%;
+          left: 125%;
       }
       #disgust-circle {
           position: relative;
@@ -115,7 +114,7 @@
       }
       #disgust-score {
           position: relative;
-          left: 15%;
+          left: 125%;
       }
       
       #fear-circle{
@@ -134,7 +133,7 @@
       }
       #fear-score {
           position: relative;
-          left: 15%;
+          left: 125%;
       }
       #title {
           position: absolute;
@@ -147,7 +146,7 @@
     <h1 id="title">Chat Message Analytics</h1>
 
 
-    <div id="circle"><div id="overall-score">Overall Emotion</div></div>
+    <div id="circle"><div id="overall-score"></div></div>
     <div id="box" style="border">
       <div id="sad-circle"><div id="sad-score"></div></div> 
       <div id="joy-circle"><div id="joy-score"></div></div>   
@@ -182,7 +181,7 @@
       $("#button").hide();
       console.log("showAnalytics called")
       
-      var emotions = {"emotions":[{"emotion":"sadness", "score":"0.4545"},{"emotion":"joy","score":"0.6711"},{"emotion":"anger", "score":"0.0545"},{"emotion":"disgust","score":"0.6711"},{"emotion":"fear","score":"0.0011"}]};
+      var emotions = {"emotions":[{"emotion":"sadness", "score":"0.4545"},{"emotion":"joy","score":"0.6711"},{"emotion":"anger", "score":"0.0545"},{"emotion":"disgust","score":"0.6711"},{"emotion":"fear","score":"0.0011"},{"top":"joy"}]};
       console.log(emotions);
 
       var keywords = {"keywords":[{"keyword":"Capstone"},{"keyword":"VChat"},{"keyword":"Software Engineering"},{"keyword":"grades"},{"keyword":"conference"},{"keyword":"testing"},{"keyword":"analytics"},{"end":"None"}]};
@@ -196,13 +195,13 @@
 	  target = emotions.emotions[i].emotion +"-score";
 	  
 	  console.log(String(target));
-	  content = emotions.emotions[i].emotion + ": " +emotions.emotions[i].score;
+	  content = emotions.emotions[i].emotion + ": " + parseFloat(emotions.emotions[i].score) * 100 +"%";
 	  
 	  var text = document.createElement("p");
 	  var node = document.createTextNode(content);
 	  text.append(node);
 	  //target_div.innerText += content;
-	  switch(String(target)){
+	  switch(String(target)){	      
 	  case 'sadness-score':
 	      console.log("sad af");
 	      document.getElementById("sad-score").append(text);
@@ -223,6 +222,9 @@
 	      console.log("scared af");
 	      document.getElementById("fear-score").append(text);
 	      break;
+	  case 'top':
+	      console.log("Overall Emotion "+emotions.emotions[i].top);
+	      document.getElementById("overall-score").append(emotions.emotions[i]);
 	  }
       }
 
