@@ -157,7 +157,7 @@
 
     <ul class="cloud" id="cloud"role="navigation" aria-label="Webdev tag cloud">		
       <h1>Keyword Tag Cloud</h2>
-<li><a data-weight="4" href="/tag/http">test value</a></li>
+
 </ul>
 
 <div id="myChart" style="width:100%; max-width:600px; height:500px;"></div>
@@ -183,79 +183,87 @@
 
       // backend issues with ibm-watson import
       $.get("/open_api/NLU_API", function(data){
-                console.log("made it here");
+          console.log("made it here");
+	  //console.log(data);
 
+	  var emotions = data.data2;
+	  console.log(emotions.emotions);
+
+	  var keywords = data.data;
+	  console.log(keywords);
+
+	  for(var i = 0; i < Object.keys(emotions.emotions).length; i++){
+              var target = '';
+              var target_div = '';
+              var content = '';
+              if(i == Object.keys(emotions.emotions).length - 1){
+		  console.log(emotions.emotions[i].top);
+
+		  console.log(String(target));
+		  content = emotions.emotions[i].top;
+              } else {
+		  console.log(emotions.emotions[i].emotion, emotions.emotions[i].score);
+		  target = emotions.emotions[i].emotion +"-score";
+
+		  console.log(String(target));
+		  content = emotions.emotions[i].emotion + ": " + parseFloat(emotions.emotions[i].score);
+              }
+              var text = document.createElement("p");
+              var node = document.createTextNode(content);
+              text.append(node);
+
+              switch(String(target)){
+              case 'sadness-score':
+		  console.log("sad af");
+		  document.getElementById("sad-score").append(text);
+		  break;
+              case 'joy-score':
+		  console.log("happy af");
+		  document.getElementById("joy-score").append(text);
+		  break;
+	      case 'anger-score':
+		  console.log("mad af");
+		  document.getElementById("anger-score").append(text);
+		  break;
+              case 'disgust-score':
+		  console.log("gross af");
+		  document.getElementById("disgust-score").append(text);
+		  break;
+              case 'fear-score':
+		  console.log("scared af");
+		  document.getElementById("fear-score").append(text);
+	          break;
+              case 'fear-score':
+		  console.log("scared af");
+		  document.getElementById("fear-score").append(text);
+		  break;
+              default:
+		  node = document.createTextNode("Overall Emotion: "+content);
+		  text.append(node);
+		  console.log(node);
+		  document.getElementById("overall").append(text);
+              }
+	  }
+
+	  for (var j = 0; j < Object.keys(keywords.keywords).length - 1; j ++){
+              console.log(keywords.keywords[j].keyword);
+              if(keywords.keywords[j].keyword == 'None'){
+		  console.log("no more keywords");
+              } else {
+		  var key = keywords.keywords[j].keyword;
+		  var li = document.createElement('li');
+		  li.innerHTML = key;
+		  document.getElementById("cloud").appendChild(li);
+              }
+	  }
+
+	  
       });//               function(err){
          //                     console.log("error");
          //                     console.log(err)} );
 	 //  );
-      
-      var emotions = {"emotions":[{"emotion":"sadness", "score":"0.4545"},{"emotion":"joy","score":"0.6711"},{"emotion":"anger", "score":"0.0545"},{"emotion":"disgust","score":"0.3511"},{"emotion":"fear","score":"0.0011"},{"top":"joy"}]};
-      console.log(emotions);
-
-      var keywords = {"keywords":[{"keyword":"Capstone"},{"keyword":"VChat"},{"keyword":"Software Engineering"},{"keyword":"grades"},{"keyword":"conference"},{"keyword":"testing"},{"keyword":"analytics"},{"keyword":"VChat"},{"keyword":"Software Engineering"},{"keyword":"grades"},{"keyword":"conference"},{"keyword":"testing"},{"end":"None"}]};
-            
-      for(var i = 0; i < Object.keys(emotions.emotions).length; i++){
-	  var target = '';
-	  var target_div = '';
-	  var content = '';
-	  if(i == Object.keys(emotions.emotions).length - 1){
-	      console.log(emotions.emotions[i].top);
-              
-              console.log(String(target));
-              content = emotions.emotions[i].top;
-	  } else {
-	      console.log(emotions.emotions[i].emotion, emotions.emotions[i].score);
-	      target = emotions.emotions[i].emotion +"-score";
-	  
-	      console.log(String(target));
-	      content = emotions.emotions[i].emotion + ": " + parseFloat(emotions.emotions[i].score);
-	  }
-	  var text = document.createElement("p");
-	  var node = document.createTextNode(content);
-	  text.append(node);
-	  
-	  switch(String(target)){	      
-	  case 'sadness-score':
-	      console.log("sad af");
-	      document.getElementById("sad-score").append(text);
-	      break;
-	  case 'joy-score':
-	      console.log("happy af");
-	      document.getElementById("joy-score").append(text);
-	      break;
-	  case 'anger-score':
-	      console.log("mad af");
-	      document.getElementById("anger-score").append(text);
-	      break;
-	  case 'disgust-score':
-	      console.log("gross af");
-	      document.getElementById("disgust-score").append(text);
-	      break;
-	  case 'fear-score':
-	      console.log("scared af");
-	      document.getElementById("fear-score").append(text);
-	      break;
-	  default:
-	      node = document.createTextNode("Overall Emotion: "+content);
-	      text.append(node);
-	      console.log(node);
-	      document.getElementById("overall").append(text);
-	  }
-      }
-
-      for (var j = 0; j < Object.keys(keywords.keywords).length - 1; j ++){
-	  console.log(keywords.keywords[j].keyword);
-	  if(keywords.keywords[j].keyword == 'None'){
-	      console.log("no more keywords");
-	  } else {
-	      var key = keywords.keywords[j].keyword;
-	      var li = document.createElement('li');
-	      li.innerHTML = key;
-              document.getElementById("cloud").appendChild(li);
-	  }
-      }      
-  }     
+  }      
+       
 
   
   function drawChart() {
