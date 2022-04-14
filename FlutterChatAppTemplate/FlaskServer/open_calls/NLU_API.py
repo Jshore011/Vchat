@@ -59,24 +59,24 @@ def handle_request():
                         keys += '{"keyword":"'+str(k_words[i][words])+'"},'
             keys += '{"end":"none"}]}'
                     
-            if(d == "emotion"):
-                print("Emotions Detected: ")
-                #print("emotion is: ", data[d])
-                doc = data[d]
-                emotions = '{"emotions":['
-                for do in doc:
-                    emote = doc[do]
-                    for emo in emote:
-                        em = emote[emo]
-                        score = 0
-                        for e in em:
-                            print(e, em[e])
-                            if(em[e] > score):
-                                emotions += '{"emotion":"'+ str(e) + ', "score":"' + str(em[e]) + '"},'
-                                score = em[e]
-                                top = e
-                            print("Overall Emotion: ", top)
-                emotions += '{"top":"' + str(top) + '"}]}'
+        if(d == "emotion"):
+            print("Emotions Detected: ")
+            #print("emotion is: ", data[d])
+            doc = data[d]
+            emotions = '{"emotions":['
+            for do in doc:
+                emote = doc[do]
+                for emo in emote:
+                    em = emote[emo]
+                    score = 0
+                    for e in em:
+                        print(e, em[e])
+                        if(em[e] > score):
+                            emotions += '{"emotion":"'+ str(e) + '", "score":"' + str(em[e]) + '"},'
+                            score = em[e]
+                            top = e
+                        print("Overall Emotion: ", top)
+            emotions += '{"top":"' + str(top) + '"}]}'
     print(keys)
     print(emotions)
     #need to return the json file, still working on it. will reference existing Flask server example
