@@ -71,12 +71,13 @@ def handle_request():
                     score = 0
                     for e in em:
                         print(e, em[e])
+                        emotions += '{"emotion":"'+ str(e) + '", "score":"' + str(em[e]) + '"},'
                         if(em[e] > score):
-                            emotions += '{"emotion":"'+ str(e) + '", "score":"' + str(em[e]) + '"},'
+                            #emotions += '{"emotion":"'+ str(e) + '", "score":"' + str(em[e]) + '"},'
                             score = em[e]
                             top = e
-                        print("Overall Emotion: ", top)
             emotions += '{"top":"' + str(top) + '"}]}'
+            print("Overall Emotion: ", top)
     print(keys)
     print(emotions)
     #need to return the json file, still working on it. will reference existing Flask server example
