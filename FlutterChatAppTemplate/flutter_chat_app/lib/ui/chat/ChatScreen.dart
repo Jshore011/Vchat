@@ -1086,8 +1086,8 @@ class _ChatScreenState extends State<ChatScreen> {
       message.content =
           'sentAVideo'.tr(args: ['${MyAppState.currentUser!.firstName}']);
     } else if (url.mime.contains('audio')) {
-      message.content = 'sentAVoiceMessage'
-          .tr(args: ['${MyAppState.currentUser!.firstName}']);
+      message.content = '';
+          // .tr(args: ['${MyAppState.currentUser!.firstName}']);
     }
     if (await _checkChannelNullability(
         homeConversationModel.conversationModel)) {
@@ -1301,7 +1301,7 @@ class _ChatScreenState extends State<ChatScreen> {
     });
     Url url = await _fireStoreUtils.uploadAudioFile(
         File(tempPathForAudioMessages), context);
-    _sendMessage('', url, '');
+    _sendMessage('', url ,'');
   }
 
   _onCancelRecording() async {
@@ -1349,10 +1349,9 @@ class _ChatScreenState extends State<ChatScreen> {
     );
 
     final audio = await _getAudioContent(tempPathForAudioMessages);
-    await speechToText.recognize(config, audio).then((value) {
+    speechToText.recognize(config, audio).then((value) {
       setState(() {
         transcribedMessage = value.results.map((e) => e.alternatives.first.transcript).join('n');
-        print(transcribedMessage);
       });
     }).whenComplete(() {
       setState(() {
