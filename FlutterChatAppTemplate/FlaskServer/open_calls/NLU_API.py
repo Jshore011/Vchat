@@ -29,6 +29,20 @@ def handle_request():
 
     logger.debug("transcript received: " + str(message))
 
+    cur = g.db.cursor()
+    
+    #post request data
+    msgID = 'test msgID'#request.args.get("msgID")
+    usrID = 'test UserID'#request.args.get("usrID")
+    chtRmID = 'test ChatRoomID'#request.args.get("chtRmID")
+
+    #message table insert
+    cur.execute(sql.SQL("INSERT INTO message (msgID, usrID, chatroomID, transcript) VALUES (%s, %s, %s, %s);",(msgID, usrID, chtRmID, message)))
+    #chatroom table insert
+    cur.execute(sql.SQL("INSERT INTO  chatroom (%s, %s, %s);",(chtRmID,msgID, usrID)))
+
+                
+    #IBM credentials
     key = '_J9y8uEfAGCf0-AGEwW-cj15eWxpEDnqFQnqBSSimkDv'
     url = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/4c6d89e4-9a1a-41f2-962a-dc42e5854346"
 
@@ -39,6 +53,7 @@ def handle_request():
     )
     natural_language_understanding.set_service_url(url)
 
+    #API call for NLU Emotion and Keyword Analysis
     try:
         ibm_response = natural_language_understanding.analyze(
             text= str(message),
@@ -68,6 +83,8 @@ def handle_request():
 
                         if(words == 'text'):
                             keys += '{"keyword":"'+str(k_words[i][words])+'"},'
+                            cur.execute(sql.SQL("INSERT INTO keywords (msgID, usrID, chatroomID, keyword) VALUES (%s, %s, %s, %s);",(msgID, usrID, chtRmID, k_words[i][words])))
+
                 keys += '{"end":"none"}]}'
                     
             if(d == "emotion"):
@@ -86,13 +103,15 @@ def handle_request():
                         for e in em:
                             print(e, em[e])
                             emotions += '{"emotion":"'+ str(e) + '", "score":"' + str(em[e]) + '"},'
-
+                            cur.execute(sql.SQL("INSERT INTO emotion (msgID, usrID, chatroomID, emotion,confidence) VALUES (%s, %s, %s, %s, %d);",(msgID, usrID, chtRmID, e, em[e])))
+                                        
                             if(em[e] > score):
                             
                                 score = em[e]
                                 top = e
                 emotions += '{"top":"' + str(top) + '"}]}'
                 print("Overall Emotion: ", top)
+                                                
         print(keys)
         print(emotions)
     
