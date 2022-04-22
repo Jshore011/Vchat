@@ -619,6 +619,8 @@ class FireStoreUtils {
       payloadFriends = [MyAppState.currentUser!];
     }
 
+    await analysisData(message.content, message.messageID, MyAppState.currentUser!.userID, conversationModel.id);
+
     await Future.forEach(members, (User element) async {
       if (element.userID != MyAppState.currentUser!.userID) {
         if (notify) if (element.settings.allowPushNotifications) {
@@ -635,7 +637,7 @@ class FireStoreUtils {
             'status': 'done',
             'conversationModel': conversationModel.toPayload(),
             'isGroup': isGroup,
-            'members': payloadFriends.map((e) => e.toPayload()).toList()
+            'members': payloadFriends.map((e) => e.toPayload()).toList(),
           };
 
           await sendNotification(
@@ -1176,7 +1178,7 @@ class FireStoreUtils {
 
 sendNotification(String token, String title, String body,
     Map<String, dynamic>? payload) async {
-  await http.post(
+    await http.post(
     Uri.parse('https://fcm.googleapis.com/fcm/send'),
     headers: <String, String>{
       'Content-Type': 'application/json',
@@ -1191,6 +1193,31 @@ sendNotification(String token, String title, String body,
       },
     ),
   );
+}
+
+Future<http.Response?> analysisData(String message, String messageID, String userID, String conversationID) async {
+  var response = await http.post(
+    Uri.parse('https://jsonplaceholder.typicode.com/posts'),
+    // Uri.parse('http://52.116.29.131/open_api/NLU_API'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'message': message,
+      'messageID': messageID,
+      'userID': userID,
+      'conversationID': conversationID,
+    }),
+  );
+
+  if(response.statusCode == 201) {
+    print(response.body);
+    return response;
+  }
+  else {
+    print("Failed to get response");
+    return null;
+  }
 }
 
 sendPayLoad(String token, {Map<String, dynamic>? callData}) async {
@@ -1210,3 +1237,4 @@ sendPayLoad(String token, {Map<String, dynamic>? callData}) async {
     ),
   );
 }
+

@@ -42,7 +42,7 @@ class _PlayerWidgetState extends State<PlayerWidget> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
-      children: [_buildPlayPauseButton(), _buildPlayBar(), _buildDuration(), _buildEmoji()],
+      children: [_buildPlayPauseButton(), _buildPlayBar(), _buildDuration()],
     );
   }
 
@@ -56,13 +56,13 @@ class _PlayerWidgetState extends State<PlayerWidget> {
         color: widget.color,
       );
 
-  Widget _buildEmoji() => Expanded(
-      child: Image.asset(
-        Directionality.of(context) == TextDirection.ltr
-            ? 'assets/images/joy.png'
-            : 'assets/images/sad.png',
-        height: 20,
-      ));
+  // Widget _buildEmoji() => Expanded(
+  //     child: Image.asset(
+  //       Directionality.of(context) == TextDirection.ltr
+  //           ? 'assets/images/joy.png'
+  //           : 'assets/images/sad.png',
+  //       height: 20,
+  //     ));
 
   Widget _buildPlayBar() => Expanded(
         child: StreamBuilder<PlaybackDisposition>(

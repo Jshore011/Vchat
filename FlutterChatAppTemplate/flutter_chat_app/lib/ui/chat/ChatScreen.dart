@@ -24,6 +24,7 @@ import 'package:instachatty/model/HomeConversationModel.dart';
 import 'package:instachatty/model/MessageData.dart';
 import 'package:instachatty/model/User.dart';
 import 'package:instachatty/services/FirebaseHelper.dart';
+import 'package:instachatty/services/IBMHelper.dart';
 import 'package:instachatty/services/helper.dart';
 import 'package:instachatty/ui/analytics/ChatAnalyticsAlt.dart';
 import 'package:instachatty/ui/chat/PlayerWidget.dart';
@@ -52,6 +53,7 @@ class _ChatScreenState extends State<ChatScreen> {
   late HomeConversationModel homeConversationModel;
   TextEditingController _messageController = TextEditingController();
   final FireStoreUtils _fireStoreUtils = FireStoreUtils();
+  final IBMUtils _ibmUtils = IBMUtils();
   TextEditingController _groupNameController = TextEditingController();
   RecordingState currentRecordingState = RecordingState.HIDDEN;
   late Timer audioMessageTimer;
@@ -74,6 +76,7 @@ class _ChatScreenState extends State<ChatScreen> {
     filepath = '/sdcard/Download/temp.wav';
     _myRecorder!.openRecorder();
     homeConversationModel = widget.homeConversationModel;
+    print("here: " + homeConversationModel.conversationModel!.id);
     if (homeConversationModel.isGroupChat)
       _groupNameController.text =
           homeConversationModel.conversationModel?.name ?? '';
@@ -1052,6 +1055,10 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   _sendMessage(String content, Url url, String videoThumbnail) async {
+
+    var emotion = await _ibmUtils.messageEmotionRequest(content, MyAppState.currentUser!.userID, homeConversationModel.conversationModel!.id);
+    print(emotion);
+
     MessageData message;
     if (homeConversationModel.isGroupChat) {
       message = MessageData(
@@ -1062,7 +1069,8 @@ class _ChatScreenState extends State<ChatScreen> {
           senderLastName: MyAppState.currentUser!.lastName,
           senderProfilePictureURL: MyAppState.currentUser!.profilePictureURL,
           url: url,
-          videoThumbnail: videoThumbnail);
+          videoThumbnail: videoThumbnail,
+          emotion: emotion.toString());
     } else {
       message = MessageData(
           content: content,
@@ -1077,7 +1085,8 @@ class _ChatScreenState extends State<ChatScreen> {
           senderLastName: MyAppState.currentUser!.lastName,
           senderProfilePictureURL: MyAppState.currentUser!.profilePictureURL,
           url: url,
-          videoThumbnail: videoThumbnail);
+          videoThumbnail: videoThumbnail,
+          emotion: emotion.toString());
     }
     if (url.mime.contains('image')) {
       message.content =
@@ -1086,8 +1095,8 @@ class _ChatScreenState extends State<ChatScreen> {
       message.content =
           'sentAVideo'.tr(args: ['${MyAppState.currentUser!.firstName}']);
     } else if (url.mime.contains('audio')) {
-      message.content = 'sentAVoiceMessage'
-          .tr(args: ['${MyAppState.currentUser!.firstName}']);
+      message.content = '';
+          // .tr(args: ['${MyAppState.currentUser!.firstName}']);
     }
     if (await _checkChannelNullability(
         homeConversationModel.conversationModel)) {
@@ -1301,7 +1310,7 @@ class _ChatScreenState extends State<ChatScreen> {
     });
     Url url = await _fireStoreUtils.uploadAudioFile(
         File(tempPathForAudioMessages), context);
-    _sendMessage('', url, '');
+    _sendMessage('', url ,'');
   }
 
   _onCancelRecording() async {
@@ -1349,10 +1358,9 @@ class _ChatScreenState extends State<ChatScreen> {
     );
 
     final audio = await _getAudioContent(tempPathForAudioMessages);
-    await speechToText.recognize(config, audio).then((value) {
+    speechToText.recognize(config, audio).then((value) {
       setState(() {
         transcribedMessage = value.results.map((e) => e.alternatives.first.transcript).join('n');
-        print(transcribedMessage);
       });
     }).whenComplete(() {
       setState(() {
@@ -1367,4 +1375,12 @@ class _ChatScreenState extends State<ChatScreen> {
   Future<List<int>> _getAudioContent(String path) async {
     return File(path).readAsBytesSync().toList();
   }
+
+  Widget _buildEmoji() => Expanded(
+    child: Image.asset(
+           'assets/images/joy.png',
+      height: 20,
+    )
+  );
+
 }
