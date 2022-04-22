@@ -37,9 +37,9 @@ def handle_request():
     chtRmID = 'test ChatRoomID'#request.args.get("chtRmID")
 
     #message table insert
-    cur.execute(sql.SQL("INSERT INTO message (msgID, usrID, chatroomID, transcript) VALUES (%s, %s, %s, %s);",(msgID, usrID, chtRmID, message)))
+    cur.execute(sql.SQL("INSERT INTO messages (msgID, usrID, chatroomID, transcript) VALUES (%s, %s, %s, %s);"),(msgID, usrID, chtRmID, message))
     #chatroom table insert
-    cur.execute(sql.SQL("INSERT INTO  chatroom (%s, %s, %s);",(chtRmID,msgID, usrID)))
+    cur.execute(sql.SQL("INSERT INTO  chatroom (%s, %s, %s);"),(chtRmID,msgID, usrID))
 
                 
     #IBM credentials
@@ -83,7 +83,7 @@ def handle_request():
 
                         if(words == 'text'):
                             keys += '{"keyword":"'+str(k_words[i][words])+'"},'
-                            cur.execute(sql.SQL("INSERT INTO keywords (msgID, usrID, chatroomID, keyword) VALUES (%s, %s, %s, %s);",(msgID, usrID, chtRmID, k_words[i][words])))
+                            cur.execute(sql.SQL("INSERT INTO keywords (msgID, usrID, chatroomID, keyword) VALUES (%s, %s, %s, %s);"),(msgID, usrID, chtRmID, k_words[i][words]))
 
                 keys += '{"end":"none"}]}'
                     
@@ -103,7 +103,7 @@ def handle_request():
                         for e in em:
                             print(e, em[e])
                             emotions += '{"emotion":"'+ str(e) + '", "score":"' + str(em[e]) + '"},'
-                            cur.execute(sql.SQL("INSERT INTO emotion (msgID, usrID, chatroomID, emotion,confidence) VALUES (%s, %s, %s, %s, %d);",(msgID, usrID, chtRmID, e, em[e])))
+                            cur.execute(sql.SQL("INSERT INTO emotion (msgID, usrID, chatroomID, emotion,confidence) VALUES (%s, %s, %s, %s, %d);"),(msgID, usrID, chtRmID, e, em[e]))
                                         
                             if(em[e] > score):
                             
