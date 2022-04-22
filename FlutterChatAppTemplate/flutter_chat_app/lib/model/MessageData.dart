@@ -27,6 +27,8 @@ class MessageData {
 
   String videoThumbnail;
 
+  String emotion;
+
   MessageData(
       {this.messageID = '',
       url,
@@ -40,7 +42,8 @@ class MessageData {
       this.senderLastName = '',
       this.senderProfilePictureURL = '',
       this.senderID = '',
-      this.videoThumbnail = ''})
+      this.videoThumbnail = '',
+      this.emotion = ''})
       : this.url = url ?? Url(),
         this.created = created ?? Timestamp.now();
 
@@ -57,7 +60,8 @@ class MessageData {
         senderFirstName: parsedJson['senderFirstName'] ?? '',
         senderLastName: parsedJson['senderLastName'] ?? '',
         senderProfilePictureURL: parsedJson['senderProfilePictureURL'] ?? '',
-        senderID: parsedJson['senderID'] ?? '');
+        senderID: parsedJson['senderID'] ?? '',
+        emotion: parsedJson['emotion'] ?? '');
         //videoThumbnail: parsedJson['videoThumbnail'] ?? '');
   }
 
@@ -76,6 +80,7 @@ class MessageData {
       'senderProfilePictureURL': this.senderProfilePictureURL,
       'senderID': this.senderID,
       //'videoThumbnail': this.videoThumbnail
+      'emotion': this.emotion,
     };
   }
 }
