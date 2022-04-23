@@ -120,5 +120,5 @@ def handle_request():
         return jsonify(message= top)
     except ApiException as ex:
         print("Method failed with status code " + str(ex.code) + ": " + ex.message)
-        return ex.code, ex.message
+        return jsonify(message = "Method failed with status code " + str(ex.code) + ": " + ex.message)
     
