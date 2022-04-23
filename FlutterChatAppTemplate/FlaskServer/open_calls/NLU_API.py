@@ -21,7 +21,7 @@ def handle_request():
     
     content = request.get_json()
     logger.debug(content)
-    message = content.message
+    message = content['message']
     
     if message is None or len(message) < 1:
     
@@ -34,9 +34,9 @@ def handle_request():
     cur = g.db.cursor()
     
     #post request data
-    msgID = message.messageID
-    usrID = message.userID
-    chtRmID = message.conversationID
+    msgID = content['messageID']
+    usrID = content['userID']
+    chtRmID = content['conversationID']
 
 
     #message table insert
