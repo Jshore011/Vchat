@@ -6,7 +6,7 @@ from ibm_watson.natural_language_understanding_v1 import Features, EmotionOption
 
 import requests as req
 
-from flask import request, g
+from flask import request, g, jsonify
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 from tools.token_tools import create_token
 from psycopg2 import sql
@@ -22,12 +22,11 @@ def handle_request():
     content = request.get_json()
     logger.debug(content)
     message = content['message']
-    
+    #return jsonify(message = "hello")
     if message is None or len(message) < 1:
     
-        response = "audio message recieved"
-        logger.debug(response)
-        return response
+        logger.debug("audio file recieved")
+        return jsonify(message='')
 
     logger.debug("transcript received: " + str(message))
 
@@ -40,9 +39,9 @@ def handle_request():
 
 
     #message table insert
-    cur.execute(sql.SQL("INSERT INTO messages (msgID, usrID, chatroomID, transcript) VALUES (%s, %s, %s, %s);"),(msgID, usrID, chtRmID, message))
+    #cur.execute(sql.SQL("INSERT INTO messages (msgID, usrID, chatroomID, transcript) VALUES (%s, %s, %s, %s);"),(msgID, usrID, chtRmID, message))
     #chatroom table insert
-    cur.execute(sql.SQL("INSERT INTO  chatroom (%s, %s, %s);"),(chtRmID,msgID, usrID))
+    #cur.execute(sql.SQL("INSERT INTO  chatroom (%s, %s, %s);"),(chtRmID,msgID, usrID))
 
                 
     #IBM credentials
@@ -86,7 +85,7 @@ def handle_request():
 
                         if(words == 'text'):
                             keys += '{"keyword":"'+str(k_words[i][words])+'"},'
-                            cur.execute(sql.SQL("INSERT INTO keywords (msgID, usrID, chatroomID, keyword) VALUES (%s, %s, %s, %s);"),(msgID, usrID, chtRmID, k_words[i][words]))
+                            #cur.execute(sql.SQL("INSERT INTO keywords (msgID, usrID, chatroomID, keyword) VALUES (%s, %s, %s, %s);"),(msgID, usrID, chtRmID, k_words[i][words]))
 
                 keys += '{"end":"none"}]}'
                     
@@ -106,7 +105,7 @@ def handle_request():
                         for e in em:
                             print(e, em[e])
                             emotions += '{"emotion":"'+ str(e) + '", "score":"' + str(em[e]) + '"},'
-                            cur.execute(sql.SQL("INSERT INTO emotion (msgID, usrID, chatroomID, emotion,confidence) VALUES (%s, %s, %s, %s, %d);"),(msgID, usrID, chtRmID, e, em[e]))
+                            #cur.execute(sql.SQL("INSERT INTO emotion (msgID, usrID, chatroomID, emotion,confidence) VALUES (%s, %s, %s, %s, %d);"),(msgID, usrID, chtRmID, e, em[e]))
                                         
                             if(em[e] > score):
                             
@@ -118,7 +117,7 @@ def handle_request():
         print(keys)
         print(emotions)
     
-        return json_response(data= json.loads(keys, strict = False), data2= json.loads(emotions, strict = False))
+        return jsonify(message= top)
     except ApiException as ex:
         print("Method failed with status code " + str(ex.code) + ": " + ex.message)
         return ex.code, ex.message
