@@ -18,9 +18,11 @@ from tools.logging import logger
 def handle_request():
 
     logger.debug("NLU Analysis Handle Request")
-
-    message = "I like soup but only when it is hot" #request.args.get("message")
-
+    
+    content = request.get_json()
+    logger.debug(content)
+    message = content.message
+    
     if message is None or len(message) < 1:
     
         response = "audio message recieved"
@@ -32,9 +34,10 @@ def handle_request():
     cur = g.db.cursor()
     
     #post request data
-    msgID = 'test msgID'#request.args.get("msgID")
-    usrID = 'test UserID'#request.args.get("usrID")
-    chtRmID = 'test ChatRoomID'#request.args.get("chtRmID")
+    msgID = message.messageID
+    usrID = message.userID
+    chtRmID = message.conversationID
+
 
     #message table insert
     cur.execute(sql.SQL("INSERT INTO messages (msgID, usrID, chatroomID, transcript) VALUES (%s, %s, %s, %s);"),(msgID, usrID, chtRmID, message))
