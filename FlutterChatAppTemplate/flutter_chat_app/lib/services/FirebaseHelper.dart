@@ -609,7 +609,9 @@ class FireStoreUtils {
         .doc(conversationModel.id)
         .collection(THREAD)
         .doc();
-    message.messageID = ref.id; //TODO: sending to firestore?
+    message.messageID = ref.id;
+    message.emotion = await analysisData(message.content, message.messageID, MyAppState.currentUser!.userID, conversationModel.id);
+//TODO: sending to firestore?
     ref.set(message.toJson());
     List<User> payloadFriends;
     if (isGroup) {
@@ -618,8 +620,6 @@ class FireStoreUtils {
     } else {
       payloadFriends = [MyAppState.currentUser!];
     }
-
-    await analysisData(message.content, message.messageID, MyAppState.currentUser!.userID, conversationModel.id);
 
     await Future.forEach(members, (User element) async {
       if (element.userID != MyAppState.currentUser!.userID) {
@@ -1195,10 +1195,9 @@ sendNotification(String token, String title, String body,
   );
 }
 
-Future<http.Response?> analysisData(String message, String messageID, String userID, String conversationID) async {
+analysisData(String message, String messageID, String userID, String conversationID) async {
   var response = await http.post(
-    Uri.parse('https://jsonplaceholder.typicode.com/posts'),
-    // Uri.parse('http://52.116.29.131/open_api/NLU_API'),
+    Uri.parse('http://52.116.29.131/open_api/NLU_API/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -1210,9 +1209,11 @@ Future<http.Response?> analysisData(String message, String messageID, String use
     }),
   );
 
-  if(response.statusCode == 201) {
-    print(response.body);
-    return response;
+  if(response.statusCode == 200) {
+    var emotionalAnalysis = jsonDecode(response.body);
+    var emotion = emotionalAnalysis['message'];
+    print(emotion);
+    return emotion;
   }
   else {
     print("Failed to get response");

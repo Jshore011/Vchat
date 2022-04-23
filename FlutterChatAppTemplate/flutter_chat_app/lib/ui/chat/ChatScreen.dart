@@ -1056,9 +1056,6 @@ class _ChatScreenState extends State<ChatScreen> {
 
   _sendMessage(String content, Url url, String videoThumbnail) async {
 
-    var emotion = await _ibmUtils.messageEmotionRequest(content, MyAppState.currentUser!.userID, homeConversationModel.conversationModel!.id);
-    print(emotion);
-
     MessageData message;
     if (homeConversationModel.isGroupChat) {
       message = MessageData(
@@ -1069,8 +1066,8 @@ class _ChatScreenState extends State<ChatScreen> {
           senderLastName: MyAppState.currentUser!.lastName,
           senderProfilePictureURL: MyAppState.currentUser!.profilePictureURL,
           url: url,
-          videoThumbnail: videoThumbnail,
-          emotion: emotion.toString());
+          videoThumbnail: videoThumbnail
+      );
     } else {
       message = MessageData(
           content: content,
@@ -1085,8 +1082,8 @@ class _ChatScreenState extends State<ChatScreen> {
           senderLastName: MyAppState.currentUser!.lastName,
           senderProfilePictureURL: MyAppState.currentUser!.profilePictureURL,
           url: url,
-          videoThumbnail: videoThumbnail,
-          emotion: emotion.toString());
+          videoThumbnail: videoThumbnail
+      );
     }
     if (url.mime.contains('image')) {
       message.content =
