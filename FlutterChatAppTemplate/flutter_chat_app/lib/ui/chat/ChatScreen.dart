@@ -128,7 +128,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     child: ListTile(
                       dense: true,
                       onTap: () {
-                        launch('http://54.193.55.43/static/ChatAnalytics.html'); //TODO: need to update each time we launch the server
+                        launch('http://52.116.29.131/static/ChatAnalytics.html'); //TODO: need to update each time we launch the server
                       },
                       contentPadding: const EdgeInsets.all(0),
                       leading: Icon(
