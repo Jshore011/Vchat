@@ -19,10 +19,10 @@ def handle_request():
 
     logger.debug("NLU Analysis Handle Request")
     
-    content = request.get_json()
-    logger.debug(content)
-    message = content['message']
-    #return jsonify(message = "hello")
+    #content = request.get_json()
+    #logger.debug(content)
+    message = "This is a test for the SQL inserts. I really hope it works"#content['message']
+            
     if message is None or len(message) < 1:
     
         logger.debug("audio file recieved")
@@ -33,16 +33,12 @@ def handle_request():
     cur = g.db.cursor()
     
     #post request data
-    msgID = content['messageID']
-    usrID = content['userID']
-    chtRmID = content['conversationID']
+    msgID = "junk value test"#content['messageID']
+    usrID = "junk value test"#content['userID']
+    chtRmID = "junk value test"#content['conversationID']
 
-
-    #message table insert
-    #cur.execute(sql.SQL("INSERT INTO messages (msgID, usrID, chatroomID, transcript) VALUES (%s, %s, %s, %s);"),(msgID, usrID, chtRmID, message))
     #chatroom table insert
-    #cur.execute(sql.SQL("INSERT INTO  chatroom (%s, %s, %s);"),(chtRmID,msgID, usrID))
-
+    cur.execute(sql.SQL("INSERT INTO  chatroom (usrid, msgid, chtrmid) VALUES (%s, %s, %s);"),(usrID, msgID, chtRmID))
                 
     #IBM credentials
     key = '_J9y8uEfAGCf0-AGEwW-cj15eWxpEDnqFQnqBSSimkDv'
@@ -65,7 +61,7 @@ def handle_request():
         print(json.dumps(ibm_response, indent=2))
 
         data = ibm_response
-
+        
         #parse response data
         for d in data:    
             
@@ -85,7 +81,7 @@ def handle_request():
 
                         if(words == 'text'):
                             keys += '{"keyword":"'+str(k_words[i][words])+'"},'
-                            #cur.execute(sql.SQL("INSERT INTO keywords (msgID, usrID, chatroomID, keyword) VALUES (%s, %s, %s, %s);"),(msgID, usrID, chtRmID, k_words[i][words]))
+                            cur.execute(sql.SQL("INSERT INTO keywords (keyword, msgid, chtrmid, usrid) VALUES (%s, %s, %s, %s);"),(k_words[i][words], msgID, chtRmID, usrID))
 
                 keys += '{"end":"none"}]}'
                     
@@ -105,18 +101,26 @@ def handle_request():
                         for e in em:
                             print(e, em[e])
                             emotions += '{"emotion":"'+ str(e) + '", "score":"' + str(em[e]) + '"},'
-                            #cur.execute(sql.SQL("INSERT INTO emotion (msgID, usrID, chatroomID, emotion,confidence) VALUES (%s, %s, %s, %s, %d);"),(msgID, usrID, chtRmID, e, em[e]))
-                                        
+                                                                
                             if(em[e] > score):
                             
                                 score = em[e]
                                 top = e
                 emotions += '{"top":"' + str(top) + '"}]}'
                 print("Overall Emotion: ", top)
-                                                
+                
+        #message table insert
+        cur.execute(sql.SQL("INSERT INTO messages (usrid, msgid, chtrmid, topemotion, transcript) VALUES (%s, %s, %s, %s,  %s);"),(usrID, msgID, chtRmID, top,  message))                                        
+
         print(keys)
         print(emotions)
-    
+        
+        #emotion table insert
+        cur.execute(sql.SQL("INSERT INTO emotions (emotions, msgid, chtrmid, usrid) VALUES (%s, %s, %s, %s);"),(emotions, msgID, usrID, chtRmID))
+
+        cur.close()
+        g.db.commit()
+        
         return jsonify(message= top)
     except ApiException as ex:
         print("Method failed with status code " + str(ex.code) + ": " + ex.message)
