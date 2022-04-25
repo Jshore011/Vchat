@@ -19,7 +19,7 @@ def handle_request():
     cur = g.db.cursor()
        
     #query for most recent message in chatroom
-    cur.execute(sql.SQL("SELECT emotions FROM emotions WHERE chtrmid = %s AND max(orderID);"),(chtRmID))
+    cur.execute(sql.SQL("select emotions from emotions where chtrmid = %s orderid = (select max(orderid) from emotions);"),(chtRmID))
     msgEmotions = cur.fetchOne()
     
     #query for all user messages in a specific chatroom
