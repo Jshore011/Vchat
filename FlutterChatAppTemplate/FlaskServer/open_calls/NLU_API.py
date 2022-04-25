@@ -19,9 +19,9 @@ def handle_request():
 
     logger.debug("NLU Analysis Handle Request")
     
-    #content = request.get_json()
-    #logger.debug(content)
-    message = "This is a test for the SQL inserts. I really hope it works"#content['message']
+    content = request.get_json()
+    logger.debug(content)
+    message = content['message']
             
     if message is None or len(message) < 1:
     
@@ -33,9 +33,9 @@ def handle_request():
     cur = g.db.cursor()
     
     #post request data
-    msgID = "junk value test"#content['messageID']
-    usrID = "junk value test"#content['userID']
-    chtRmID = "junk value test"#content['conversationID']
+    msgID = content['messageID']
+    usrID = content['userID']
+    chtRmID = content['conversationID']
 
     #chatroom table insert
     cur.execute(sql.SQL("INSERT INTO  chatroom (usrid, msgid, chtrmid) VALUES (%s, %s, %s);"),(usrID, msgID, chtRmID))
@@ -88,7 +88,6 @@ def handle_request():
             if(d == "emotion"):
                 print("Emotions Detected: ")
 
-                #print("emotion is: ", data[d])
                 doc = data[d]
                 emotions = '{"emotions":['
                 for do in doc:
