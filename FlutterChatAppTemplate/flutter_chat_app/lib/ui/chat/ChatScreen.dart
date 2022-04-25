@@ -76,7 +76,6 @@ class _ChatScreenState extends State<ChatScreen> {
     filepath = '/sdcard/Download/temp.wav';
     _myRecorder!.openRecorder();
     homeConversationModel = widget.homeConversationModel;
-    print("here: " + homeConversationModel.conversationModel!.id);
     if (homeConversationModel.isGroupChat)
       _groupNameController.text =
           homeConversationModel.conversationModel?.name ?? '';
@@ -773,7 +772,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           padding: const EdgeInsets.only(
                               top: 6, bottom: 6, right: 4, left: 4),
                           child: Text(
-                            mediaUrl.isEmpty ? messageData.content : '',
+                            mediaUrl.isEmpty ? messageData.content + " " + _ibmUtils.buildEmojiFromEmotion(messageData.emotion): '',
                             textAlign: TextAlign.start,
                             textDirection: TextDirection.ltr,
                             style: TextStyle(
@@ -1002,7 +1001,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         padding: const EdgeInsets.only(
                             top: 6, bottom: 6, right: 4, left: 4),
                         child: Text(
-                          mediaUrl.isEmpty ? messageData.content : '',
+                          mediaUrl.isEmpty ? messageData.content + " " + _ibmUtils.buildEmojiFromEmotion(messageData.emotion): '',
                           textAlign: TextAlign.start,
                           textDirection: TextDirection.ltr,
                           style: TextStyle(
