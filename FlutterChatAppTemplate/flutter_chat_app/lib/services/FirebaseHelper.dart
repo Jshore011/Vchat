@@ -24,6 +24,7 @@ import 'package:instachatty/model/ConversationModel.dart';
 import 'package:instachatty/model/HomeConversationModel.dart';
 import 'package:instachatty/model/MessageData.dart';
 import 'package:instachatty/model/User.dart';
+import 'package:instachatty/services/IBMHelper.dart';
 import 'package:instachatty/services/helper.dart';
 import 'package:instachatty/ui/reauthScreen/reauth_user_screen.dart';
 import 'package:path_provider/path_provider.dart';
@@ -43,7 +44,7 @@ class FireStoreUtils {
   late StreamController<List<HomeConversationModel>> conversationsStream;
   List<HomeConversationModel> homeConversations = [];
   List<BlockUserModel> blockedList = [];
-
+  final IBMUtils _ibmUtils = IBMUtils();
   static Future<User?> getCurrentUser(String uid) async {
     DocumentSnapshot<Map<String, dynamic>> userDocument =
         await firestore.collection(USERS).doc(uid).get();
@@ -609,9 +610,8 @@ class FireStoreUtils {
         .doc(conversationModel.id)
         .collection(THREAD)
         .doc();
-    message.messageID = ref.id;
-    message.emotion = await analysisData(message.content, message.messageID, MyAppState.currentUser!.userID, conversationModel.id);
-//TODO: sending to firestore?
+    message.messageID = ref.id; //TODO: sending to firestore?
+    message.emotion = await _ibmUtils.requestEmotionFromMessage(message.content, message.messageID, MyAppState.currentUser!.userID, conversationModel.id);
     ref.set(message.toJson());
     List<User> payloadFriends;
     if (isGroup) {
@@ -1193,32 +1193,6 @@ sendNotification(String token, String title, String body,
       },
     ),
   );
-}
-
-analysisData(String message, String messageID, String userID, String conversationID) async {
-  var response = await http.post(
-    Uri.parse('http://52.116.29.131/open_api/NLU_API/'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, String>{
-      'message': message,
-      'messageID': messageID,
-      'userID': userID,
-      'conversationID': conversationID,
-    }),
-  );
-
-  if(response.statusCode == 200) {
-    var emotionalAnalysis = jsonDecode(response.body);
-    var emotion = emotionalAnalysis['message'];
-    print(emotion);
-    return emotion;
-  }
-  else {
-    print("Failed to get response");
-    return null;
-  }
 }
 
 sendPayLoad(String token, {Map<String, dynamic>? callData}) async {
