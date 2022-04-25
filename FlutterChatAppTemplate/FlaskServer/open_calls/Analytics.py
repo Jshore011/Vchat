@@ -23,13 +23,13 @@ def handle_request():
     msgEmotions = cur.fetchOne()
     
     #query for all user messages in a specific chatroom
-    cur.execute(sql.SQL("SELECT emotions FROM emotions WHERE chtrmid = %s AND usrid = %s;"),(chtRmID,usrID))
+    cur.execute(sql.SQL("select topemotion from messages where usrid = %s and chtrmid = %s;"),(chtRmID,usrID))
     usrEmotions = cur.fetchAll()
     cur.execute(sql.SQL("SELECT keyword FROM keywords WHERE chtrmid = %s AND usrid = %s ORDER BY COUNT DESCENDING;"),(chtRmID,usrID))
     usrKeywords = cur.fetchAll()
 
     #query for all messages in a specific chatroom
-    cur.execute(sql.SQL("SELECT emotions FROM emotions WHERE chtrmid = %s;"),(chtRmID))
+    cur.execute(sql.SQL("select topemotion from messages where chtrmid = %s;"),(chtRmID))
     chtRmEmotions = cur.fetchAll()
     cur.execute(sql.SQL("SELECT keyword FROM keywords WHERE chtrmid = %s AND usrid = %s ORDER BY COUNT DESCENDING;"),(chtRmID))
     chtRmKeywords = cur.fetchAll()
