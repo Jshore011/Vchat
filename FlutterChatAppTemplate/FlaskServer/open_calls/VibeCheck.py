@@ -15,11 +15,9 @@ def handle_request():
     
     #vibe check queries the database for all chatrooms participated in by user
     cur = g.db.cursor()
-    #query gets all chatrooms user participates in                DELETE this query after testing 
-    #cur.execute(sql.SQL("select chtrmid from chatroom where usrid = %s;"),(usrID))
     
     #query gets all chatrooms user participates in ordered by recent activity
-    cur.execute(sql.SQL("select DISTINCT chtrmid from messages where usrid = %s ORDER BY orderid DESCENDING;"),(usrID))
+    cur.execute(sql.SQL("select distinct chtrmid from (select order_id, chtrmid from messages where usrid = %s order by order_id)as chatrooms"),(usrID))
     chatrooms = cur.fetchAll()
 
     data= '{"chatrooms":['
@@ -31,7 +29,7 @@ def handle_request():
 	top = ''
 	emotions = ['joy','sadness','fear', 'anger', 'disgust']
 	for e in emotions:
-            cur.execute(sql.SQL("select COUNT(*) from messages where chtrmid = %s and topemotion = %s;", (c, e)
+            cur.execute(sql.SQL("select COUNT(topemotion) from messages where chtrmid = %s and topemotion = %s;", (c, e)
 	    current = fetchOne()
 	    if current > count:
                 count = current
