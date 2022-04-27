@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:instachatty/ui/analytics/wordCloud.dart';
+import 'package:instachatty/ui/analytics/wordCloud/wordCloud.dart';
 import 'package:flutter_scatter/flutter_scatter.dart';
 
 // void main() => runApp(ScatterApp());

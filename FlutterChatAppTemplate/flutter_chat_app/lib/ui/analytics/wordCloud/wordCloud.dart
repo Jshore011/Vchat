@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scatter/flutter_scatter.dart';
-import 'package:instachatty/ui/analytics/wordCloudTag.dart';
+import 'package:instachatty/ui/analytics/wordCloud/wordCloudTag.dart';
 
 import 'flutterHashtags.dart';
 

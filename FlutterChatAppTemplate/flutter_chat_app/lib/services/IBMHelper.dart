@@ -28,32 +28,26 @@ class IBMUtils {
     }
   }
 
-  buildEmojiFromEmotion(String message) {
-    late var emoji;
+  requestAnalytics(String conversationID, String userID) async {
+    var response = await http.post(
+      Uri.parse('http://52.116.29.131/open_api/Analytics/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'conversationID': conversationID,
+        'userID': userID,
+      }),
+    );
 
-    switch(message) {
-      case 'joy': { emoji = '${Emojis.smilingFaceWithSmilingEyes}'; }
-      break;
-
-      case 'anger': { emoji = '${Emojis.faceWithSymbolsOnMouth}'; }
-      break;
-
-      case 'sadness': { emoji = '${Emojis.cryingFace}'; }
-      break;
-
-      case 'fearful': { emoji = '${Emojis.faceScreamingInFear}'; }
-      break;
-
-      case 'anger': { emoji = '${Emojis.confoundedFace}'; }
-      break;
-
-      case 'Failed to get response' : { emoji = 'Emotional Analysis Failed'; }
-      break;
-
-      default: { emoji = '${Emojis.faceWithoutMouth}'; }
-      break;
+    if(response.statusCode == 200) {
+      var analytics = jsonDecode(response.body);
+      print(analytics);
+      return analytics;
     }
-
-    return emoji;
+    else {
+      print("Failed to get response");
+      return null;
+    }
   }
 }
