@@ -27,6 +27,7 @@ import 'package:instachatty/services/FirebaseHelper.dart';
 import 'package:instachatty/services/IBMHelper.dart';
 import 'package:instachatty/services/helper.dart';
 import 'package:instachatty/ui/analytics/ChatAnalyticsAlt.dart';
+import 'package:instachatty/ui/analytics/wordCloudTag.dart';
 import 'package:instachatty/ui/chat/PlayerWidget.dart';
 import 'package:instachatty/ui/fullScreenImageViewer/FullScreenImageViewer.dart';
 import 'package:instachatty/ui/fullScreenVideoViewer/FullScreenVideoViewer.dart';
@@ -144,7 +145,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 PopupMenuItem(
                     child: ListTile(
                       dense: true,
-                      onTap: () {pushReplacement(context, AnalyticsPage());},
+                      onTap: () {pushReplacement(context, ScatterApp());},
                       contentPadding: const EdgeInsets.all(0),
                       leading: Icon(
                         Icons.analytics,
@@ -153,7 +154,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             : Colors.black,
                       ),
                       title: Text(
-                        'Chatroom analytics alt'.tr(),
+                        'User Analytics'.tr(),
                         style: TextStyle(fontSize: 18),
                       ),
                     ))
