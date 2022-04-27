@@ -12,14 +12,15 @@ def handle_request():
     #requestDetails = request.get_json()
     #logger.debug(requestDetails)
 
-    usrID = 'ppYgiYl1eKYkm9mX6axlBs0yCqr1'#requestDetails['userID']
+    usrID = 'Bmlnlw6bPhsyfSSw9Vta'#requestDetails['userID']
     
-    chtRmID = 'Bmlnlw6bPhsyfSSw9Vta'#requestDetails['conversationID']
+    chtRmID = 'ppYgiYl1eKYkm9mX6axlBs0yCqr1'#requestDetails['conversationID']
     
     cur = g.db.cursor()
        
     #query for most recent message in chatroom
-    cur.execute(sql.SQL("SELECT emotions FROM emotions WHERE chtrmid = %s AND orderid = (SELECT MAX(orderid) FROM emotions);"),(chtRmID,))
+    # AND orderid = (SELECT MAX(orderid) FROM emotions)
+    cur.execute(sql.SQL("SELECT * FROM emotions WHERE chtrmid = %s;"),(chtRmID,))
     msgEmotions = cur.fetchone()
     
     #query for all user messages in a specific chatroom
