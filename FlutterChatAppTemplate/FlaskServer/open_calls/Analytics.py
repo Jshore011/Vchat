@@ -9,8 +9,8 @@ from tools.logging import logger
 def handle_request():
     logger.debug("Analytics Handle Request")
 
-    #requestDetails = request.get_json()
-    #logger.debug(requestDetails)
+    requestDetails = request.get_json()
+    logger.debug(requestDetails)
 
     usrID = requestDetails['userID']
     
