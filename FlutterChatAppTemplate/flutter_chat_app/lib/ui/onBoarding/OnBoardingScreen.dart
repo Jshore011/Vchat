@@ -35,10 +35,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   /// list containing image paths or IconData representing the image of each page
 
   final List<dynamic> _imageList = [
-    CupertinoIcons.person_2,
-    CupertinoIcons.group,
-    CupertinoIcons.photo_camera,
-    CupertinoIcons.bell
+    CupertinoIcons.person_3,
+    CupertinoIcons.mic,
+    CupertinoIcons.smiley,
+    CupertinoIcons.cloud,
   ];
   int _currentIndex = 0;
 

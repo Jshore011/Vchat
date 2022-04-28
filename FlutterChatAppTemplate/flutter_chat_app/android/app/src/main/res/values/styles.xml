@@ -8,6 +8,6 @@
     </style>
     <!-- You can name this style whatever you'd like -->
     <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
-        <item name="android:windowBackground">@color/flutter_color</item>
+        <item name="android:windowBackground">@color/primary_color</item>
     </style>
 </resources>
