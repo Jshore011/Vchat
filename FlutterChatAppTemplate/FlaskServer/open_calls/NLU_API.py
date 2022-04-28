@@ -115,7 +115,7 @@ def handle_request():
         print(emotions)
         
         #emotion table insert
-        cur.execute(sql.SQL("INSERT INTO emotions (emotions, msgid, chtrmid, usrid) VALUES (%s, %s, %s, %s);"),(emotions, msgID, usrID, chtRmID))
+        cur.execute(sql.SQL("INSERT INTO emotions (emotions, msgid, chtrmid, usrid) VALUES (%s, %s, %s, %s);"),(emotions, msgID, chtRmID, usrID))
 
         cur.close()
         g.db.commit()

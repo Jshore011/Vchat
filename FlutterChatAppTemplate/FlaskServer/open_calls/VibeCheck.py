@@ -17,24 +17,24 @@ def handle_request():
     cur = g.db.cursor()
     
     #query gets all chatrooms user participates in ordered by recent activity
-    cur.execute(sql.SQL("select distinct chtrmid from (select order_id, chtrmid from messages where usrid = %s order by order_id)as chatrooms"),(usrID))
-    chatrooms = cur.fetchAll()
+    cur.execute(sql.SQL("select distinct chtrmid from (select order_id, chtrmid from messages where usrid = %s order by order_id)as chatrooms"),(usrID,))
+    chatrooms = cur.fetchall()
 
-    data= '{"chatrooms":['
+    data = '{"chatrooms":['
 
     for c in chatrooms:
-	data += '{"chatroomid":"'+str(c)+'","emotion":'
-	current = 0
-	count = 0
-	top = ''
-	emotions = ['joy','sadness','fear', 'anger', 'disgust']
-	for e in emotions:
-            cur.execute(sql.SQL("select COUNT(topemotion) from messages where chtrmid = %s and topemotion = %s;", (c, e)
-	    current = fetchOne()
-	    if current > count:
+        data += '{"chatroomid":"'+str(c)+'","emotion":'
+        current = 0
+        count = 0
+        top = ''
+        emotions = ['joy','sadness','fear', 'anger', 'disgust']
+        for e in emotions:
+            cur.execute(sql.SQL("select COUNT(topemotion) from messages where chtrmid = %s and topemotion = %s;"), (c, e))
+            current = cur.fetchone()
+            if current > count:
                 count = current
                 top = e
-	data += '"'+str(top)+'"},'
+            data += '"'+str(top)+'"},'
     data += '{"None":""}]}'
 	
     return jsonify(data)

@@ -9,19 +9,19 @@ from tools.logging import logger
 def handle_request():
     logger.debug("Analytics Handle Request")
 
-    #requestDetails = request.get_json()
-    #logger.debug(requestDetails)
+    requestDetails = request.get_json()
+    logger.debug(requestDetails)
 
-    usrID = 'Bmlnlw6bPhsyfSSw9Vta'#requestDetails['userID']
+    usrID = requestDetails['userID']
     
-    chtRmID = 'ppYgiYl1eKYkm9mX6axlBs0yCqr1'#requestDetails['conversationID']
+    chtRmID = requestDetails['conversationID']
     
     cur = g.db.cursor()
        
     #query for most recent message in chatroom
-    # AND orderid = (SELECT MAX(orderid) FROM emotions)
-    cur.execute(sql.SQL("SELECT * FROM emotions WHERE chtrmid = %s;"),(chtRmID,))
+    cur.execute(sql.SQL("SELECT emotions FROM emotions WHERE chtrmid = %s;"),(usrID,))
     msgEmotions = cur.fetchone()
+    logger.debug(msgEmotions)
     
     #query for all user messages in a specific chatroom
     cur.execute(sql.SQL("SELECT topemotion FROM messages WHERE usrid = %s AND chtrmid = %s;"),(usrID, chtRmID))
