@@ -19,7 +19,7 @@ def handle_request():
     cur = g.db.cursor()
        
     #query for most recent message in chatroom
-    cur.execute(sql.SQL("SELECT emotions FROM emotions WHERE chtrmid = %s;"),(usrID,))
+    cur.execute(sql.SQL("SELECT emotions FROM emotions WHERE chtrmid = %s AND orderid =(select  MAX(orderid) from emotions);"),(chtRmID,))
     msgEmotions = cur.fetchone()
     logger.debug(msgEmotions)
     
@@ -27,14 +27,14 @@ def handle_request():
     cur.execute(sql.SQL("SELECT topemotion FROM messages WHERE usrid = %s AND chtrmid = %s;"),(usrID, chtRmID))
     usrEmotions = cur.fetchall()
     #query for ordered list of most used keywords used by user in chatroom
-    cur.execute(sql.SQL("SELECT DISTINCT keyword, COUNT(keyword) FROM keywords WHERE chtrmid = %s AND usrid = %s GROUP BY keyword ORDER BY COUNT(keyword);"),(chtRmID,usrID))
+    cur.execute(sql.SQL("SELECT DISTINCT keyword, COUNT(keyword) FROM keywords WHERE chtrmid = %s AND usrid = %s GROUP BY keyword ORDER BY COUNT(keyword) DESC;"),(chtRmID,usrID))
     usrKeywords = cur.fetchall()
 
     #query for all messages in a specific chatroom
     cur.execute(sql.SQL("SELECT topemotion FROM messages WHERE chtrmid = %s;"),(chtRmID,))
     chtRmEmotions = cur.fetchall()
     #query for ordered list of most used keywords in chatroom
-    cur.execute(sql.SQL("SELECT DISTINCT keyword, COUNT(keyword) FROM keywords WHERE chtrmid = %s GROUP BY keyword ORDER BY COUNT(keyword);"),(chtRmID,))
+    cur.execute(sql.SQL("SELECT DISTINCT keyword, COUNT(keyword) FROM keywords WHERE chtrmid = %s GROUP BY keyword ORDER BY COUNT(keyword) DESC;"),(chtRmID,))
     chtRmKeywords = cur.fetchall()
     
     data = '{"data":{"msgAnalytics":"'+str(msgEmotions)+'"},{"usrAnalytics":{"emotions:"'+str(usrEmotions)+'"},{"keywords":"'+str(usrKeywords)+'"}},{"chtRmAnalytics":{"emotions:"'+str(chtRmEmotions)+'"},{"keywords":"'+str(chtRmKeywords)+'"}}}'

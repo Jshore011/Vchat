@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scatter/flutter_scatter.dart';
-import 'package:instachatty/ui/analytics/wordCloudTag.dart';
+import 'package:instachatty/ui/analytics/wordCloud/userKeywords.dart';
 
-import 'flutterHashtags.dart';
-
-class WordCloudExample extends StatelessWidget {
+class UserKeywordWordCloud extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> widgets = <Widget>[];
-    for (var i = 0; i < kFlutterHashtags.length; i++) {
-      widgets.add(ScatterItem(kFlutterHashtags[i], i));
+    for (var i = 0; i < kChatroomKeywords.length; i++) {
+      widgets.add(ScatterItem(kChatroomKeywords[i], i));
     }
 
     final screenSize = MediaQuery.of(context).size;
@@ -28,20 +26,20 @@ class WordCloudExample extends StatelessWidget {
 }
 
 class ScatterItem extends StatelessWidget {
-  ScatterItem(this.hashtag, this.index);
-  final FlutterHashtag hashtag;
+  ScatterItem(this.userKeyword, this.index);
+  final UserKeyword userKeyword;
   final int index;
 
   @override
   Widget build(BuildContext context) {
     final TextStyle style = Theme.of(context).textTheme.bodyText2!.copyWith(
-      fontSize: hashtag.size.toDouble(),
-      color: hashtag.color,
+      fontSize: userKeyword.size.toDouble(),
+      color: userKeyword.color,
     );
     return RotatedBox(
-      quarterTurns: hashtag.rotated ? 1 : 0,
+      quarterTurns: userKeyword.rotated ? 1 : 0,
       child: Text(
-        hashtag.hashtag,
+        userKeyword.hashtag,
         style: style,
       ),
     );

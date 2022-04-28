@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:opacity="opaque">
-    <item android:drawable="@color/flutter_color" />
-    <item
-        android:bottom="250dp"
-        android:drawable="@drawable/app_logo"
-        android:gravity="center" />
+    <item android:drawable="@color/primary_color" />
+    <item>
+        <bitmap
+            android:bottom="250dp"
+            android:src="@mipmap/launch_image"
+            android:gravity="center" />
+    </item>
 </layer-list>

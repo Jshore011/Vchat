@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart' as easyLocal;
+import 'package:emojis/emojis.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +27,6 @@ import 'package:instachatty/model/User.dart';
 import 'package:instachatty/services/FirebaseHelper.dart';
 import 'package:instachatty/services/IBMHelper.dart';
 import 'package:instachatty/services/helper.dart';
-import 'package:instachatty/ui/analytics/ChatAnalyticsAlt.dart';
-import 'package:instachatty/ui/analytics/wordCloudTag.dart';
 import 'package:instachatty/ui/chat/PlayerWidget.dart';
 import 'package:instachatty/ui/fullScreenImageViewer/FullScreenImageViewer.dart';
 import 'package:instachatty/ui/fullScreenVideoViewer/FullScreenVideoViewer.dart';
@@ -36,6 +35,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
 import 'package:path/path.dart' as path;
+
+import '../analytics/AnalyticsScreen.dart';
 
 enum RecordingState { HIDDEN, VISIBLE, Recording }
 
@@ -127,8 +128,8 @@ class _ChatScreenState extends State<ChatScreen> {
                 PopupMenuItem(
                     child: ListTile(
                       dense: true,
-                      onTap: () {
-                        launch('http://52.116.29.131/static/ChatAnalytics.html'); //TODO: need to update each time we launch the server
+                      onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                                 AnalyticsScreen(conversationID: homeConversationModel.conversationModel!.id, userID: MyAppState.currentUser!.userID)));
                       },
                       contentPadding: const EdgeInsets.all(0),
                       leading: Icon(
@@ -138,26 +139,10 @@ class _ChatScreenState extends State<ChatScreen> {
                             : Colors.black,
                       ),
                       title: Text(
-                        'Chat analytics'.tr(),
+                        'Analytics'.tr(),
                         style: TextStyle(fontSize: 18),
                       ),
                     )),
-                PopupMenuItem(
-                    child: ListTile(
-                      dense: true,
-                      onTap: () {pushReplacement(context, ScatterApp());},
-                      contentPadding: const EdgeInsets.all(0),
-                      leading: Icon(
-                        Icons.analytics,
-                        color: isDarkMode(context)
-                            ? Colors.grey.shade200
-                            : Colors.black,
-                      ),
-                      title: Text(
-                        'User Analytics'.tr(),
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ))
               ];
             },
           ),
@@ -773,7 +758,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           padding: const EdgeInsets.only(
                               top: 6, bottom: 6, right: 4, left: 4),
                           child: Text(
-                            mediaUrl.isEmpty ? messageData.content + " " + _ibmUtils.buildEmojiFromEmotion(messageData.emotion): '',
+                            mediaUrl.isEmpty ? messageData.content + " " + buildEmojiFromEmotion(messageData.emotion): '',
                             textAlign: TextAlign.start,
                             textDirection: TextDirection.ltr,
                             style: TextStyle(
@@ -1002,7 +987,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         padding: const EdgeInsets.only(
                             top: 6, bottom: 6, right: 4, left: 4),
                         child: Text(
-                          mediaUrl.isEmpty ? messageData.content + " " + _ibmUtils.buildEmojiFromEmotion(messageData.emotion): '',
+                          mediaUrl.isEmpty ? messageData.content + " " + buildEmojiFromEmotion(messageData.emotion): '',
                           textAlign: TextAlign.start,
                           textDirection: TextDirection.ltr,
                           style: TextStyle(
@@ -1336,6 +1321,10 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
+  Future<List<int>> _getAudioContent(String path) async {
+    return File(path).readAsBytesSync().toList();
+  }
+
   transcribe() async {
     setState(() {
       is_transcribing = true;
@@ -1369,15 +1358,31 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   }
 
-  Future<List<int>> _getAudioContent(String path) async {
-    return File(path).readAsBytesSync().toList();
+  buildEmojiFromEmotion(String message) {
+    late var emoji;
+
+    switch(message) {
+      case 'joy': { emoji = '${Emojis.smilingFaceWithSmilingEyes}'; }
+      break;
+
+      case 'anger': { emoji = '${Emojis.faceWithSymbolsOnMouth}'; }
+      break;
+
+      case 'sadness': { emoji = '${Emojis.disappointedFace}'; }
+      break;
+
+      case 'fear': { emoji = '${Emojis.faceScreamingInFear}'; }
+      break;
+
+      case 'disgust': { emoji = '${Emojis.confoundedFace}'; }
+      break;
+
+      case 'Failed to get response' : { emoji = 'Emotional Analysis Failed'; }
+      break;
+
+      default: { emoji = '${Emojis.faceWithoutMouth}'; }
+      break;
+    }
+    return emoji;
   }
-
-  Widget _buildEmoji() => Expanded(
-    child: Image.asset(
-           'assets/images/joy.png',
-      height: 20,
-    )
-  );
-
 }

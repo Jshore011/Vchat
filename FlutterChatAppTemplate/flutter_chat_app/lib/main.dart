@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
@@ -154,9 +153,9 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   void initState() {
+    super.initState();
     initializeFlutterFire();
     WidgetsBinding.instance?.addObserver(this);
-    super.initState();
   }
 
   @override

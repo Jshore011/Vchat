@@ -48,10 +48,10 @@ dev_dependencies:
   flutter_launcher_icons: ^0.9.1
 
 flutter_icons:
-  android: false
+  android: true
   ios: true
   remove_alpha_ios: true
-  image_path: 'assets/images/Vchat_launcher_icon.png'
+  image_path: 'assets/images/VChat_launcher_icon.png'
 
 flutter:
   uses-material-design: true

@@ -292,6 +292,11 @@ class _LoginScreen extends State<LoginScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void dispose() {
     super.dispose();
   }
