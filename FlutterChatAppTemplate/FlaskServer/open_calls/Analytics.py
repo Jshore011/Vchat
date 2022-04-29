@@ -70,7 +70,7 @@ def handle_request():
     chatKeys = '['
     for ck in chtRmKeywords:
         logger.debug(ck)
-        chatKeys += '{"keyword":"'+str(ck[0])+'","count:"'+str(ck[1])+'"},'
+        chatKeys += '{"keyword":"'+str(ck[0])+'","count":"'+str(ck[1])+'"},'
     chatKeys += '{"None":""}]'
 
     data = '{"data":{"msgAnalytics":'+str(msgEmotions)+'},{"usrAnalytics":{"emotions":'+str(userEmotions)+'},{"keywords":'+str(userKeys)+'}},{"chtRmAnalytics":{"emotions":'+str(chatEmotions)+'},{"keywords":'+str(chatKeys)+'}}}'
