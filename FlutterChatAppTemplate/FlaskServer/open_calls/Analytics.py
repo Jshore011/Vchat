@@ -31,7 +31,6 @@ def handle_request():
     usrEmotions = cur.fetchall()
     userEmotions = '['
     for e in emotions:
-        #userEmotions += '{"'+str(e)+'":"'
         for us in usrEmotions:
             logger.debug(us)
             if us[0] == e:
