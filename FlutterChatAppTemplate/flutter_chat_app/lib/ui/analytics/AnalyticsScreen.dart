@@ -4,7 +4,6 @@ import '../../services/helper.dart';
 import 'TranscribeAnalytics.dart';
 import 'ChatroomAnalytics.dart';
 import 'UserAnalytics.dart';
-import 'package:instachatty/services/IBMHelper.dart';
 
 class AnalyticsScreen extends StatefulWidget {
   final String conversationID;
@@ -17,13 +16,22 @@ class AnalyticsScreen extends StatefulWidget {
 }
 
 class _AnalyticsScreenState extends State<AnalyticsScreen> {
-  int currentIndex = 0;
+  var currentIndex = 0;
 
-  final screens = [
-    TranscribeAnalytics(),
-    ChatroomAnalytics(),
-    UserAnalytics(),
-  ];
+  Widget getPage(int index) {
+    switch (index){
+      case 1:
+        return ChatroomAnalytics();
+        break;
+      case 2:
+        return UserAnalytics();
+        break;
+      default:
+        return TranscribeAnalytics(conversationID: widget.conversationID, userID: widget.userID);
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,12 +46,21 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
         ),
         body:
         // Center(
-        //     child: ElevatedButton(
-        //       onPressed: ()=> getAnalytics(widget.conversationID, widget.userID),
-        //       child: Text('Get Analytics'),
+        //     child: Column (
+        //       children: [
+        //         Text(
+        //           myText
+        //         ),
+        //         ElevatedButton(
+        //         onPressed: () async {
+        //           myText = await getAnalytics(widget.conversationID, widget.userID);
+        //           setState(() { myText; });
+        //           },
+        //         child: Text('Get Text'),
+        //       )]
         //     )
         // )
-        screens[currentIndex],
+        getPage(currentIndex),
         bottomNavigationBar: BottomNavigationBar (
           type: BottomNavigationBarType.fixed,
           backgroundColor: Color(COLOR_PRIMARY),
@@ -51,7 +68,9 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
           unselectedItemColor: Colors.white60,
           showUnselectedLabels: false,
           currentIndex: currentIndex,
-          onTap: (index) => setState(() => currentIndex = index),
+          onTap: (index) => setState(() {
+            currentIndex  = index;
+          }),
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.chat),
@@ -69,10 +88,4 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
         ),
     );
   }
-}
-
-getAnalytics(String conversationID, String userID) async {
-  final IBMUtils _ibmUtils = IBMUtils();
-  var analytics = await _ibmUtils.requestAnalytics(conversationID, userID);
-  return analytics;
 }
