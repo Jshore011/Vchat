@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import '../../services/IBMHelper.dart';
 
 class TranscribeAnalytics extends StatefulWidget {
-  final String conversationID;
-  final String userID;
+  final transcribeTopEmotion;
+  final transcribeEmotionsAndScores;
 
-  const TranscribeAnalytics({Key? key, required this.conversationID, required this.userID}) : super(key: key);
+  const TranscribeAnalytics({Key? key, required this.transcribeTopEmotion, required this.transcribeEmotionsAndScores}) : super(key: key);
 
   @override
   _TranscribeAnalyticsState createState() => _TranscribeAnalyticsState();
@@ -18,111 +18,121 @@ class _TranscribeAnalyticsState extends State<TranscribeAnalytics>{
     super.initState();
   }
 
-  Future<String> getEmotion() async {
-    final IBMUtils _ibmUtils = IBMUtils();
-    var topEmotion = await _ibmUtils.requestTopEmotion(widget.conversationID, widget.userID);
-    return topEmotion;
-  }
-
-  Future<List> getEmotionsScores() async {
-    final IBMUtils _ibmUtils = IBMUtils();
-    var emotionsScores = await _ibmUtils.requestEmotionsScores(widget.conversationID, widget.userID);
-    return emotionsScores;
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      body:
-      FutureBuilder(
-        future: Future.wait([getEmotion(), getEmotionsScores()]),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (!snapshot.hasData) {
-            // while data is loading:
-            return Center(
-              child: CircularProgressIndicator(backgroundColor: Colors.red,
-                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.blue)),
-            );
-          } else {
-            return Center(
-              child: ListView(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  children: <Widget>[
-                    Image.asset(
-                      'assets/images/' + '${snapshot.data[0]}' + '.png',
-                      height: 100,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      child: Text(
-                        'Chatroom\'s most recent message\'s',
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      child: Text(
-                        'Top Emotion: ' + '${snapshot.data[0]}',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Card(
-                      child: ListTile (
-                        leading: Image.asset(
-                          'assets/images/joy.png',
-                          height: 50,
-                        ),
-                        title: Text('Joy'),
-                        subtitle: Text('${snapshot.data[1][3]}' + '%'),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        leading: Image.asset(
-                          'assets/images/sadness.png',
-                          height: 50,
-                        ),
-                        title: Text('Sadness'),
-                        subtitle: Text('${snapshot.data[1][1]}' + '%'),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        leading: Image.asset(
-                          'assets/images/disgust.png',
-                          height: 50,
-                        ),
-                        title: Text('Disgust'),
-                        subtitle: Text('${snapshot.data[1][7]}' + '%'),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        leading: Image.asset(
-                          'assets/images/anger.png',
-                          height: 50,
-                        ),
-                        title: Text('Anger'),
-                        subtitle: Text('${snapshot.data[1][9]}' + '%'),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        leading: Image.asset(
-                          'assets/images/fear.png',
-                          height: 50,
-                        ),
-                        title: Text('Fear'),
-                        subtitle: Text('${snapshot.data[1][5]}' + '%'),
-                      ),
-                    ),
-                  ]
+    body: Center(
+      child: ListView(
+          scrollDirection: Axis.vertical,
+          children: [
+            Column (
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container (
+                    color: Colors.teal,
+                    height: 40,
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.only(bottom: 10),
+                    child: Text (
+                        'Most Recent Message\'s Emotional Analysis',
+                        style: TextStyle(color: Colors.white)
+                    )
+                )
+              ]
+            ),
+            widget.transcribeTopEmotion != '' ?
+            Image.asset(
+              'assets/images/' + '${widget.transcribeTopEmotion}' + '.png',
+              height: 100,
+            ) : Image.asset(
+              'assets/images/blankface.png',
+              height: 100,
+            ),
+            widget.transcribeTopEmotion != '' ?
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+              child: Text(
+                'Top Emotion: ' + '${widget.transcribeTopEmotion}',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, fontSize: 20),
+                textAlign: TextAlign.center,
               ),
-            );
-          }
-        },
+            ) : Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                child: Text(
+                  'Top Emotion: None',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
+            ),
+            Card(
+              child: ListTile (
+                leading: Image.asset(
+                  'assets/images/joy.png',
+                  height: 50,
+                ),
+                title: Text('Joy'),
+                subtitle: widget.transcribeEmotionsAndScores.isNotEmpty ?
+                  Text('Confidence: ' + '${widget.transcribeEmotionsAndScores[3]}' + '%') :
+                  Text('Confidence: N/A')
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: Image.asset(
+                  'assets/images/sadness.png',
+                  height: 50,
+                ),
+                title: Text('Sadness'),
+                subtitle: widget.transcribeEmotionsAndScores.isNotEmpty ?
+                  Text('Confidence: ' + '${widget.transcribeEmotionsAndScores[1]}' + '%') :
+                  Text('Confidence: N/A')
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: Image.asset(
+                  'assets/images/disgust.png',
+                  height: 50,
+                ),
+                title: Text('Disgust'),
+                subtitle: widget.transcribeEmotionsAndScores.isNotEmpty ?
+                  Text('Confidence: ' + '${widget.transcribeEmotionsAndScores[7]}' + '%') :
+                  Text('Confidence: N/A')
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: Image.asset(
+                  'assets/images/anger.png',
+                  height: 50,
+                ),
+                title: Text('Anger'),
+                subtitle: widget.transcribeEmotionsAndScores.isNotEmpty ?
+                  Text('Confidence: ' + '${widget.transcribeEmotionsAndScores[9]}' + '%') :
+                  Text('Confidence: N/A')
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: Image.asset(
+                  'assets/images/fear.png',
+                  height: 50,
+                ),
+                title: Text('Fear'),
+                subtitle: widget.transcribeEmotionsAndScores.isNotEmpty ?
+                  Text('Confidence: ' + '${widget.transcribeEmotionsAndScores[5]}' + '%') :
+                  Text('Confidence: N/A')
+              ),
+            ),
+          ]
       ),
+    ),
   );
 }

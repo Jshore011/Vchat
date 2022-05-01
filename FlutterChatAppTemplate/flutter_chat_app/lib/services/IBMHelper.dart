@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:emojis/emojis.dart';
 
 class IBMUtils {
-
   requestEmotionFromMessage(String message, String messageID, String userID, String conversationID) async {
     var response = await http.post(
       Uri.parse('http://52.116.29.131/open_api/NLU_API/'),
@@ -25,7 +23,7 @@ class IBMUtils {
     }
     else {
       print("Failed to get response");
-      return null;
+      return 'message failed to send';
     }
   }
 
@@ -42,7 +40,7 @@ class IBMUtils {
     );
 
     if(response.statusCode == 200) {
-      var topEmotion = 'None';
+      String topEmotion = 'None';
       var analytics = jsonDecode(jsonDecode(response.body));
       var messageEmotions = analytics["data"][0]["msgAnalytics"]["emotions"];
       var emotionsAndScoresList = [];
@@ -53,16 +51,13 @@ class IBMUtils {
           break;
         }
         emotionsAndScoresList.add(messageEmotions[i]["emotion"]);
-        print(messageEmotions[i]["emotion"]);
         emotionsAndScoresList.add(messageEmotions[i]["score"]);
-        print(messageEmotions[i]["score"]);
       }
-
       return topEmotion;
     }
     else {
       print("Failed to get response");
-      return null;
+      return '';
     }
   }
 
@@ -79,7 +74,7 @@ class IBMUtils {
     );
 
     if (response.statusCode == 200) {
-      var emotionsAndScoresList = [];
+      List emotionsAndScoresList = [];
       var analytics = jsonDecode(jsonDecode(response.body));
       var messageEmotions = analytics["data"][0]["msgAnalytics"]["emotions"];
       for (int i = 0; i < messageEmotions.length; i++) {
@@ -87,101 +82,140 @@ class IBMUtils {
           break;
         }
         emotionsAndScoresList.add(messageEmotions[i]["emotion"]);
-        print(messageEmotions[i]["emotion"]);
         var score = double.parse(messageEmotions[i]["score"]);
         score = score * 100;
         var stringScore = score.toStringAsFixed(3);
         emotionsAndScoresList.add(stringScore);
-        print(stringScore);
       }
-
       return emotionsAndScoresList;
     }
     else {
       print("Failed to get response");
-      return null;
+      return [];
     }
   }
 
-  // requestTopEmotion(String conversationID, String userID) async {
-  //   var response = await http.post(
-  //     Uri.parse('http://52.116.29.131/open_api/Analytics/'),
-  //     headers: <String, String>{
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //     },
-  //     body: jsonEncode(<String, String>{
-  //       'conversationID': conversationID,
-  //       'userID': userID,
-  //     }),
-  //   );
-  //
-  //   if(response.statusCode == 200) {
-  //     var analytics = jsonDecode(jsonDecode(response.body));
-  //     var messageEmotions = analytics["data"][0]["msgAnalytics"]["emotions"];
-  //     var emotionsAndScoresList = [];
-  //     for (int i = 0; i < messageEmotions.length; i++) {
-  //       if(i == messageEmotions.length - 1) {
-  //         topEmotion = (messageEmotions[i]["top"]);
-  //         break;
-  //       }
-  //       emotionsAndScoresList.add(messageEmotions[i]["emotion"]);
-  //       print(messageEmotions[i]["emotion"]);
-  //       emotionsAndScoresList.add(messageEmotions[i]["score"]);
-  //       print(messageEmotions[i]["score"]);
-  //     }
-      // var userEmotions = analytics["data"][1]["usrAnalytics"][0]["emotions"];
-      // List userEmotionList = [];
-      // for (int i = 0; i < userEmotions.length; i++) {
-      //   if(i == userEmotions.length - 1) {
-      //     break;
-      //   }
-      //   userEmotionList.add(userEmotions[i]["emotion"]);
-      //   print(userEmotions[i]["emotion"]);
-      //   userEmotionList.add(userEmotions[i]["count"]);
-      //   print(userEmotions[i]["count"]);
-      // }
+  requestUserEmotionCount(String conversationID, String userID) async {
+    var response = await http.post(
+      Uri.parse('http://52.116.29.131/open_api/Analytics/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'conversationID': conversationID,
+        'userID': userID,
+      }),
+    );
 
-      // var userKeywords = analytics["data"][1]["usrAnalytics"][1]["keywords"];
-      // List userKeywordList = [];
-      // for (int i = 0; i < userKeywords.length; i++) {
-      //   if(i == userKeywords.length - 1) {
-      //     break;
-      //   }
-      //   userKeywordList.add(userKeywords[i]["keyword"]);
-      //   print(userKeywords[i]["keyword"]);
-      //   userKeywordList.add(userKeywords[i]["count"]);
-      //   print(userKeywords[i]["count"]);
-      // }
+    if (response.statusCode == 200) {
+      List userEmotionsList = [];
+      var analytics = jsonDecode(jsonDecode(response.body));
+      var userEmotions = analytics["data"][1]["usrAnalytics"][0]["emotions"];
+      for (int i = 0; i < userEmotions.length; i++) {
+        if(i == userEmotions.length - 1) {
+          break;
+        }
+        userEmotionsList.add(userEmotions[i]["emotion"]);
+        userEmotionsList.add(userEmotions[i]["count"]);
+      }
+      print(userEmotionsList);
+      return userEmotionsList;
+    }
+    else {
+      print("Failed to get response");
+      return [];
+    }
+  }
 
-      // var chatroomEmotions = analytics["data"][2]["chtRmAnalytics"][0]["emotions"];
-      // List chatroomEmotionList = [];
-      // for (int i = 0; i < chatroomEmotions.length; i++) {
-      //   if(i == chatroomEmotions.length - 1) {
-      //     break;
-      //   }
-      //   chatroomEmotionList.add(chatroomEmotions[i]["emotion"]);
-      //   print(chatroomEmotions[i]["emotion"]);
-      //   chatroomEmotionList.add(chatroomEmotions[i]["count"]);
-      //   print(chatroomEmotions[i]["count"]);
-      // }
+  requestUserKeywords(String conversationID, String userID) async {
+    var response = await http.post(
+      Uri.parse('http://52.116.29.131/open_api/Analytics/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'conversationID': conversationID,
+        'userID': userID,
+      }),
+    );
+    if (response.statusCode == 200) {
+      List userKeywordsList = [];
+      var analytics = jsonDecode(jsonDecode(response.body));
+      var userKeywords = analytics["data"][1]["usrAnalytics"][1]["keywords"];
+      for (int i = 0; i < userKeywords.length; i++) {
+        if(i == userKeywords.length - 1) {
+          break;
+        }
+        userKeywordsList.add(userKeywords[i]["keyword"]);
+        print(userKeywords[i]["keyword"]);
+      }
+      return userKeywordsList;
+    }
+    else {
+      print("Failed to get response");
+      return [];
+    }
+  }
 
-      // var chatroomKeywordList = analytics["data"][2]["chtRmAnalytics"][1]["keywords"];
-      // List chatroomKeywords = [];
-      // for (int i = 0; i < chatroomKeywordList.length; i++) {
-      //   if(i == chatroomKeywordList.length - 1) {
-      //     break;
-      //   }
-      //   chatroomKeywords.add(chatroomKeywordList[i]["keyword"]);
-      //   print(chatroomKeywordList[i]["keyword"]);
-      // }
-    //   print(topEmotion);
-    //   return topEmotion;
-    // }
-    // else {
-    //   print("Failed to get response");
-    //   return null;
-    // }
-  // }
+  requestChatroomEmotionCount(String conversationID, String userID) async {
+    var response = await http.post(
+      Uri.parse('http://52.116.29.131/open_api/Analytics/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'conversationID': conversationID,
+        'userID': userID,
+      }),
+    );
+
+    if(response.statusCode == 200) {
+      List chatroomEmotionList = [];
+      var analytics = jsonDecode(jsonDecode(response.body));
+      var chatroomEmotions = analytics["data"][2]["chtRmAnalytics"][0]["emotions"];
+      for (int i = 0; i < chatroomEmotions.length; i++) {
+        if(i == chatroomEmotions.length - 1) {
+          break;
+        }
+        chatroomEmotionList.add(chatroomEmotions[i]["emotion"]);
+        chatroomEmotionList.add(chatroomEmotions[i]["count"]);
+      }
+      print(chatroomEmotionList);
+      return chatroomEmotionList;
+    } else {
+      print("Failed to get response");
+      return [];
+    }
+  }
+
+    requestChatroomKeywords(String conversationID, String userID) async {
+    var response = await http.post(
+      Uri.parse('http://52.116.29.131/open_api/Analytics/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'conversationID': conversationID,
+        'userID': userID,
+      }),
+    );
+    if (response.statusCode == 200) {
+      List chatroomKeywordsList = [];
+      var analytics = jsonDecode(jsonDecode(response.body));
+      var chatroomKeywords = analytics["data"][2]["chtRmAnalytics"][1]["keywords"];
+      for (int i = 0; i < chatroomKeywords.length; i++) {
+        if(i == chatroomKeywords.length - 1) {
+          break;
+        }
+        chatroomKeywordsList.add(chatroomKeywords[i]["keyword"]);
+      }
+      return chatroomKeywordsList;
+    }
+    else {
+      print("Failed to get response");
+      return [];
+    }
+  }
 }
 
 

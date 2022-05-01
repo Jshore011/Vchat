@@ -611,6 +611,7 @@ class FireStoreUtils {
         .collection(THREAD)
         .doc();
     message.messageID = ref.id; //TODO: sending to firestore?
+    // message.emotion = '';
     message.emotion = await _ibmUtils.requestEmotionFromMessage(message.content, message.messageID, MyAppState.currentUser!.userID, conversationModel.id);
     ref.set(message.toJson());
     List<User> payloadFriends;
