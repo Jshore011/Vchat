@@ -90,7 +90,7 @@ class _UserAnalyticsState extends State<UserAnalytics> {
             Padding (
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text (
-                    'No Chatroom Keywords and Emotional Analyses found',
+                    'No User Keywords and Emotional Analyses found',
                     textAlign: TextAlign.center,
                     style: TextStyle (
                       fontWeight: FontWeight.bold,
