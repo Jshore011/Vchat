@@ -33,20 +33,20 @@ class _ChatroomAnalyticsState extends State<ChatroomAnalytics> {
                       height: 40,
                       alignment: Alignment.center,
                       child: Text (
-                          'Chatroom Keyword Tag Cloud',
+                          'Chatroom Overall Emotion Count',
                           style: TextStyle(color: Colors.white)
                       )
                   ),
                   Padding (
                       padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: KeywordTagCloud(keywordsList: widget.chatroomKeywordsList)
+                      child: EmotionBarChart(emotionCount: widget.chatroomEmotionCount)
                   ),
                   Container (
                       color: Colors.teal,
                       height: 30,
                       alignment: Alignment.center,
                       child: Text (
-                          'SWIPE LEFT for Chatroom Overall Emotion Count',
+                          'SWIPE LEFT for Chatroom Keyword Tag Cloud',
                           style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic)
                       )
                   ),
@@ -64,20 +64,20 @@ class _ChatroomAnalyticsState extends State<ChatroomAnalytics> {
                           height: 40,
                           alignment: Alignment.center,
                           child: Text (
-                              'Chatroom Overall Emotion Count',
+                              'Chatroom Keyword Tag Cloud',
                               style: TextStyle(color: Colors.white)
                           )
                       ),
                       Padding (
                           padding: EdgeInsets.symmetric(horizontal: 10),
-                          child: EmotionBarChart(emotionCount: widget.chatroomEmotionCount)
+                          child: KeywordTagCloud(keywordsList: widget.chatroomKeywordsList)
                       ),
                       Container (
                           color: Colors.teal,
                           height: 30,
                           alignment: Alignment.center,
                           child: Text (
-                              'SWIPE RIGHT for Chatroom Keyword Tag Cloud',
+                              'SWIPE RIGHT for Chatroom Overall Emotion Count',
                               style: TextStyle(color: Colors.white, fontStyle: FontStyle.italic)
                           )
                       ),

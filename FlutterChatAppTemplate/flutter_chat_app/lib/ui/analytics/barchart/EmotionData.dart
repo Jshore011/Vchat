@@ -1,12 +1,13 @@
-import 'dart:ui';
+import 'package:charts_flutter/flutter.dart' as charts;
 
 class Emotion {
-  const Emotion(
-      this.name,
-      this.count,
-      this.color,
-      );
   final String name;
   final int count;
-  final Color color;
+  final charts.Color barColor;
+
+  Emotion(
+    this.name,
+    this.count,
+    this.barColor,
+  );
 }

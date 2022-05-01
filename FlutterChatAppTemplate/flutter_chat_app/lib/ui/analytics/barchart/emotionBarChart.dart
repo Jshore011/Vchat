@@ -12,14 +12,14 @@ class EmotionBarChart extends StatefulWidget {
 }
 
 class _EmotionBarChartState extends State<EmotionBarChart> {
-  List emotionData = [];
+  List<Emotion> emotionData = [];
 
   buildEmotionList() {
-    var joy = Emotion('joy', 0, Colors.yellow);
-    var sadness = Emotion('sadness', 0, Colors.blue);
-    var disgust = Emotion('disgust', 0, Colors.green);
-    var anger = Emotion('anger', 0, Colors.red);
-    var fear = Emotion('fear', 0, Colors.deepPurple);
+    var joy = Emotion('joy', 0, charts.ColorUtil.fromDartColor(Colors.amber));
+    var sadness = Emotion('sadness', 0, charts.ColorUtil.fromDartColor(Colors.blue));
+    var disgust = Emotion('disgust', 0, charts.ColorUtil.fromDartColor(Colors.green));
+    var anger = Emotion('anger', 0, charts.ColorUtil.fromDartColor(Colors.red));
+    var fear = Emotion('fear', 0, charts.ColorUtil.fromDartColor(Colors.purple));
 
     var emotionList = [joy, sadness, disgust, anger, fear];
 
@@ -28,36 +28,31 @@ class _EmotionBarChartState extends State<EmotionBarChart> {
         case 'joy' :
           {
             emotionList.removeAt(0);
-            emotionList.insert(
-                0, Emotion('joy', int.parse(widget.emotionCount[i + 1]), Colors.yellow));
+            emotionList.insert(0, Emotion('joy', int.parse(widget.emotionCount[i + 1]), charts.ColorUtil.fromDartColor(Colors.amber)));
           }
           break;
         case 'sadness' :
           {
             emotionList.removeAt(1);
-            emotionList.insert(
-                1, Emotion('sadness', int.parse(widget.emotionCount[i + 1]), Colors.blue));
+            emotionList.insert(1, Emotion('sadness', int.parse(widget.emotionCount[i + 1]), charts.ColorUtil.fromDartColor(Colors.blue)));
           }
           break;
         case 'disgust' :
           {
             emotionList.removeAt(2);
-            emotionList.insert(2,
-                Emotion('disgust', int.parse(widget.emotionCount[i + 1]), Colors.green));
+            emotionList.insert(2, Emotion('disgust', int.parse(widget.emotionCount[i + 1]), charts.ColorUtil.fromDartColor(Colors.green)));
           }
           break;
         case 'anger' :
           {
             emotionList.removeAt(3);
-            emotionList.insert(
-                3, Emotion('anger', int.parse(widget.emotionCount[i + 1]), Colors.red));
+            emotionList.insert(3, Emotion('anger', int.parse(widget.emotionCount[i + 1]), charts.ColorUtil.fromDartColor(Colors.red)));
           }
           break;
         case 'fear' :
           {
-            emotionList.remove(4);
-            emotionList.insert(4,
-                Emotion('fear', int.parse(widget.emotionCount[i + 1]), Colors.deepPurple));
+            emotionList.removeAt(4);
+            emotionList.insert(4, Emotion('fear', int.parse(widget.emotionCount[i + 1]), charts.ColorUtil.fromDartColor(Colors.purple)));
           }
           break;
       }
@@ -65,6 +60,7 @@ class _EmotionBarChartState extends State<EmotionBarChart> {
     }
     return emotionList;
   }
+
 
   @override
   void initState() {
@@ -74,9 +70,26 @@ class _EmotionBarChartState extends State<EmotionBarChart> {
 
   @override
   Widget build(BuildContext context) {
+    List<charts.Series<Emotion, String>> series = [
+      charts.Series(
+        id: "EmotionCount",
+        data: emotionData,
+        domainFn: (Emotion series, _) => series.name,
+        measureFn: (Emotion series, _) => series.count,
+        colorFn: (Emotion series, _) => series.barColor
+      ),
+    ];
+
     return Container (
-      width: MediaQuery.of(context).size.width,
-      color: Colors.grey
+      height: MediaQuery.of(context).size.height/ 2.0,
+      padding: EdgeInsets.all(20),
+      child: Column(
+        children: [
+          Expanded(
+            child: charts.BarChart(series, animate: true)
+          )
+        ]
+      )
     );
   }
 }
