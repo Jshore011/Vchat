@@ -1,5 +1,5 @@
 {
-  "appName": "Instachatty",
+  "appName": "VChat",
   "conversations": "Conversations",
   "contacts": "Contacts",
   "search": "Search",
@@ -90,7 +90,7 @@
   "hasBeenBlockedAndReported": "{} has been reported and blocked.",
   "couldNotReportAndBlock": "Couldn't report {}, please try again later.",
   "ourAddress": "Our Address",
-  "placeholderAddress": "1412 Steiner Street, San Francisco, CA, 94115",
+  "placeholderAddress": "333 S Twin Oaks Valley Rd, San Marcos, CA 92096 (Viasat Engineering Pavilion)",
   "CouldNotEmail": "Couldn't send email",
   "noMailingAppFound": "There is no mailing app installed",
   "emailUs": "E-mail us",

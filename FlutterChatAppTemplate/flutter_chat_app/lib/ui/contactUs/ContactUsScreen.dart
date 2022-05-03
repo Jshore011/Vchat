@@ -9,17 +9,6 @@ class ContactUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          String url = 'tel:12345678';
-          launch(url);
-        },
-        backgroundColor: Color(COLOR_ACCENT),
-        child: Icon(
-          Icons.call,
-          color: isDarkMode(context) ? Colors.black : Colors.white,
-        ),
-      ),
       appBar: AppBar(
         backgroundColor: Color(COLOR_PRIMARY),
         iconTheme: IconThemeData(
@@ -59,7 +48,7 @@ class ContactUsScreen extends StatelessWidget {
                 ListTile(
                   onTap: () async {
                     var url =
-                        'mailto:support@instamobile.zendesk.com?subject=Instaflutter-contact-ticket';
+                        'mailto:vchatteam21@gmail.com';
                     if (await canLaunch(url)) {
                       await launch(url);
                     } else {
@@ -74,7 +63,7 @@ class ContactUsScreen extends StatelessWidget {
                         fontSize: 24,
                         fontWeight: FontWeight.bold),
                   ).tr(),
-                  subtitle: Text('support@instamobile.zendesk.com'),
+                  subtitle: Text('vchatteam21@gmail.com'),
                   trailing: Icon(
                     Icons.arrow_forward_ios,
                     color: isDarkMode(context) ? Colors.white54 : Colors.black54,
