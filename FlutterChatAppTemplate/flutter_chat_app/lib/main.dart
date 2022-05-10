@@ -153,9 +153,9 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   void initState() {
-    super.initState();
     initializeFlutterFire();
     WidgetsBinding.instance?.addObserver(this);
+    super.initState();
   }
 
   @override
