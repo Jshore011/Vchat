@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <script src="/static/ajaxProtocols.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <head>
+    <title>VChat Mobile App Download</title>
+    <style>
+    </style>
+  </head>
+  <body>
+    <h1 id="title">VChat Mobile App Download</h1>
+    <a href="https://drive.google.com/drive/folders/1gHZ_u7fPaecIriTAPybgRlw78VY0TAbC?usp=sharing" download> 
+      <button id="button" type="button" onclick="showAnalytics();">Click for Android Download</button>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1gHZ_u7fPaecIriTAPybgRlw78VY0TAbC?usp=sharing" download>
+      <button id="button" type="button" onclick="showAnalytics();">Click for IOS Download</button>
+    </a>
+
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<script src="/static/ajaxProtocols.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+<head>
+  <title>VChat Mobile App Download</title>
+  <style>
+    body,
+    html {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      background-color: #4DB6AC;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    p {
+      cursor: default;
+    }
+
+    .header_row {
+      padding: 20px;
+    }
+
+    #logo {
+      display: block;
+      margin: 0 auto;
+      width: 33%;
+      -webkit-filter: invert(100%);
+    }
+
+    #title {
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bolder;
+      color: white;
+    }
+
+    @media (max-width: 650px) {
+      #logo {
+        width: 75%;
+      }
+
+      #title {
+        font-size: 1em;
+      }
+    }
+
+    #downloadsHeader {
+      background-color: #4a9c94;
+      margin: 0 auto;
+      color: white;
+      text-align: center;
+      font-weight: bolder;
+      font-size: 1.5em;
+      padding: 20px 0px 10px 0px;
+    }
+
+    .download_row {
+      background-color: #4a9c94;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      align-items: center;
+      padding: 10px 0px 20px 0px;
+    }
+
+    .download_row button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 20em;
+      border-radius: 30px;
+      border-style: none;
+      background-color: rgb(49, 49, 49);
+      color: white;
+      padding: 5px;
+      transition: 0.20s;
+    }
+
+    .download_row button:hover {
+      background-color: rgb(56, 56, 56);
+      box-shadow: 0 5px 15px rgb(116, 116, 116);
+      cursor: pointer;
+    }
+
+    .download_row img {
+      max-width: 10%;
+      margin-right: 1em;
+      -webkit-filter: invert(100%);
+    }
+
+    .download_row button * {
+      align-items: center;
+    }
+
+    @media (min-width: 750px) {
+      .download_row {
+        flex-direction: row;
+        justify-content: center;
+        gap: 2.5em;
+        padding: 0px 0px 20px 0px;
+      }
+
+      .download_row button {
+        padding: 15px;
+        border-radius: 30px;
+      }
+    }
+
+    #featuresHeader {
+      background-color: #3e7c77;
+      margin: 0 auto;
+      color: white;
+      text-align: center;
+      font-weight: bolder;
+      font-size: 1.5em;
+      padding: 20px;
+    }
+
+    .features_row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background-color: #3e7c77;
+      padding: 0px 20px 20px 20px;
+    }
+
+    .features_row img {
+      border-radius: 10px;
+      max-width: 80%;
+      border: 5px solid rgb(255, 204, 188);
+    }
+
+    .features_row #featuresHeader {
+      font-weight: bolder;
+    }
+
+    .features_row p {
+      color: white;
+      font-size: 0.9em;
+    }
+
+    .features_row .feature {
+      font-weight: bold;
+    }
+
+    @media (min-width: 650px) {
+      .features_row {
+        flex-direction: row;
+        align-items: start;
+        flex-wrap: wrap;
+        gap: 2em;
+      }
+
+      .features_row div {
+        flex: 1 0 45%;
+      }
+
+      .features_row div img {
+        max-height: 10em;
+      }
+    }
+
+    @media (min-width: 1000px) {
+      .features_row {
+        flex-direction: row;
+        align-items: start;
+        flex-wrap: wrap;
+        gap: 1em;
+      }
+
+      .features_row div {
+        flex: 1 0 20%;
+      }
+
+      .features_row div img {
+        max-height: 10em;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .features_row div img {
+        max-height: 15em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header_row">
+    <img id="logo" src="http://drive.google.com/uc?export=view&id=1QA_lKpkgfD9zqgu5nG4QPrOs_knG7oDc">
+    <p id="title">Where your Voice takes Shape</p>
+  </div>
+  <p id="downloadsHeader">Downloads</p>
+  <div class="download_row">
+    <a href="https://drive.google.com/drive/folders/1gHZ_u7fPaecIriTAPybgRlw78VY0TAbC?usp=sharing" download>
+      <button class="download" id="androidDownload" type="button" onclick="showAnalytics();">
+        <img id="androidLogo" src="http://drive.google.com/uc?export=view&id=14X_9q0Xlwbh41ctbdGq8GCk05LjirEGN">
+        Android
+      </button>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1gHZ_u7fPaecIriTAPybgRlw78VY0TAbC?usp=sharing" download>
+      <button class="download" id="iosDownload" type="button" onclick="showAnalytics();">
+        <img id="iosLogo" src="http://drive.google.com/uc?export=view&id=1qROXvs2Q_Ze0h2mRdzZ38DtjyaMXwMOP">
+        iOS
+      </button>
+    </a>
+  </div>
+  <p id="featuresHeader">Features</p>
+  <div class="features_row">
+    <div>
+      <img id="speechToText" src="http://drive.google.com/uc?export=view&id=173LOJfoxXHy_p4VbnDcPuCbENdcWzzpf">
+      <p class="feature">Private Messages / Group Chats</p>
+      <p>Communicate with your friends via private messages or invite groups of friends into a group chat.</p>
+    </div>
+    <div>
+      <img id="audioPlayback" src="http://drive.google.com/uc?export=view&id=17TDBxnCUTKQvxXQF_0BBDhoibcHkifYt">
+      <p class="feature">Transcribe Audio</p>
+      <p>Convert speech-to-text and get audio playback with the press of a button.</p>
+    </div>
+    <div>
+      <img id="emotionalAnalysis" src="http://drive.google.com/uc?export=view&id=1TD4aNT-OOP2AIREnpTQLJAOmdRnFd0I3">
+      <p class="feature">Emotional Analysis</p>
+      <p>Receive automatic emotional analyses for every message.</p>
+    </div>
+    <div>
+      <img id="keywordCloud" src="http://drive.google.com/uc?export=view&id=15PPj6GdCuOPwrhdnc4rGgy2w0A5jUsw3">
+      <p class="feature">Keyword Tag Cloud</p>
+      <p>View the most used keywords for yourself and for each chatroom you are a part of.</p>
+    </div>
+  </div>
+  <script>
+
+  </script>
+</body>
+
+</html>
